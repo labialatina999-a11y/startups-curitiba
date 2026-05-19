@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Mapa de Startups - Curitiba | Ecossistema Inovador</title>
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Leaflet CSS (mapa moderno) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * {
@@ -18,38 +16,49 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
+            color: #1a202c;
         }
 
-        /* Header moderno com gradiente */
         .hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            padding: 2rem 2rem 1.5rem 2rem;
-            border-bottom-left-radius: 1.5rem;
-            border-bottom-right-radius: 1.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            padding: 2.5rem 2rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
         .hero h1 i {
             color: #38bdf8;
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
 
         .hero p {
@@ -60,61 +69,103 @@
         }
 
         .stats-badge {
-            display: inline-flex;
+            display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         .stat {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(4px);
-            padding: 0.4rem 1rem;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* container principal */
         .dashboard {
             max-width: 1400px;
-            margin: 2rem auto;
+            margin: -1.5rem auto 2rem auto;
             padding: 0 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            position: relative;
+            z-index: 10;
         }
 
-        /* barra de busca e filtros */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .metric-info h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-info .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
         .controls {
             background: white;
-            border-radius: 1.25rem;
+            border-radius: 1rem;
             padding: 1rem 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
+            margin-bottom: 1.5rem;
         }
 
         .search-box {
-            flex: 2;
-            min-width: 200px;
             display: flex;
             align-items: center;
-            background: #f1f5f9;
-            border-radius: 60px;
-            padding: 0.5rem 1rem;
-            gap: 8px;
-            transition: all 0.2s;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            gap: 10px;
+            border: 1px solid #e2e8f0;
         }
 
         .search-box i {
-            color: #64748b;
+            color: #94a3b8;
+            font-size: 1.1rem;
         }
 
         .search-box input {
@@ -126,22 +177,6 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .filter-stats {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .total-count {
-            background: #e2e8f0;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* grid: mapa + lista */
         .grid-main {
             display: flex;
             flex-wrap: wrap;
@@ -150,35 +185,32 @@
 
         .map-card {
             flex: 2;
-            min-width: 280px;
+            min-width: 300px;
             background: white;
-            border-radius: 1.5rem;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
-            transition: transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         .map-header {
             padding: 1rem 1.5rem;
-            border-bottom: 1px solid #eef2ff;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            background: white;
+            border-bottom: 2px solid #f1f5f9;
+            font-weight: 700;
+            font-size: 1rem;
         }
 
         #map {
-            height: 480px;
+            height: 550px;
             width: 100%;
-            z-index: 1;
         }
 
         .list-card {
             flex: 1.2;
-            min-width: 280px;
+            min-width: 320px;
             background: white;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -186,59 +218,91 @@
 
         .list-header {
             padding: 1rem 1.5rem;
-            background: #ffffff;
-            border-bottom: 1px solid #eef2ff;
+            background: white;
+            border-bottom: 2px solid #f1f5f9;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         .startup-list {
             flex: 1;
             overflow-y: auto;
-            max-height: 480px;
-            padding: 0.5rem;
+            max-height: 550px;
+            padding: 1rem;
         }
 
         .startup-item {
-            background: #f8fafc;
-            margin: 0.5rem;
-            padding: 0.9rem 1rem;
-            border-radius: 1rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s;
-            border-left: 4px solid #38bdf8;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .startup-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .startup-item:hover {
-            background: #f1f5f9;
             transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
         }
 
         .startup-name {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1rem;
+            margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: start;
+            gap: 0.5rem;
         }
 
-        .startup-category {
-            font-size: 0.75rem;
-            background: #e2e8f0;
+        .area-badge {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            color: #5b21b6;
             padding: 0.2rem 0.6rem;
             border-radius: 20px;
-            color: #334155;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
-        .startup-address {
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.75rem;
             color: #475569;
-            margin-top: 6px;
-            display: flex;
-            gap: 6px;
-            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .info-row i {
+            width: 16px;
+            color: #667eea;
+            font-size: 0.7rem;
+        }
+
+        .badge-years {
+            background: #fef3c7;
+            color: #d97706;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
         }
 
         .empty-message {
@@ -253,59 +317,86 @@
             font-size: 0.8rem;
             color: #64748b;
             border-top: 1px solid #e2e8f0;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
 
-        @media (max-width: 860px) {
-            .hero h1 { font-size: 1.6rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
             .dashboard { padding: 0 1rem; }
+            .metric-card { padding: 0.8rem; }
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
 <div class="hero">
     <div class="hero-content">
         <h1>
-            <i class="fas fa-map-marker-alt"></i> 
+            <i class="fas fa-rocket"></i> 
             Mapa de Startups · Curitiba
         </h1>
-        <p>Explore o ecossistema inovador da capital paranaense. Clique nos marcadores ou na lista para mais detalhes.</p>
+        <p>Explore o ecossistema inovador da capital paranaense. Conheça áreas de atuação, porte e histórico das principais startups da região.</p>
         <div class="stats-badge">
-            <span class="stat"><i class="fas fa-rocket"></i> Ecossistema vivo</span>
-            <span class="stat"><i class="fas fa-chart-line"></i> Inovação e tecnologia</span>
+            <span class="stat"><i class="fas fa-chart-line"></i> Ecossistema em crescimento</span>
+            <span class="stat"><i class="fas fa-users"></i> Polo de inovação</span>
+            <span class="stat"><i class="fas fa-trophy"></i> Startups de impacto</span>
         </div>
     </div>
 </div>
 
 <div class="dashboard">
+    <div class="metrics-grid" id="metricsGrid">
+        <div class="metric-card">
+            <div class="metric-icon"><i class="fas fa-building"></i></div>
+            <div class="metric-info">
+                <h3>Total de Startups</h3>
+                <div class="value" id="totalStartups">0</div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="metric-info">
+                <h3>Áreas de atuação</h3>
+                <div class="value" id="totalAreas">0</div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon"><i class="fas fa-users"></i></div>
+            <div class="metric-info">
+                <h3>Total Funcionários</h3>
+                <div class="value" id="totalEmployees">0</div>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="metric-info">
+                <h3>Média de idade</h3>
+                <div class="value" id="avgAge">0 anos</div>
+            </div>
+        </div>
+    </div>
+
     <div class="controls">
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Buscar startup por nome, área ou endereço...">
-        </div>
-        <div class="filter-stats">
-            <div class="total-count" id="totalCount">Carregando...</div>
+            <input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou endereço...">
         </div>
     </div>
 
     <div class="grid-main">
         <div class="map-card">
             <div class="map-header">
-                <i class="fas fa-location-dot" style="color:#3b82f6"></i> 
-                <span>📍 Pontos no mapa (Curitiba e região)</span>
+                <i class="fas fa-map-marker-alt" style="color:#3b82f6"></i> Localização das Startups
             </div>
             <div id="map"></div>
         </div>
 
         <div class="list-card">
             <div class="list-header">
-                <span><i class="fas fa-list-ul"></i> Startups cadastradas</span>
-                <span id="resultCount"></span>
+                <span><i class="fas fa-list-ul"></i> Lista de Startups</span>
+                <span id="resultCount" class="badge-years">0 resultados</span>
             </div>
             <div id="startupListContainer" class="startup-list">
-                <!-- lista dinâmica -->
                 <div class="empty-message"><i class="fas fa-spinner fa-pulse"></i> Carregando dados...</div>
             </div>
         </div>
@@ -313,188 +404,187 @@
 </div>
 
 <footer>
-    <i class="fas fa-code-branch"></i> Dados mantidos no arquivo startups_data.json | Mapa interativo com Leaflet
+    <i class="fas fa-database"></i> Dados atualizados | Fonte: startups_data.json | Mapa interativo
 </footer>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-    // dados globais
     let startupsData = [];
     let map;
     let markers = [];
     let currentFilter = '';
 
-    // coordenadas centrais de Curitiba (referência)
     const curitibaCenter = [-25.4284, -49.2733];
 
-    // função para inicializar o mapa (estilo mais clean)
     function initMap() {
         map = L.map('map').setView(curitibaCenter, 12);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB',
             subdomains: 'abcd',
-            maxZoom: 18,
-            minZoom: 10
+            maxZoom: 18
         }).addTo(map);
     }
 
-    // gerar ícone customizado
     function getStartupIcon() {
         return L.divIcon({
-            html: '<div style="background-color:#3b82f6; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 2px #3b82f6;"></div>',
+            html: '<div style="background:linear-gradient(135deg, #667eea, #764ba2); width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 2px #667eea;"></div>',
             iconSize: [12,12],
             className: 'custom-marker'
         });
     }
 
-    // atualizar mapa e lista baseado no filtro
+    function calcularIdade(fundacao) {
+        if (!fundacao) return null;
+        const anoAtual = new Date().getFullYear();
+        return anoAtual - fundacao;
+    }
+
+    function atualizarMetricas(startups) {
+        const total = startups.length;
+        const areas = new Set(startups.map(s => s.area_atuacao).filter(a => a));
+        const totalFunc = startups.reduce((sum, s) => sum + (parseInt(s.funcionarios) || 0), 0);
+        const idades = startups.map(s => calcularIdade(s.fundacao)).filter(age => age !== null);
+        const mediaIdade = idades.length ? (idades.reduce((a,b) => a+b, 0) / idades.length).toFixed(1) : 0;
+
+        document.getElementById('totalStartups').innerText = total;
+        document.getElementById('totalAreas').innerText = areas.size;
+        document.getElementById('totalEmployees').innerText = totalFunc.toLocaleString();
+        document.getElementById('avgAge').innerText = mediaIdade > 0 ? `${mediaIdade} anos` : 'N/D';
+    }
+
     function renderMapAndList(filterText = '') {
-        // limpar marcadores antigos
         markers.forEach(marker => map.removeLayer(marker));
         markers = [];
 
         const filtered = startupsData.filter(startup => {
             if (!filterText.trim()) return true;
-            const term = filterText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const name = (startup.nome || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const category = (startup.categoria || startup.setor || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const address = (startup.endereco || startup.localizacao || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            return name.includes(term) || category.includes(term) || address.includes(term);
+            const term = filterText.toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
+            const name = (startup.nome || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
+            const area = (startup.area_atuacao || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
+            const address = (startup.endereco || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
+            return name.includes(term) || area.includes(term) || address.includes(term);
         });
 
-        // atualizar contadores
-        document.getElementById('totalCount').innerHTML = `<i class="fas fa-building"></i> ${filtered.length} / ${startupsData.length}`;
+        atualizarMetricas(filtered);
         document.getElementById('resultCount').innerHTML = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
 
-        // lista startups
         const listContainer = document.getElementById('startupListContainer');
         if (filtered.length === 0) {
             listContainer.innerHTML = `<div class="empty-message"><i class="fas fa-ban"></i> Nenhuma startup encontrada</div>`;
         } else {
-            listContainer.innerHTML = filtered.map((startup, idx) => `
-                <div class="startup-item" data-idx="${idx}" data-name="${(startup.nome || '').replace(/"/g, '&quot;')}">
-                    <div class="startup-name">
-                        <span><i class="fas fa-cube"></i> ${escapeHtml(startup.nome || 'Startup')}</span>
-                        <span class="startup-category">${escapeHtml(startup.categoria || startup.setor || 'Tecnologia')}</span>
+            listContainer.innerHTML = filtered.map((startup, idx) => {
+                const idade = calcularIdade(startup.fundacao);
+                return `
+                    <div class="startup-item" data-idx="${idx}">
+                        <div class="startup-name">
+                            <strong><i class="fas fa-cube"></i> ${escapeHtml(startup.nome)}</strong>
+                            <span class="area-badge">${escapeHtml(startup.area_atuacao || 'Tecnologia')}</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="fas fa-map-pin"></i>
+                            <span>${escapeHtml(startup.endereco || 'Curitiba, PR')}</span>
+                        </div>
+                        <div class="info-row">
+                            <i class="fas fa-users"></i>
+                            <span>${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span>
+                            ${idade ? `<span class="badge-years"><i class="fas fa-calendar"></i> ${idade} anos</span>` : ''}
+                            ${startup.fundacao ? `<span class="badge-years"><i class="fas fa-flag-checkered"></i> Fundada em ${startup.fundacao}</span>` : ''}
+                        </div>
+                        ${startup.site ? `<div class="info-row"><i class="fas fa-globe"></i> <a href="${startup.site}" target="_blank" style="color:#667eea; text-decoration:none;">site</a></div>` : ''}
                     </div>
-                    <div class="startup-address">
-                        <i class="fas fa-map-pin"></i> ${escapeHtml(startup.endereco || startup.localizacao || 'Curitiba, PR')}
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
-            // adicionar evento de clique nos itens da lista
-            document.querySelectorAll('.startup-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const idx = parseInt(item.dataset.idx);
+            document.querySelectorAll('.startup-item').forEach((item, idx) => {
+                item.addEventListener('click', () => {
                     const startup = filtered[idx];
                     if (startup && startup.lat && startup.lng) {
                         map.setView([startup.lat, startup.lng], 16);
-                        // abrir popup do marcador correspondente (encontrar pelo título)
-                        const targetMarker = markers.find(m => m.options.title === (startup.nome || ''));
+                        const targetMarker = markers.find(m => m.options.title === startup.nome);
                         if (targetMarker) targetMarker.openPopup();
-                    } else if (startup) {
-                        alert(`📍 ${startup.nome || 'Startup'}\nNão possui coordenadas exatas no JSON. Adicione lat/lng para navegar.`);
                     }
                 });
             });
         }
 
-        // adicionar marcadores no mapa (para filtrados)
         filtered.forEach(startup => {
-            if (startup.lat && startup.lng && !isNaN(startup.lat) && !isNaN(startup.lng)) {
+            if (startup.lat && startup.lng) {
+                const idade = calcularIdade(startup.fundacao);
                 const popupContent = `
-                    <div style="font-family:Inter; max-width:200px">
-                        <strong style="font-size:1rem">${escapeHtml(startup.nome || 'Startup')}</strong><br>
-                        <span style="font-size:0.8rem;color:#334155">📁 ${escapeHtml(startup.categoria || startup.setor || 'Inovação')}</span><br>
-                        <span style="font-size:0.75rem">📍 ${escapeHtml(startup.endereco || startup.localizacao || 'Curitiba')}</span><br>
-                        ${startup.site ? `<a href="${startup.site}" target="_blank" style="font-size:0.7rem">🔗 site</a>` : ''}
+                    <div style="font-family:Inter; max-width:260px;">
+                        <strong style="font-size:1rem; color:#0f172a;">${escapeHtml(startup.nome)}</strong><br>
+                        <span style="font-size:0.8rem; color:#667eea;">📁 ${escapeHtml(startup.area_atuacao || 'Tecnologia')}</span><br>
+                        <span style="font-size:0.7rem;">📍 ${escapeHtml(startup.endereco || 'Curitiba')}</span><br>
+                        <span style="font-size:0.7rem;">👥 ${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span><br>
+                        ${idade ? `<span style="font-size:0.7rem;">📅 ${idade} anos (fundada em ${startup.fundacao})</span>` : ''}
+                        ${startup.site ? `<br><a href="${startup.site}" target="_blank" style="font-size:0.7rem;">🔗 Acessar site</a>` : ''}
                     </div>
                 `;
-                const marker = L.marker([startup.lat, startup.lng], { icon: getStartupIcon(), title: startup.nome || 'Startup' })
+                const marker = L.marker([startup.lat, startup.lng], { icon: getStartupIcon(), title: startup.nome })
                     .addTo(map)
                     .bindPopup(popupContent);
                 markers.push(marker);
-            } else {
-                // se não tem coordenada, não cria marcador
-                console.warn("Sem coordenada:", startup.nome);
             }
         });
 
-        // se após filtro não houver marcadores no mapa mas existirem startups, centraliza no mapa padrão
-        if (markers.length === 0 && filtered.length > 0) {
-            map.setView(curitibaCenter, 12);
-        } else if (markers.length > 0) {
-            // opcional: fit bounds
+        if (markers.length > 1) {
             const group = L.featureGroup(markers);
-            if(markers.length === 1) map.setView(markers[0].getLatLng(), 15);
-            else map.fitBounds(group.getBounds().pad(0.1));
+            map.fitBounds(group.getBounds().pad(0.1));
+        } else if (markers.length === 1) {
+            map.setView(markers[0].getLatLng(), 15);
         }
     }
 
-    // helper sanitização
     function escapeHtml(str) {
-        if(!str) return '';
+        if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
             return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
         });
     }
 
-    // carregar dados do JSON (startups_data.json)
     async function loadData() {
         try {
-            // tenta carregar arquivo local do repositório, mesmo diretório
             const response = await fetch('startups_data.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             let data = await response.json();
-            // suporta array ou objeto com array
+            
             if (Array.isArray(data)) {
                 startupsData = data;
-            } else if (data.startups && Array.isArray(data.startups)) {
+            } else if (data.startups) {
                 startupsData = data.startups;
-            } else if (data.data && Array.isArray(data.data)) {
-                startupsData = data.data;
             } else {
                 startupsData = [];
             }
 
-            // normalização dos campos: garantir nome, lat, lng, categoria, endereco
-            startupsData = startupsData.map(s => ({
-                nome: s.nome || s.name || s.titulo || 'Startup sem nome',
-                lat: parseFloat(s.lat || s.latitude || (s.coordinates && s.coordinates[0]) || null),
-                lng: parseFloat(s.lng || s.longitude || (s.coordinates && s.coordinates[1]) || null),
-                categoria: s.categoria || s.setor || s.area || 'Tecnologia',
-                endereco: s.endereco || s.endereco_completo || s.address || s.localizacao || 'Curitiba, PR',
-                site: s.site || s.website || s.url || null
-            })).filter(s => s.lat && s.lng && !isNaN(s.lat) && !isNaN(s.lng));  // mantém apenas com coordenadas válidas
+            startupsData = startupsData.filter(s => s.lat && s.lng).map(s => ({
+                nome: s.nome || s.name || 'Startup',
+                lat: parseFloat(s.lat),
+                lng: parseFloat(s.lng),
+                area_atuacao: s.area_atuacao || s.setor || s.categoria || 'Tecnologia',
+                endereco: s.endereco || s.localizacao || 'Curitiba, PR',
+                funcionarios: s.funcionarios || s.numero_funcionarios || s.employees || null,
+                fundacao: s.fundacao || s.ano_fundacao || s.founded || null,
+                site: s.site || s.website || null
+            }));
 
-            if(startupsData.length === 0){
-                document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-database"></i> Nenhuma startup com coordenadas encontrada no JSON. Verifique o arquivo.</div>`;
-                document.getElementById('totalCount').innerHTML = `0 startups`;
+            if (startupsData.length === 0) {
+                document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Nenhuma startup com coordenadas encontrada</div>`;
             } else {
-                renderMapAndList(currentFilter);
+                renderMapAndList('');
             }
         } catch (err) {
-            console.error("Erro ao carregar dados:", err);
-            document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar startups_data.json. Verifique se o arquivo existe e é válido.</div>`;
-            document.getElementById('totalCount').innerHTML = `Erro`;
+            console.error(err);
+            document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar startups_data.json</div>`;
         }
     }
 
-    // eventos de busca
     document.addEventListener('DOMContentLoaded', () => {
         initMap();
         loadData();
-
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
+        document.getElementById('searchInput').addEventListener('input', (e) => {
             currentFilter = e.target.value;
             renderMapAndList(currentFilter);
         });
