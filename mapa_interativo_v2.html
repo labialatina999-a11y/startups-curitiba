@@ -305,6 +305,15 @@
             font-weight: 600;
         }
 
+        .badge-capital {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
         .empty-message {
             text-align: center;
             padding: 2rem;
@@ -335,11 +344,11 @@
             <i class="fas fa-rocket"></i> 
             Mapa de Startups · Curitiba
         </h1>
-        <p>Explore o ecossistema inovador da capital paranaense. Conheça áreas de atuação, porte e histórico das principais startups da região.</p>
+        <p>Explore o processo de inovação e a criação de uma plataforma para as startups. Conheça as políticas, o que é um startup e a importância das principais start-ups da região.</p>
         <div class="stats-badge">
             <span class="stat"><i class="fas fa-chart-line"></i> Ecossistema em crescimento</span>
-            <span class="stat"><i class="fas fa-users"></i> Polo de inovação</span>
-            <span class="stat"><i class="fas fa-trophy"></i> Startups de impacto</span>
+            <span class="stat"><i class="fas fa-users"></i> Polo de Inovação</span>
+            <span class="stat"><i class="fas fa-trophy"></i> Startups de Impacto</span>
         </div>
     </div>
 </div>
@@ -349,29 +358,29 @@
         <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-building"></i></div>
             <div class="metric-info">
-                <h3>Total de Startups</h3>
-                <div class="value" id="totalStartups">0</div>
+                <h3>TOTAL DE STARTUPS</h3>
+                <div class="value" id="totalStartups">43</div>
             </div>
         </div>
         <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-chart-pie"></i></div>
             <div class="metric-info">
-                <h3>Áreas de atuação</h3>
+                <h3>ÁREAS DE ATUAÇÃO</h3>
                 <div class="value" id="totalAreas">0</div>
             </div>
         </div>
         <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-users"></i></div>
             <div class="metric-info">
-                <h3>Total Funcionários</h3>
+                <h3>TOTAL FUNCIONÁRIOS</h3>
                 <div class="value" id="totalEmployees">0</div>
             </div>
         </div>
         <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-calendar-alt"></i></div>
             <div class="metric-info">
-                <h3>Média de idade</h3>
-                <div class="value" id="avgAge">0 anos</div>
+                <h3>MÉDIA DE IDADE</h3>
+                <div class="value" id="avgAge">N/D</div>
             </div>
         </div>
     </div>
@@ -379,7 +388,7 @@
     <div class="controls">
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou endereço...">
+            <input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou localização...">
         </div>
     </div>
 
@@ -433,6 +442,16 @@
         });
     }
 
+    function formatarCapital(valor) {
+        if (!valor) return 'N/I';
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(valor);
+    }
+
     function calcularIdade(fundacao) {
         if (!fundacao) return null;
         const anoAtual = new Date().getFullYear();
@@ -444,12 +463,12 @@
         const areas = new Set(startups.map(s => s.area_atuacao).filter(a => a));
         const totalFunc = startups.reduce((sum, s) => sum + (parseInt(s.funcionarios) || 0), 0);
         const idades = startups.map(s => calcularIdade(s.fundacao)).filter(age => age !== null);
-        const mediaIdade = idades.length ? (idades.reduce((a,b) => a+b, 0) / idades.length).toFixed(1) : 0;
+        const mediaIdade = idades.length ? (idades.reduce((a,b) => a+b, 0) / idades.length).toFixed(1) : null;
 
         document.getElementById('totalStartups').innerText = total;
         document.getElementById('totalAreas').innerText = areas.size;
         document.getElementById('totalEmployees').innerText = totalFunc.toLocaleString();
-        document.getElementById('avgAge').innerText = mediaIdade > 0 ? `${mediaIdade} anos` : 'N/D';
+        document.getElementById('avgAge').innerHTML = mediaIdade ? `${mediaIdade} anos` : 'N/D';
     }
 
     function renderMapAndList(filterText = '') {
@@ -488,7 +507,11 @@
                             <i class="fas fa-users"></i>
                             <span>${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span>
                             ${idade ? `<span class="badge-years"><i class="fas fa-calendar"></i> ${idade} anos</span>` : ''}
-                            ${startup.fundacao ? `<span class="badge-years"><i class="fas fa-flag-checkered"></i> Fundada em ${startup.fundacao}</span>` : ''}
+                            ${startup.fundacao ? `<span class="badge-years"><i class="fas fa-flag-checkered"></i> ${startup.fundacao}</span>` : ''}
+                        </div>
+                        <div class="info-row">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Capital: ${formatarCapital(startup.capital)}</span>
                         </div>
                         ${startup.site ? `<div class="info-row"><i class="fas fa-globe"></i> <a href="${startup.site}" target="_blank" style="color:#667eea; text-decoration:none;">site</a></div>` : ''}
                     </div>
@@ -514,9 +537,11 @@
                     <div style="font-family:Inter; max-width:260px;">
                         <strong style="font-size:1rem; color:#0f172a;">${escapeHtml(startup.nome)}</strong><br>
                         <span style="font-size:0.8rem; color:#667eea;">📁 ${escapeHtml(startup.area_atuacao || 'Tecnologia')}</span><br>
-                        <span style="font-size:0.7rem;">📍 ${escapeHtml(startup.endereco || 'Curitiba')}</span><br>
+                        <span style="font-size:0.7rem;">📍 ${escapeHtml(startup.endereco || 'Curitiba, PR')}</span><br>
                         <span style="font-size:0.7rem;">👥 ${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span><br>
-                        ${idade ? `<span style="font-size:0.7rem;">📅 ${idade} anos (fundada em ${startup.fundacao})</span>` : ''}
+                        ${startup.fundacao ? `<span style="font-size:0.7rem;">📅 Fundada em ${startup.fundacao} ${idade ? `(${idade} anos)` : ''}</span><br>` : ''}
+                        <span style="font-size:0.7rem;">💰 Capital: ${formatarCapital(startup.capital)}</span><br>
+                        ${startup.descricao ? `<span style="font-size:0.7rem; color:#64748b;">${escapeHtml(startup.descricao)}</span><br>` : ''}
                         ${startup.site ? `<br><a href="${startup.site}" target="_blank" style="font-size:0.7rem;">🔗 Acessar site</a>` : ''}
                     </div>
                 `;
@@ -565,8 +590,10 @@
                 lng: parseFloat(s.lng),
                 area_atuacao: s.area_atuacao || s.setor || s.categoria || 'Tecnologia',
                 endereco: s.endereco || s.localizacao || 'Curitiba, PR',
-                funcionarios: s.funcionarios || s.numero_funcionarios || s.employees || null,
+                funcionarios: s.funcionarios || s.numero_funcionarios || s.employees || 0,
                 fundacao: s.fundacao || s.ano_fundacao || s.founded || null,
+                capital: s.capital || s.investimento || s.valor_capital || null,
+                descricao: s.descricao || '',
                 site: s.site || s.website || null
             }));
 
