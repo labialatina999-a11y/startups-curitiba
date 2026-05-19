@@ -1,99 +1,504 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Startups em Curitiba - Blueprint</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mapa de Startups - Curitiba | Ecossistema Inovador</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Leaflet CSS (mapa moderno) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Header moderno com gradiente */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 2rem 2rem 1.5rem 2rem;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 i {
+            color: #38bdf8;
+            font-size: 2rem;
+        }
+
+        .hero p {
+            margin-top: 0.75rem;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 650px;
+        }
+
+        .stats-badge {
+            display: inline-flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* container principal */
+        .dashboard {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* barra de busca e filtros */
+        .controls {
+            background: white;
+            border-radius: 1.25rem;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .search-box {
+            flex: 2;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .search-box i {
+            color: #64748b;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            width: 100%;
+            font-size: 0.95rem;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-stats {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .total-count {
+            background: #e2e8f0;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* grid: mapa + lista */
+        .grid-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .map-card {
+            flex: 2;
+            min-width: 280px;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            transition: transform 0.1s ease;
+        }
+
+        .map-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eef2ff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #map {
+            height: 480px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .list-card {
+            flex: 1.2;
+            min-width: 280px;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .list-header {
+            padding: 1rem 1.5rem;
+            background: #ffffff;
+            border-bottom: 1px solid #eef2ff;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .startup-list {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 480px;
+            padding: 0.5rem;
+        }
+
+        .startup-item {
+            background: #f8fafc;
+            margin: 0.5rem;
+            padding: 0.9rem 1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid #38bdf8;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .startup-item:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+
+        .startup-name {
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .startup-category {
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            color: #334155;
+        }
+
+        .startup-address {
+            font-size: 0.75rem;
+            color: #475569;
+            margin-top: 6px;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 860px) {
+            .hero h1 { font-size: 1.6rem; }
+            .dashboard { padding: 0 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-  <h1>STARTUPS EM CURITIBA</h1>
-  <h2>Mapa Interativo Estilo Blueprint</h2>
-  <div id="controls">
-    <h3>Filtros por Bairro</h3>
-    <div id="filter-container"></div>
-    <h3>Lista de Startups</h3>
-    <ul id="startup-list"></ul>
-  </div>
-  <div id="map"></div>
 
-  <script>
-    const map = L.map('map').setView([-25.429, -49.267], 12);
+<div class="hero">
+    <div class="hero-content">
+        <h1>
+            <i class="fas fa-map-marker-alt"></i> 
+            Mapa de Startups · Curitiba
+        </h1>
+        <p>Explore o ecossistema inovador da capital paranaense. Clique nos marcadores ou na lista para mais detalhes.</p>
+        <div class="stats-badge">
+            <span class="stat"><i class="fas fa-rocket"></i> Ecossistema vivo</span>
+            <span class="stat"><i class="fas fa-chart-line"></i> Inovação e tecnologia</span>
+        </div>
+    </div>
+</div>
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap',
-      opacity: 0.25
-    }).addTo(map);
+<div class="dashboard">
+    <div class="controls">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar startup por nome, área ou endereço...">
+        </div>
+        <div class="filter-stats">
+            <div class="total-count" id="totalCount">Carregando...</div>
+        </div>
+    </div>
 
+    <div class="grid-main">
+        <div class="map-card">
+            <div class="map-header">
+                <i class="fas fa-location-dot" style="color:#3b82f6"></i> 
+                <span>📍 Pontos no mapa (Curitiba e região)</span>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <div class="list-card">
+            <div class="list-header">
+                <span><i class="fas fa-list-ul"></i> Startups cadastradas</span>
+                <span id="resultCount"></span>
+            </div>
+            <div id="startupListContainer" class="startup-list">
+                <!-- lista dinâmica -->
+                <div class="empty-message"><i class="fas fa-spinner fa-pulse"></i> Carregando dados...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <i class="fas fa-code-branch"></i> Dados mantidos no arquivo startups_data.json | Mapa interativo com Leaflet
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // dados globais
+    let startupsData = [];
+    let map;
     let markers = [];
-    let bairros = new Set();
+    let currentFilter = '';
 
-    fetch('startups_data.json')
-      .then(response => response.json())
-      .then(data => {
-        data.forEach(startup => {
-          bairros.add(startup.bairro);
+    // coordenadas centrais de Curitiba (referência)
+    const curitibaCenter = [-25.4284, -49.2733];
 
-          const marker = L.circleMarker([startup.lat, startup.lng], {
-            radius: 6,
-            color: '#ffffff',
-            fillColor: '#ffffff',
-            fillOpacity: 0.9
-          }).addTo(map);
+    // função para inicializar o mapa (estilo mais clean)
+    function initMap() {
+        map = L.map('map').setView(curitibaCenter, 12);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB',
+            subdomains: 'abcd',
+            maxZoom: 18,
+            minZoom: 10
+        }).addTo(map);
+    }
 
-          marker.bindPopup(`
-            <strong>${startup.nome}</strong><br>
-            CNPJ: ${startup.cnpj}<br>
-            Bairro: ${startup.bairro}<br>
-            Cidade: ${startup.cidade}
-          `);
+    // gerar ícone customizado
+    function getStartupIcon() {
+        return L.divIcon({
+            html: '<div style="background-color:#3b82f6; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 2px #3b82f6;"></div>',
+            iconSize: [12,12],
+            className: 'custom-marker'
+        });
+    }
 
-          markers.push({ marker, startup });
+    // atualizar mapa e lista baseado no filtro
+    function renderMapAndList(filterText = '') {
+        // limpar marcadores antigos
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
+        const filtered = startupsData.filter(startup => {
+            if (!filterText.trim()) return true;
+            const term = filterText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const name = (startup.nome || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const category = (startup.categoria || startup.setor || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const address = (startup.endereco || startup.localizacao || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            return name.includes(term) || category.includes(term) || address.includes(term);
         });
 
-        // Criar filtros por bairro
-        const filterContainer = document.getElementById('filter-container');
-        bairros.forEach(bairro => {
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.checked = true;
-          checkbox.id = bairro;
+        // atualizar contadores
+        document.getElementById('totalCount').innerHTML = `<i class="fas fa-building"></i> ${filtered.length} / ${startupsData.length}`;
+        document.getElementById('resultCount').innerHTML = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
 
-          const label = document.createElement('label');
-          label.htmlFor = bairro;
-          label.innerText = bairro;
+        // lista startups
+        const listContainer = document.getElementById('startupListContainer');
+        if (filtered.length === 0) {
+            listContainer.innerHTML = `<div class="empty-message"><i class="fas fa-ban"></i> Nenhuma startup encontrada</div>`;
+        } else {
+            listContainer.innerHTML = filtered.map((startup, idx) => `
+                <div class="startup-item" data-idx="${idx}" data-name="${(startup.nome || '').replace(/"/g, '&quot;')}">
+                    <div class="startup-name">
+                        <span><i class="fas fa-cube"></i> ${escapeHtml(startup.nome || 'Startup')}</span>
+                        <span class="startup-category">${escapeHtml(startup.categoria || startup.setor || 'Tecnologia')}</span>
+                    </div>
+                    <div class="startup-address">
+                        <i class="fas fa-map-pin"></i> ${escapeHtml(startup.endereco || startup.localizacao || 'Curitiba, PR')}
+                    </div>
+                </div>
+            `).join('');
 
-          checkbox.addEventListener('change', () => {
-            markers.forEach(obj => {
-              if (obj.startup.bairro === bairro) {
-                if (checkbox.checked) {
-                  obj.marker.addTo(map);
-                } else {
-                  map.removeLayer(obj.marker);
-                }
-              }
+            // adicionar evento de clique nos itens da lista
+            document.querySelectorAll('.startup-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const idx = parseInt(item.dataset.idx);
+                    const startup = filtered[idx];
+                    if (startup && startup.lat && startup.lng) {
+                        map.setView([startup.lat, startup.lng], 16);
+                        // abrir popup do marcador correspondente (encontrar pelo título)
+                        const targetMarker = markers.find(m => m.options.title === (startup.nome || ''));
+                        if (targetMarker) targetMarker.openPopup();
+                    } else if (startup) {
+                        alert(`📍 ${startup.nome || 'Startup'}\nNão possui coordenadas exatas no JSON. Adicione lat/lng para navegar.`);
+                    }
+                });
             });
-          });
+        }
 
-          filterContainer.appendChild(checkbox);
-          filterContainer.appendChild(label);
-          filterContainer.appendChild(document.createElement('br'));
+        // adicionar marcadores no mapa (para filtrados)
+        filtered.forEach(startup => {
+            if (startup.lat && startup.lng && !isNaN(startup.lat) && !isNaN(startup.lng)) {
+                const popupContent = `
+                    <div style="font-family:Inter; max-width:200px">
+                        <strong style="font-size:1rem">${escapeHtml(startup.nome || 'Startup')}</strong><br>
+                        <span style="font-size:0.8rem;color:#334155">📁 ${escapeHtml(startup.categoria || startup.setor || 'Inovação')}</span><br>
+                        <span style="font-size:0.75rem">📍 ${escapeHtml(startup.endereco || startup.localizacao || 'Curitiba')}</span><br>
+                        ${startup.site ? `<a href="${startup.site}" target="_blank" style="font-size:0.7rem">🔗 site</a>` : ''}
+                    </div>
+                `;
+                const marker = L.marker([startup.lat, startup.lng], { icon: getStartupIcon(), title: startup.nome || 'Startup' })
+                    .addTo(map)
+                    .bindPopup(popupContent);
+                markers.push(marker);
+            } else {
+                // se não tem coordenada, não cria marcador
+                console.warn("Sem coordenada:", startup.nome);
+            }
         });
 
-        // Lista de startups
-        const list = document.getElementById('startup-list');
-        data.forEach(startup => {
-          const li = document.createElement('li');
-          li.innerText = startup.nome;
-          li.style.cursor = 'pointer';
-          li.addEventListener('click', () => {
-            map.setView([startup.lat, startup.lng], 15);
-          });
-          list.appendChild(li);
+        // se após filtro não houver marcadores no mapa mas existirem startups, centraliza no mapa padrão
+        if (markers.length === 0 && filtered.length > 0) {
+            map.setView(curitibaCenter, 12);
+        } else if (markers.length > 0) {
+            // opcional: fit bounds
+            const group = L.featureGroup(markers);
+            if(markers.length === 1) map.setView(markers[0].getLatLng(), 15);
+            else map.fitBounds(group.getBounds().pad(0.1));
+        }
+    }
+
+    // helper sanitização
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
         });
-      });
-  </script>
+    }
+
+    // carregar dados do JSON (startups_data.json)
+    async function loadData() {
+        try {
+            // tenta carregar arquivo local do repositório, mesmo diretório
+            const response = await fetch('startups_data.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            let data = await response.json();
+            // suporta array ou objeto com array
+            if (Array.isArray(data)) {
+                startupsData = data;
+            } else if (data.startups && Array.isArray(data.startups)) {
+                startupsData = data.startups;
+            } else if (data.data && Array.isArray(data.data)) {
+                startupsData = data.data;
+            } else {
+                startupsData = [];
+            }
+
+            // normalização dos campos: garantir nome, lat, lng, categoria, endereco
+            startupsData = startupsData.map(s => ({
+                nome: s.nome || s.name || s.titulo || 'Startup sem nome',
+                lat: parseFloat(s.lat || s.latitude || (s.coordinates && s.coordinates[0]) || null),
+                lng: parseFloat(s.lng || s.longitude || (s.coordinates && s.coordinates[1]) || null),
+                categoria: s.categoria || s.setor || s.area || 'Tecnologia',
+                endereco: s.endereco || s.endereco_completo || s.address || s.localizacao || 'Curitiba, PR',
+                site: s.site || s.website || s.url || null
+            })).filter(s => s.lat && s.lng && !isNaN(s.lat) && !isNaN(s.lng));  // mantém apenas com coordenadas válidas
+
+            if(startupsData.length === 0){
+                document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-database"></i> Nenhuma startup com coordenadas encontrada no JSON. Verifique o arquivo.</div>`;
+                document.getElementById('totalCount').innerHTML = `0 startups`;
+            } else {
+                renderMapAndList(currentFilter);
+            }
+        } catch (err) {
+            console.error("Erro ao carregar dados:", err);
+            document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar startups_data.json. Verifique se o arquivo existe e é válido.</div>`;
+            document.getElementById('totalCount').innerHTML = `Erro`;
+        }
+    }
+
+    // eventos de busca
+    document.addEventListener('DOMContentLoaded', () => {
+        initMap();
+        loadData();
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            currentFilter = e.target.value;
+            renderMapAndList(currentFilter);
+        });
+    });
+</script>
 </body>
 </html>
