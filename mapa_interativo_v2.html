@@ -8,343 +8,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%);
-            color: #1a202c;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            padding: 2.5rem 2rem 2rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .hero h1 i {
-            color: #38bdf8;
-            font-size: 2.2rem;
-        }
-
-        .hero p {
-            margin-top: 0.75rem;
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 650px;
-        }
-
-        .stats-badge {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .dashboard {
-            max-width: 1400px;
-            margin: -1.5rem auto 2rem auto;
-            padding: 0 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .metric-card {
-            background: white;
-            padding: 1.2rem;
-            border-radius: 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: transform 0.2s;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .metric-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .metric-info h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-info .value {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .controls {
-            background: white;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07);
-            margin-bottom: 1.5rem;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            gap: 10px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .search-box i {
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            font-size: 0.95rem;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .grid-main {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .map-card {
-            flex: 2;
-            min-width: 300px;
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        .map-header {
-            padding: 1rem 1.5rem;
-            background: white;
-            border-bottom: 2px solid #f1f5f9;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        #map {
-            height: 550px;
-            width: 100%;
-        }
-
-        .list-card {
-            flex: 1.2;
-            min-width: 320px;
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .list-header {
-            padding: 1rem 1.5rem;
-            background: white;
-            border-bottom: 2px solid #f1f5f9;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .startup-list {
-            flex: 1;
-            overflow-y: auto;
-            max-height: 550px;
-            padding: 1rem;
-        }
-
-        .startup-item {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .startup-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .startup-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-color: #cbd5e1;
-        }
-
-        .startup-name {
-            font-weight: 800;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            gap: 0.5rem;
-        }
-
-        .area-badge {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            color: #5b21b6;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            color: #475569;
-            margin-top: 0.5rem;
-        }
-
-        .info-row i {
-            width: 16px;
-            color: #667eea;
-            font-size: 0.7rem;
-        }
-
-        .badge-years {
-            background: #fef3c7;
-            color: #d97706;
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .badge-capital {
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 0.2rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .empty-message {
-            text-align: center;
-            padding: 2rem;
-            color: #94a3b8;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.8rem;
-            color: #64748b;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .dashboard { padding: 0 1rem; }
-            .metric-card { padding: 0.8rem; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%); color: #1a202c; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 2rem; }
+        .hero-content { max-width: 1400px; margin: 0 auto; }
+        .hero h1 { font-size: 2rem; display: flex; align-items: center; gap: 12px; }
+        .hero h1 i { color: #38bdf8; }
+        .hero p { margin-top: 0.5rem; font-size: 0.95rem; color: #cbd5e1; }
+        .stats-badge { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+        .stat { background: rgba(255,255,255,0.1); padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
+        .dashboard { max-width: 1400px; margin: -1rem auto 2rem auto; padding: 0 1.5rem; position: relative; z-index: 10; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .metric-card { background: white; padding: 1rem; border-radius: 0.75rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .metric-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; }
+        .metric-card .value { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+        .controls { background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .search-box { display: flex; align-items: center; background: #f8fafc; border-radius: 8px; padding: 0.5rem 0.75rem; gap: 8px; border: 1px solid #e2e8f0; }
+        .search-box input { border: none; background: transparent; width: 100%; font-size: 0.85rem; outline: none; font-family: 'Inter', sans-serif; }
+        .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .map-card { flex: 2; min-width: 280px; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .map-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.85rem; }
+        #map { height: 500px; width: 100%; }
+        .list-card { flex: 1.2; min-width: 300px; background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
+        .list-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; display: flex; justify-content: space-between; }
+        .startup-list { flex: 1; overflow-y: auto; max-height: 500px; padding: 0.5rem; }
+        .startup-item { background: white; border: 1px solid #e2e8f0; margin-bottom: 0.5rem; padding: 0.75rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .startup-item:hover { background: #f8fafc; transform: translateX(2px); }
+        .startup-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .area-badge { background: #e0e7ff; color: #4338ca; padding: 0.15rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 600; display: inline-block; margin-bottom: 0.25rem; }
+        .info-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: #475569; margin-top: 0.25rem; }
+        .info-row i { width: 14px; color: #667eea; font-size: 0.65rem; }
+        footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 1.5rem; }
+        @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
-
 <div class="hero">
     <div class="hero-content">
-        <h1>
-            <i class="fas fa-rocket"></i> 
-            Mapa de Startups · Curitiba
-        </h1>
-        <p>Explore o processo de inovação e a criação de uma plataforma para as startups. Conheça as políticas, o que é um startup e a importância das principais start-ups da região.</p>
+        <h1><i class="fas fa-map-marker-alt"></i> Mapa de Startups · Curitiba</h1>
+        <p>Explore o ecossistema inovador da capital paranaense</p>
         <div class="stats-badge">
             <span class="stat"><i class="fas fa-chart-line"></i> Ecossistema em crescimento</span>
             <span class="stat"><i class="fas fa-users"></i> Polo de Inovação</span>
@@ -352,270 +54,80 @@
         </div>
     </div>
 </div>
-
 <div class="dashboard">
-    <div class="metrics-grid" id="metricsGrid">
-        <div class="metric-card">
-            <div class="metric-icon"><i class="fas fa-building"></i></div>
-            <div class="metric-info">
-                <h3>TOTAL DE STARTUPS</h3>
-                <div class="value" id="totalStartups">43</div>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-icon"><i class="fas fa-chart-pie"></i></div>
-            <div class="metric-info">
-                <h3>ÁREAS DE ATUAÇÃO</h3>
-                <div class="value" id="totalAreas">0</div>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-icon"><i class="fas fa-users"></i></div>
-            <div class="metric-info">
-                <h3>TOTAL FUNCIONÁRIOS</h3>
-                <div class="value" id="totalEmployees">0</div>
-            </div>
-        </div>
-        <div class="metric-card">
-            <div class="metric-icon"><i class="fas fa-calendar-alt"></i></div>
-            <div class="metric-info">
-                <h3>MÉDIA DE IDADE</h3>
-                <div class="value" id="avgAge">N/D</div>
-            </div>
-        </div>
+    <div class="metrics-grid">
+        <div class="metric-card"><h3>TOTAL DE STARTUPS</h3><div class="value" id="totalStartups">0</div></div>
+        <div class="metric-card"><h3>ÁREAS DE ATUAÇÃO</h3><div class="value" id="totalAreas">0</div></div>
+        <div class="metric-card"><h3>CAPITAL TOTAL</h3><div class="value" id="totalCapital">R$ 0</div></div>
     </div>
-
     <div class="controls">
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou localização...">
-        </div>
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou endereço..."></div>
     </div>
-
     <div class="grid-main">
-        <div class="map-card">
-            <div class="map-header">
-                <i class="fas fa-map-marker-alt" style="color:#3b82f6"></i> Localização das Startups
-            </div>
-            <div id="map"></div>
-        </div>
-
-        <div class="list-card">
-            <div class="list-header">
-                <span><i class="fas fa-list-ul"></i> Lista de Startups</span>
-                <span id="resultCount" class="badge-years">0 resultados</span>
-            </div>
-            <div id="startupListContainer" class="startup-list">
-                <div class="empty-message"><i class="fas fa-spinner fa-pulse"></i> Carregando dados...</div>
-            </div>
-        </div>
+        <div class="map-card"><div class="map-header"><i class="fas fa-map-marker-alt"></i> Localização das Startups</div><div id="map"></div></div>
+        <div class="list-card"><div class="list-header"><span><i class="fas fa-list"></i> Lista de Startups</span><span id="resultCount">0 resultados</span></div><div id="startupListContainer" class="startup-list"><div class="info-row" style="justify-content:center;">Carregando...</div></div></div>
     </div>
 </div>
-
-<footer>
-    <i class="fas fa-database"></i> Dados atualizados | Fonte: startups_data.json | Mapa interativo
-</footer>
-
+<footer><i class="fas fa-database"></i> Dados atualizados | Mapa interativo | Fonte: startups_data.json</footer>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     let startupsData = [];
-    let map;
-    let markers = [];
-    let currentFilter = '';
-
+    let map, markers = [], currentFilter = '';
     const curitibaCenter = [-25.4284, -49.2733];
 
     function initMap() {
         map = L.map('map').setView(curitibaCenter, 12);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> & CartoDB',
-            subdomains: 'abcd',
-            maxZoom: 18
-        }).addTo(map);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', subdomains: 'abcd', maxZoom: 18 }).addTo(map);
     }
 
-    function getStartupIcon() {
-        return L.divIcon({
-            html: '<div style="background:linear-gradient(135deg, #667eea, #764ba2); width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 2px #667eea;"></div>',
-            iconSize: [12,12],
-            className: 'custom-marker'
-        });
-    }
-
-    function formatarCapital(valor) {
-        if (!valor) return 'N/I';
-        return new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(valor);
-    }
-
-    function calcularIdade(fundacao) {
-        if (!fundacao) return null;
-        const anoAtual = new Date().getFullYear();
-        return anoAtual - fundacao;
-    }
+    function formatarCapital(valor) { if (!valor) return 'N/I'; return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 }).format(valor); }
 
     function atualizarMetricas(startups) {
         const total = startups.length;
         const areas = new Set(startups.map(s => s.area_atuacao).filter(a => a));
-        const totalFunc = startups.reduce((sum, s) => sum + (parseInt(s.funcionarios) || 0), 0);
-        const idades = startups.map(s => calcularIdade(s.fundacao)).filter(age => age !== null);
-        const mediaIdade = idades.length ? (idades.reduce((a,b) => a+b, 0) / idades.length).toFixed(1) : null;
-
-        document.getElementById('totalStartups').innerText = total;
-        document.getElementById('totalAreas').innerText = areas.size;
-        document.getElementById('totalEmployees').innerText = totalFunc.toLocaleString();
-        document.getElementById('avgAge').innerHTML = mediaIdade ? `${mediaIdade} anos` : 'N/D';
+        const capitalTotal = startups.reduce((sum, s) => sum + (s.capital || 0), 0);
+        document.getElementById('totalStartups').innerHTML = total;
+        document.getElementById('totalAreas').innerHTML = areas.size;
+        document.getElementById('totalCapital').innerHTML = formatarCapital(capitalTotal);
     }
 
     function renderMapAndList(filterText = '') {
-        markers.forEach(marker => map.removeLayer(marker));
-        markers = [];
-
-        const filtered = startupsData.filter(startup => {
+        markers.forEach(m => map.removeLayer(m)); markers = [];
+        const filtered = startupsData.filter(s => {
             if (!filterText.trim()) return true;
-            const term = filterText.toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
-            const name = (startup.nome || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
-            const area = (startup.area_atuacao || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
-            const address = (startup.endereco || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u0301]/g, '');
-            return name.includes(term) || area.includes(term) || address.includes(term);
+            const term = filterText.toLowerCase();
+            return s.nome.toLowerCase().includes(term) || s.area_atuacao.toLowerCase().includes(term) || s.endereco.toLowerCase().includes(term);
         });
-
         atualizarMetricas(filtered);
         document.getElementById('resultCount').innerHTML = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
-
-        const listContainer = document.getElementById('startupListContainer');
-        if (filtered.length === 0) {
-            listContainer.innerHTML = `<div class="empty-message"><i class="fas fa-ban"></i> Nenhuma startup encontrada</div>`;
-        } else {
-            listContainer.innerHTML = filtered.map((startup, idx) => {
-                const idade = calcularIdade(startup.fundacao);
-                return `
-                    <div class="startup-item" data-idx="${idx}">
-                        <div class="startup-name">
-                            <strong><i class="fas fa-cube"></i> ${escapeHtml(startup.nome)}</strong>
-                            <span class="area-badge">${escapeHtml(startup.area_atuacao || 'Tecnologia')}</span>
-                        </div>
-                        <div class="info-row">
-                            <i class="fas fa-map-pin"></i>
-                            <span>${escapeHtml(startup.endereco || 'Curitiba, PR')}</span>
-                        </div>
-                        <div class="info-row">
-                            <i class="fas fa-users"></i>
-                            <span>${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span>
-                            ${idade ? `<span class="badge-years"><i class="fas fa-calendar"></i> ${idade} anos</span>` : ''}
-                            ${startup.fundacao ? `<span class="badge-years"><i class="fas fa-flag-checkered"></i> ${startup.fundacao}</span>` : ''}
-                        </div>
-                        <div class="info-row">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Capital: ${formatarCapital(startup.capital)}</span>
-                        </div>
-                        ${startup.site ? `<div class="info-row"><i class="fas fa-globe"></i> <a href="${startup.site}" target="_blank" style="color:#667eea; text-decoration:none;">site</a></div>` : ''}
-                    </div>
-                `;
-            }).join('');
-
-            document.querySelectorAll('.startup-item').forEach((item, idx) => {
-                item.addEventListener('click', () => {
-                    const startup = filtered[idx];
-                    if (startup && startup.lat && startup.lng) {
-                        map.setView([startup.lat, startup.lng], 16);
-                        const targetMarker = markers.find(m => m.options.title === startup.nome);
-                        if (targetMarker) targetMarker.openPopup();
-                    }
-                });
-            });
+        const container = document.getElementById('startupListContainer');
+        if (filtered.length === 0) container.innerHTML = '<div class="info-row" style="justify-content:center;">Nenhuma startup encontrada</div>';
+        else {
+            container.innerHTML = filtered.map((s, idx) => `<div class="startup-item" data-idx="${idx}"><div class="startup-name">${s.nome}</div><span class="area-badge">${s.area_atuacao}</span><div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco}</div><div class="info-row"><i class="fas fa-dollar-sign"></i> ${formatarCapital(s.capital)}</div></div>`).join('');
+            document.querySelectorAll('.startup-item').forEach((item, idx) => { item.addEventListener('click', () => { const s = filtered[idx]; if (s.lat && s.lng) { map.setView([s.lat, s.lng], 16); markers.find(m => m.options.title === s.nome)?.openPopup(); } }); });
         }
-
-        filtered.forEach(startup => {
-            if (startup.lat && startup.lng) {
-                const idade = calcularIdade(startup.fundacao);
-                const popupContent = `
-                    <div style="font-family:Inter; max-width:260px;">
-                        <strong style="font-size:1rem; color:#0f172a;">${escapeHtml(startup.nome)}</strong><br>
-                        <span style="font-size:0.8rem; color:#667eea;">📁 ${escapeHtml(startup.area_atuacao || 'Tecnologia')}</span><br>
-                        <span style="font-size:0.7rem;">📍 ${escapeHtml(startup.endereco || 'Curitiba, PR')}</span><br>
-                        <span style="font-size:0.7rem;">👥 ${startup.funcionarios ? startup.funcionarios.toLocaleString() : 'N/I'} funcionários</span><br>
-                        ${startup.fundacao ? `<span style="font-size:0.7rem;">📅 Fundada em ${startup.fundacao} ${idade ? `(${idade} anos)` : ''}</span><br>` : ''}
-                        <span style="font-size:0.7rem;">💰 Capital: ${formatarCapital(startup.capital)}</span><br>
-                        ${startup.descricao ? `<span style="font-size:0.7rem; color:#64748b;">${escapeHtml(startup.descricao)}</span><br>` : ''}
-                        ${startup.site ? `<br><a href="${startup.site}" target="_blank" style="font-size:0.7rem;">🔗 Acessar site</a>` : ''}
-                    </div>
-                `;
-                const marker = L.marker([startup.lat, startup.lng], { icon: getStartupIcon(), title: startup.nome })
-                    .addTo(map)
-                    .bindPopup(popupContent);
+        filtered.forEach(s => {
+            if (s.lat && s.lng) {
+                const popup = `<div style="font-family:Inter; min-width:180px;"><strong>${s.nome}</strong><br>📁 ${s.area_atuacao}<br>📍 ${s.endereco}<br>💰 ${formatarCapital(s.capital)}</div>`;
+                const marker = L.marker([s.lat, s.lng], { title: s.nome }).addTo(map).bindPopup(popup);
                 markers.push(marker);
             }
         });
-
-        if (markers.length > 1) {
-            const group = L.featureGroup(markers);
-            map.fitBounds(group.getBounds().pad(0.1));
-        } else if (markers.length === 1) {
-            map.setView(markers[0].getLatLng(), 15);
-        }
-    }
-
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        if (markers.length > 1) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.1));
+        else if (markers.length === 1) map.setView(markers[0].getLatLng(), 15);
     }
 
     async function loadData() {
         try {
             const response = await fetch('startups_data.json');
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            let data = await response.json();
-            
-            if (Array.isArray(data)) {
-                startupsData = data;
-            } else if (data.startups) {
-                startupsData = data.startups;
-            } else {
-                startupsData = [];
-            }
-
-            startupsData = startupsData.filter(s => s.lat && s.lng).map(s => ({
-                nome: s.nome || s.name || 'Startup',
-                lat: parseFloat(s.lat),
-                lng: parseFloat(s.lng),
-                area_atuacao: s.area_atuacao || s.setor || s.categoria || 'Tecnologia',
-                endereco: s.endereco || s.localizacao || 'Curitiba, PR',
-                funcionarios: s.funcionarios || s.numero_funcionarios || s.employees || 0,
-                fundacao: s.fundacao || s.ano_fundacao || s.founded || null,
-                capital: s.capital || s.investimento || s.valor_capital || null,
-                descricao: s.descricao || '',
-                site: s.site || s.website || null
-            }));
-
-            if (startupsData.length === 0) {
-                document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Nenhuma startup com coordenadas encontrada</div>`;
-            } else {
-                renderMapAndList('');
-            }
-        } catch (err) {
-            console.error(err);
-            document.getElementById('startupListContainer').innerHTML = `<div class="empty-message"><i class="fas fa-exclamation-triangle"></i> Erro ao carregar startups_data.json</div>`;
-        }
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            startupsData = data.filter(s => s.lat && s.lng).map(s => ({ nome: s.nome, area_atuacao: s.area_atuacao, endereco: s.endereco, capital: s.capital, lat: s.lat, lng: s.lng }));
+            renderMapAndList('');
+        } catch(err) { document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao carregar dados</div>'; }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initMap();
-        loadData();
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            currentFilter = e.target.value;
-            renderMapAndList(currentFilter);
-        });
-    });
+    document.addEventListener('DOMContentLoaded', () => { initMap(); loadData(); document.getElementById('searchInput').addEventListener('input', (e) => { currentFilter = e.target.value; renderMapAndList(currentFilter); }); });
 </script>
 </body>
 </html>
