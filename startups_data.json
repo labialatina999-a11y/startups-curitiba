@@ -1,79 +1,50 @@
 [
   {
-    "nome": "EBANX",
-    "area_atuacao": "Fintech / Pagamentos",
-    "endereco": "Rua Tobias de Macedo Júnior, 333 - Santo Agostinho, Curitiba - PR",
-    "funcionarios": 1200,
-    "fundacao": 2012,
-    "lat": -25.4343,
-    "lng": -49.2910,
-    "site": "https://ebanx.com",
-    "descricao": "Plataforma de pagamentos para mercados emergentes"
+    "nome": "SOUL PLATAFORMA ESPORTIVA",
+    "area_atuacao": "Esportes / Tecnologia",
+    "endereco": "Curitiba, PR",
+    "funcionarios": 12,
+    "fundacao": 2020,
+    "capital": 500000,
+    "lat": -25.4284,
+    "lng": -49.2733,
+    "site": "",
+    "descricao": "Plataforma esportiva digital"
   },
   {
-    "nome": "Olist",
-    "area_atuacao": "E-commerce / Marketplace",
-    "endereco": "Av. Victor Ferreira do Amaral, 2300 - Jardim Botânico, Curitiba - PR",
-    "funcionarios": 800,
-    "fundacao": 2015,
+    "nome": "THRUST HEALTH STRATEGIES LTDA",
+    "area_atuacao": "Saúde / Tecnologia",
+    "endereco": "Curitiba, PR",
+    "funcionarios": 8,
+    "fundacao": 2021,
+    "capital": 250000,
+    "lat": -25.4345,
+    "lng": -49.2910,
+    "site": "",
+    "descricao": "Estratégias em saúde digital"
+  },
+  {
+    "nome": "TUDU INTERMEDIAÇÃO DE NEGÓCIOS LTDA",
+    "area_atuacao": "Tecnologia / Negócios",
+    "endereco": "Curitiba, PR",
+    "funcionarios": 15,
+    "fundacao": 2019,
+    "capital": 750000,
     "lat": -25.4402,
     "lng": -49.2394,
-    "site": "https://olist.com",
-    "descricao": "Marketplace que conecta lojistas e marketplaces"
+    "site": "",
+    "descricao": "Intermediação de negócios digitais"
   },
   {
-    "nome": "Pipefy",
-    "area_atuacao": "SaaS / Gestão de Processos",
-    "endereco": "Alameda Augusto Stellfeld, 1908 - Bigorrilho, Curitiba - PR",
-    "funcionarios": 350,
-    "fundacao": 2015,
-    "lat": -25.4445,
-    "lng": -49.2896,
-    "site": "https://pipefy.com",
-    "descricao": "Plataforma low-code de gestão de workflows"
-  },
-  {
-    "nome": "Bling",
-    "area_atuacao": "SaaS / Gestão Empresarial",
-    "endereco": "Av. Cândido Hartmann, 570 - Bigorrilho, Curitiba - PR",
-    "funcionarios": 200,
-    "fundacao": 2006,
+    "nome": "VITRINE DE PROJETOS AMBIENTAIS LTDA",
+    "area_atuacao": "Meio Ambiente / Sustentabilidade",
+    "endereco": "Curitiba, PR",
+    "funcionarios": 6,
+    "fundacao": 2022,
+    "capital": 180000,
     "lat": -25.4418,
     "lng": -49.2985,
-    "site": "https://bling.com.br",
-    "descricao": "Sistema de gestão para pequenas empresas"
-  },
-  {
-    "nome": "Volanty",
-    "area_atuacao": "Marketplace / Automotivo",
-    "endereco": "Rua Buenos Aires, 188 - Centro, Curitiba - PR",
-    "funcionarios": 150,
-    "fundacao": 2015,
-    "lat": -25.4266,
-    "lng": -49.2739,
-    "site": "https://volanty.com",
-    "descricao": "Compra e venda de carros usados online"
-  },
-  {
-    "nome": "RD Station",
-    "area_atuacao": "Marketing Digital / Martech",
-    "endereco": "Rua Doutor Elias Nagem, 155 - Bigorrilho, Curitiba - PR",
-    "funcionarios": 600,
-    "fundacao": 2011,
-    "lat": -25.4432,
-    "lng": -49.2967,
-    "site": "https://rdstation.com",
-    "descricao": "Plataforma de automação de marketing"
-  },
-  {
-    "nome": "Conta Azul",
-    "area_atuacao": "Fintech / Gestão Financeira",
-    "endereco": "Rua Brigadeiro Franco, 2750 - Centro, Curitiba - PR",
-    "funcionarios": 400,
-    "fundacao": 2012,
-    "lat": -25.4315,
-    "lng": -49.2813,
-    "site": "https://contaazul.com",
-    "descricao": "Sistema de gestão financeira para MEIs e pequenas empresas"
+    "site": "",
+    "descricao": "Projetos ambientais e sustentabilidade"
   }
 ]
