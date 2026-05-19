@@ -18,7 +18,7 @@
         .stats-badge { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
         .stat { background: rgba(255,255,255,0.1); padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
         .dashboard { max-width: 1400px; margin: -1rem auto 2rem auto; padding: 0 1.5rem; position: relative; z-index: 10; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
         .metric-card { background: white; padding: 1rem; border-radius: 0.75rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .metric-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; }
         .metric-card .value { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
@@ -38,6 +38,7 @@
         .area-badge { background: #e0e7ff; color: #4338ca; padding: 0.15rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 600; display: inline-block; margin-bottom: 0.25rem; }
         .info-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: #475569; margin-top: 0.25rem; }
         .info-row i { width: 14px; color: #667eea; font-size: 0.65rem; }
+        .capital-value { color: #059669; font-weight: 600; }
         footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 1.5rem; }
         @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 1.5rem; } }
     </style>
@@ -58,7 +59,6 @@
     <div class="metrics-grid">
         <div class="metric-card"><h3>TOTAL DE STARTUPS</h3><div class="value" id="totalStartups">0</div></div>
         <div class="metric-card"><h3>ÁREAS DE ATUAÇÃO</h3><div class="value" id="totalAreas">0</div></div>
-        <div class="metric-card"><h3>CAPITAL TOTAL</h3><div class="value" id="totalCapital">R$ 0</div></div>
     </div>
     <div class="controls">
         <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou endereço..."></div>
@@ -80,15 +80,16 @@
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', subdomains: 'abcd', maxZoom: 18 }).addTo(map);
     }
 
-    function formatarCapital(valor) { if (!valor) return 'N/I'; return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 }).format(valor); }
+    function formatarCapital(valor) { 
+        if (!valor || valor === 0) return 'N/I'; 
+        return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(valor); 
+    }
 
     function atualizarMetricas(startups) {
         const total = startups.length;
         const areas = new Set(startups.map(s => s.area_atuacao).filter(a => a));
-        const capitalTotal = startups.reduce((sum, s) => sum + (s.capital || 0), 0);
         document.getElementById('totalStartups').innerHTML = total;
         document.getElementById('totalAreas').innerHTML = areas.size;
-        document.getElementById('totalCapital').innerHTML = formatarCapital(capitalTotal);
     }
 
     function renderMapAndList(filterText = '') {
@@ -96,19 +97,45 @@
         const filtered = startupsData.filter(s => {
             if (!filterText.trim()) return true;
             const term = filterText.toLowerCase();
-            return s.nome.toLowerCase().includes(term) || s.area_atuacao.toLowerCase().includes(term) || s.endereco.toLowerCase().includes(term);
+            return (s.nome && s.nome.toLowerCase().includes(term)) || 
+                   (s.area_atuacao && s.area_atuacao.toLowerCase().includes(term)) || 
+                   (s.endereco && s.endereco.toLowerCase().includes(term));
         });
         atualizarMetricas(filtered);
         document.getElementById('resultCount').innerHTML = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
         const container = document.getElementById('startupListContainer');
-        if (filtered.length === 0) container.innerHTML = '<div class="info-row" style="justify-content:center;">Nenhuma startup encontrada</div>';
-        else {
-            container.innerHTML = filtered.map((s, idx) => `<div class="startup-item" data-idx="${idx}"><div class="startup-name">${s.nome}</div><span class="area-badge">${s.area_atuacao}</span><div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco}</div><div class="info-row"><i class="fas fa-dollar-sign"></i> ${formatarCapital(s.capital)}</div></div>`).join('');
-            document.querySelectorAll('.startup-item').forEach((item, idx) => { item.addEventListener('click', () => { const s = filtered[idx]; if (s.lat && s.lng) { map.setView([s.lat, s.lng], 16); markers.find(m => m.options.title === s.nome)?.openPopup(); } }); });
+        if (filtered.length === 0) {
+            container.innerHTML = '<div class="info-row" style="justify-content:center;">Nenhuma startup encontrada</div>';
+        } else {
+            container.innerHTML = filtered.map((s, idx) => `
+                <div class="startup-item" data-idx="${idx}">
+                    <div class="startup-name">${s.nome}</div>
+                    <span class="area-badge">${s.area_atuacao}</span>
+                    <div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco}</div>
+                    <div class="info-row"><i class="fas fa-dollar-sign"></i> <span class="capital-value">${formatarCapital(s.capital)}</span></div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.startup-item').forEach((item, idx) => { 
+                item.addEventListener('click', () => { 
+                    const s = filtered[idx]; 
+                    if (s.lat && s.lng) { 
+                        map.setView([s.lat, s.lng], 16); 
+                        const targetMarker = markers.find(m => m.options.title === s.nome);
+                        if (targetMarker) targetMarker.openPopup();
+                    } 
+                }); 
+            });
         }
         filtered.forEach(s => {
             if (s.lat && s.lng) {
-                const popup = `<div style="font-family:Inter; min-width:180px;"><strong>${s.nome}</strong><br>📁 ${s.area_atuacao}<br>📍 ${s.endereco}<br>💰 ${formatarCapital(s.capital)}</div>`;
+                const popup = `
+                    <div style="font-family:Inter; min-width:200px;">
+                        <strong style="font-size:0.9rem;">${s.nome}</strong><br>
+                        📁 ${s.area_atuacao}<br>
+                        📍 ${s.endereco}<br>
+                        💰 <span style="color:#059669; font-weight:600;">${formatarCapital(s.capital)}</span>
+                    </div>
+                `;
                 const marker = L.marker([s.lat, s.lng], { title: s.nome }).addTo(map).bindPopup(popup);
                 markers.push(marker);
             }
@@ -122,9 +149,18 @@
             const response = await fetch('startups_data.json');
             if (!response.ok) throw new Error();
             const data = await response.json();
-            startupsData = data.filter(s => s.lat && s.lng).map(s => ({ nome: s.nome, area_atuacao: s.area_atuacao, endereco: s.endereco, capital: s.capital, lat: s.lat, lng: s.lng }));
+            startupsData = data.filter(s => s.lat && s.lng).map(s => ({ 
+                nome: s.nome, 
+                area_atuacao: s.area_atuacao, 
+                endereco: s.endereco, 
+                capital: s.capital, 
+                lat: s.lat, 
+                lng: s.lng 
+            }));
             renderMapAndList('');
-        } catch(err) { document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao carregar dados</div>'; }
+        } catch(err) { 
+            document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao carregar dados</div>'; 
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => { initMap(); loadData(); document.getElementById('searchInput').addEventListener('input', (e) => { currentFilter = e.target.value; renderMapAndList(currentFilter); }); });
