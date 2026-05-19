@@ -11,6 +11,12 @@
 <body>
   <h1>STARTUPS EM CURITIBA</h1>
   <h2>Mapa Interativo Estilo Blueprint</h2>
+  <div id="controls">
+    <h3>Filtros por Bairro</h3>
+    <div id="filter-container"></div>
+    <h3>Lista de Startups</h3>
+    <ul id="startup-list"></ul>
+  </div>
   <div id="map"></div>
 
   <script>
@@ -18,13 +24,18 @@
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap',
-      opacity: 0.2
+      opacity: 0.25
     }).addTo(map);
+
+    let markers = [];
+    let bairros = new Set();
 
     fetch('startups_data.json')
       .then(response => response.json())
       .then(data => {
         data.forEach(startup => {
+          bairros.add(startup.bairro);
+
           const marker = L.circleMarker([startup.lat, startup.lng], {
             radius: 6,
             color: '#ffffff',
@@ -38,6 +49,49 @@
             Bairro: ${startup.bairro}<br>
             Cidade: ${startup.cidade}
           `);
+
+          markers.push({ marker, startup });
+        });
+
+        // Criar filtros por bairro
+        const filterContainer = document.getElementById('filter-container');
+        bairros.forEach(bairro => {
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = true;
+          checkbox.id = bairro;
+
+          const label = document.createElement('label');
+          label.htmlFor = bairro;
+          label.innerText = bairro;
+
+          checkbox.addEventListener('change', () => {
+            markers.forEach(obj => {
+              if (obj.startup.bairro === bairro) {
+                if (checkbox.checked) {
+                  obj.marker.addTo(map);
+                } else {
+                  map.removeLayer(obj.marker);
+                }
+              }
+            });
+          });
+
+          filterContainer.appendChild(checkbox);
+          filterContainer.appendChild(label);
+          filterContainer.appendChild(document.createElement('br'));
+        });
+
+        // Lista de startups
+        const list = document.getElementById('startup-list');
+        data.forEach(startup => {
+          const li = document.createElement('li');
+          li.innerText = startup.nome;
+          li.style.cursor = 'pointer';
+          li.addEventListener('click', () => {
+            map.setView([startup.lat, startup.lng], 15);
+          });
+          list.appendChild(li);
         });
       });
   </script>
