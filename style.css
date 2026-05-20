@@ -1,51 +1,41 @@
 <style>
-    /* Reset básico */
-    * { box-sizing: border-box; }
+    /* 1. Reset e Fontes */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #1e293b; }
+
+    /* 2. Cabeçalho de Destaque */
+    .hero { background: #0f172a; color: white; padding: 2rem 0; margin-bottom: 2rem; }
+    .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    .hero h1 { font-size: 1.8rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
     
-    /* Dashboard com layout de grade (Grid) */
-    .dashboard { 
-        max-width: 1400px; 
-        margin: 20px auto; 
-        padding: 0 15px; 
+    /* 3. Métricas (Cards no topo) */
+    .metrics-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        gap: 20px; max-width: 1400px; margin: -50px auto 20px auto; padding: 0 20px; 
     }
+    .metric-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); text-align: center; }
+    .metric-card h3 { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-card .value { font-size: 1.5rem; font-weight: 800; color: #0f172a; }
 
-    .grid-main { 
-        display: grid; 
-        grid-template-columns: 1fr 350px; /* Mapa ganha o espaço principal, lista tem 350px fixos */
-        gap: 20px; 
-        align-items: start;
-    }
+    /* 4. Grid Mapa + Lista */
+    .dashboard { max-width: 1400px; margin: 0 auto; padding: 0 20px 40px 20px; }
+    .grid-main { display: grid; grid-template-columns: 1fr 350px; gap: 20px; }
 
-    /* O Mapa - Garantir altura mínima */
-    .map-card { 
-        background: white; 
-        border-radius: 12px; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-        overflow: hidden; 
-    }
-    #map { 
-        height: 600px; /* Altura fixa para garantir visibilidade */
-        width: 100%; 
-    }
+    .map-card, .list-card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); overflow: hidden; }
+    #map { height: 600px; width: 100%; }
 
-    /* A Lista Lateral - com scroll próprio */
-    .list-card { 
-        background: white; 
-        border-radius: 12px; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-        height: 600px; /* Mesma altura do mapa */
-        display: flex; 
-        flex-direction: column;
-    }
-    .startup-list { 
-        overflow-y: auto; 
-        flex-grow: 1; 
-        padding: 10px; 
-    }
+    /* 5. Lista Lateral */
+    .list-header { padding: 1rem; border-bottom: 1px solid #f1f5f9; font-weight: 600; display: flex; justify-content: space-between; }
+    .startup-list { height: 550px; overflow-y: auto; padding: 10px; }
+    .startup-item { padding: 12px; border-bottom: 1px solid #f1f5f9; transition: background 0.2s; cursor: pointer; }
+    .startup-item:hover { background: #f8fafc; }
+    .startup-item strong { display: block; font-size: 0.9rem; color: #0f172a; }
+    .startup-item small { font-size: 0.8rem; color: #64748b; }
 
-    /* Responsividade para telemóveis */
+    /* 6. Mobile */
     @media (max-width: 900px) {
         .grid-main { grid-template-columns: 1fr; }
-        #map, .list-card { height: 400px; }
+        #map { height: 400px; }
+        .list-card { height: 400px; }
     }
 </style>
