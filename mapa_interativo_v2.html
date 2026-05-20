@@ -31,7 +31,6 @@
         <div class="stats-badge">
             <span class="stat"><i class="fas fa-chart-line"></i> Ecossistema em crescimento</span>
             <span class="stat"><i class="fas fa-users"></i> Polo de Inovação</span>
-            <span class="stat"><i class="fas fa-trophy"></i> Startups de Impacto</span>
         </div>
     </div>
 </div>
@@ -56,12 +55,10 @@
             const response = await fetch('startups_data.json');
             const data = await response.json();
             
-            // Atualiza métricas
             document.getElementById('totalStartups').innerHTML = data.length;
             const areasUnicas = new Set(data.map(s => s.area_atuacao).filter(a => a));
             document.getElementById('totalAreas').innerHTML = areasUnicas.size;
             
-            // Monta lista
             const container = document.getElementById('startupListContainer');
             container.innerHTML = data.map(s => `
                 <div class="startup-item">
@@ -70,10 +67,17 @@
                 </div>
             `).join('');
 
-            // Adiciona marcadores
             data.forEach(s => {
                 if(s.lat && s.lng) {
-                    L.marker([s.lat, s.lng]).addTo(map).bindPopup(`<b>${s.nome}</b>`);
+                    const popup = `
+                        <div style="font-family: sans-serif; line-height: 1.4;">
+                            <h3 style="margin:0; font-size: 14px;">${s.nome || 'Startup'}</h3>
+                            <p style="margin: 3px 0; font-size: 12px;"><b>Área:</b> ${s.area_atuacao || 'N/I'}</p>
+                            <p style="margin: 3px 0; font-size: 12px;"><b>Endereço:</b> ${s.endereco || 'N/I'}</p>
+                            <p style="margin: 3px 0; font-size: 12px;"><b>Fundação:</b> ${s.data_fundacao || 'N/I'}</p>
+                        </div>
+                    `;
+                    L.marker([s.lat, s.lng]).addTo(map).bindPopup(popup);
                 }
             });
         } catch(err) {
