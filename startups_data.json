@@ -1,389 +1,473 @@
 [
-  {
-    "id": 1,
-    "nome": "Peepi",
-    "area_atuacao": "Comunicação/Tecnologia",
-    "endereco": "Av. Iguacu, 2820 Conj 61 Andar 06, Agua Verde, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4284,
-    "lng": -49.2733
-  },
-  {
-    "id": 2,
-    "nome": "Bom Gourmet",
-    "area_atuacao": "Alimentação/Tecnologia",
-    "endereco": "Av. Victor Ferreira do Amaral, 306 Conj 11, Tarumã, Curitiba/PR",
-    "capital": 1500,
-    "lat": -25.4402,
-    "lng": -49.2394
-  },
-  {
-    "id": 3,
-    "nome": "Plandor Technologies",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Joao Bonat, 1385 E32, Novo Mundo, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4512,
-    "lng": -49.2815
-  },
-  {
-    "id": 4,
-    "nome": "Planttce Comercial",
-    "area_atuacao": "Comércio/Tecnologia",
-    "endereco": "Alameda Dom Pedro II, 155, Batel, Curitiba/PR",
-    "capital": 147500,
-    "lat": -25.4367,
-    "lng": -49.2856
-  },
-  {
-    "id": 5,
-    "nome": "Recrutadora-Ai",
-    "area_atuacao": "Recrutamento/Tecnologia",
-    "endereco": "Curitiba/PR",
-    "capital": 0,
-    "lat": -25.4198,
-    "lng": -49.2667
-  },
-  {
-    "id": 6,
-    "nome": "Soul Brasil Esportes",
-    "area_atuacao": "Esportes",
-    "endereco": "Rua Flavio Dallegrave, 1827 Apt 212, Hugo Lange, Curitiba/PR",
-    "capital": 647,
-    "lat": -25.4212,
-    "lng": -49.2456
-  },
-  {
-    "id": 7,
-    "nome": "Thrust Clinic",
-    "area_atuacao": "Saúde",
-    "endereco": "Rua Hermes Fontes, 638, Batel, Curitiba/PR",
-    "capital": 15000,
-    "lat": -25.4389,
-    "lng": -49.2891
-  },
-  {
-    "id": 8,
-    "nome": "Tudu",
-    "area_atuacao": "Negócios/Tecnologia",
-    "endereco": "Rua Guaratuba, 839, Ahu, Curitiba/PR",
-    "capital": 10204,
-    "lat": -25.4156,
-    "lng": -49.2589
-  },
-  {
-    "id": 9,
-    "nome": "Vitrine de Projetos Ambientais",
-    "area_atuacao": "Meio Ambiente",
-    "endereco": "Rua Bispo Dom Jose, 2095 Sala 205, Batel, Curitiba/PR",
-    "capital": 160000,
-    "lat": -25.4345,
-    "lng": -49.2912
-  },
-  {
-    "id": 10,
-    "nome": "Zeno Tecnologia",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Av. Marechal Floriano Peixoto, 114 Conj 0009, Centro, Curitiba/PR",
-    "capital": 16990,
-    "lat": -25.4256,
-    "lng": -49.2712
-  },
-  {
-    "id": 11,
-    "nome": "Zinz",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Emiliano Perneta, 500 Apt 2509, Centro, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4278,
-    "lng": -49.2756
-  },
-  {
-    "id": 12,
-    "nome": "Perception",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Travessa Conuncio Carrano, 228, Cidade Jardim, São José dos Pinhais/PR",
-    "capital": 3000,
-    "lat": -25.5123,
-    "lng": -49.1987
-  },
-  {
-    "id": 13,
-    "nome": "7 Digital Tech",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Av. Brasil, 8517 Sala 07, Centro, Cascavel/PR",
-    "capital": 5000,
-    "lat": -24.9556,
-    "lng": -53.4567
-  },
-  {
-    "id": 14,
-    "nome": "Aeon Tecnologia",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Doutor Joaquim do Amaral, 275, Jardim das Americas, Curitiba/PR",
-    "capital": 30000,
-    "lat": -25.4456,
-    "lng": -49.2512
-  },
-  {
-    "id": 15,
-    "nome": "Audipex",
-    "area_atuacao": "Auditoria/Contabilidade",
-    "endereco": "Av. Candido de Abreu, 526 Conj 1510, Centro Civico, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4123,
-    "lng": -49.2823
-  },
-  {
-    "id": 16,
-    "nome": "Benato Tecnologia",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Rafael Klier de Assumpcao, 120, Santa Candida, Curitiba/PR",
-    "capital": 0,
-    "lat": -25.4089,
-    "lng": -49.2378
-  },
-  {
-    "id": 17,
-    "nome": "Bim Start",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Av. Visconde de Guarapuava, 2764 Sala 601, Centro, Curitiba/PR",
-    "capital": 1344447,
-    "lat": -25.4298,
-    "lng": -49.2789
-  },
-  {
-    "id": 18,
-    "nome": "Bizu Tecnologia",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Av. Advogado Horacio Raccanello Filho, 5145 Sala 604, Zona 07, Maringá/PR",
-    "capital": 12500,
-    "lat": -23.4123,
-    "lng": -51.9234
-  },
-  {
-    "id": 19,
-    "nome": "Burn Consultoria",
-    "area_atuacao": "Consultoria",
-    "endereco": "Rua Benjamin Constant, 630, Centro, Curitiba/PR",
-    "capital": 210000,
-    "lat": -25.4234,
-    "lng": -49.2723
-  },
-  {
-    "id": 20,
-    "nome": "Cargon Logistica",
-    "area_atuacao": "Logística/Tecnologia",
-    "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
-    "capital": 8969464.04,
-    "lat": -25.4423,
-    "lng": -49.2423
-  },
-  {
-    "id": 21,
-    "nome": "Catajob",
-    "area_atuacao": "Serviços/Internet",
-    "endereco": "Av. Sete de Setembro, 2775, Rebouças, Curitiba/PR",
-    "capital": 15000,
-    "lat": -25.4321,
-    "lng": -49.2765
-  },
-  {
-    "id": 22,
-    "nome": "Gtt Consulting",
-    "area_atuacao": "Consultoria",
-    "endereco": "Rua Arthur Mohr, 281 Casa 02, Portão, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4567,
-    "lng": -49.2899
-  },
-  {
-    "id": 23,
-    "nome": "Descomplica Medicina",
-    "area_atuacao": "Educação/Saúde",
-    "endereco": "Rua Bom Jesus, 212 Sala 1904, Juveve, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4189,
-    "lng": -49.2556
-  },
-  {
-    "id": 24,
-    "nome": "E.feito Social",
-    "area_atuacao": "Gestão/Social",
-    "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
-    "capital": 30000,
-    "lat": -25.4423,
-    "lng": -49.2423
-  },
-  {
-    "id": 25,
-    "nome": "Easy360",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Engenheiros Reboucas, 1732, Reboucas, Curitiba/PR",
-    "capital": 900000,
-    "lat": -25.4334,
-    "lng": -49.2812
-  },
-  {
-    "id": 26,
-    "nome": "E-Atleta",
-    "area_atuacao": "Esportes",
-    "endereco": "Rua Santa Fe, 95, Cidade Industrial, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4656,
-    "lng": -49.2912
-  },
-  {
-    "id": 27,
-    "nome": "Ecotora",
-    "area_atuacao": "Sustentabilidade",
-    "endereco": "Rodovia Curitiba Ponta Grossa BR-277, 5120, Orleans, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4789,
-    "lng": -49.2789
-  },
-  {
-    "id": 28,
-    "nome": "Entrai Marketing Digital",
-    "area_atuacao": "Marketing Digital",
-    "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
-    "capital": 0,
-    "lat": -25.4489,
-    "lng": -49.2512
-  },
-  {
-    "id": 29,
-    "nome": "Eva - Agricultura Urbana",
-    "area_atuacao": "Agricultura/Sustentabilidade",
-    "endereco": "Rua Coronel Joao Meister Sobrinho, 107, Pilarzinho, Curitiba/PR",
-    "capital": 15000,
-    "lat": -25.3989,
-    "lng": -49.2456
-  },
-  {
-    "id": 30,
-    "nome": "Fresco Labs",
-    "area_atuacao": "Tecnologia",
-    "endereco": "Rua Parintins, 716 Apt 503, Vila Izabel, Curitiba/PR",
-    "capital": 1000,
-    "lat": -25.4456,
-    "lng": -49.2912
-  },
-  {
-    "id": 31,
-    "nome": "Ha Tec",
-    "area_atuacao": "Pesquisa/Tecnologia",
-    "endereco": "Rua Padre Anchieta, 2443 Apt 1202-B, Bigorrilho, Curitiba/PR",
-    "capital": 5000,
-    "lat": -25.4389,
-    "lng": -49.2956
-  },
-  {
-    "id": 32,
-    "nome": "Icapi Edu",
-    "area_atuacao": "Educação/Tecnologia",
-    "endereco": "Rua Desembargador Vieira Cavalcanti, 585 Apt 103, Mercês, Curitiba/PR",
-    "capital": 1000,
-    "lat": -25.4234,
-    "lng": -49.2856
-  },
-  {
-    "id": 33,
-    "nome": "Ide!A Tech",
-    "area_atuacao": "Software/Tecnologia",
-    "endereco": "Rua Desembargador Westphalen, 824 Apt 905, Reboucas, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4323,
-    "lng": -49.2789
-  },
-  {
-    "id": 34,
-    "nome": "Ingee Inovacao Sustentavel",
-    "area_atuacao": "Sustentabilidade/Inovação",
-    "endereco": "Rua Comendador Macedo, 62 Sala 203, Centro, Curitiba/PR",
-    "capital": 155000,
-    "lat": -25.4256,
-    "lng": -49.2723
-  },
-  {
-    "id": 35,
-    "nome": "Inova Cities",
-    "area_atuacao": "Cidades Inteligentes",
-    "endereco": "Rua Almirante Alexandrino, 3345 Sala 4, Afonso Pena, São José dos Pinhais/PR",
-    "capital": 30000,
-    "lat": -25.5123,
-    "lng": -49.1987
-  },
-  {
-    "id": 36,
-    "nome": "Investeendo",
-    "area_atuacao": "Finanças/Investimentos",
-    "endereco": "Rua Armando Sales de Oliveira, 276, Guabirotuba, Curitiba/PR",
-    "capital": 6000,
-    "lat": -25.4489,
-    "lng": -49.2612
-  },
-  {
-    "id": 37,
-    "nome": "Apex Visio",
-    "area_atuacao": "Inovação/Tecnologia",
-    "endereco": "Rua Pedro Manfredine, 4, Abranches, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4089,
-    "lng": -49.2556
-  },
-  {
-    "id": 38,
-    "nome": "Linked Data Tecnologia",
-    "area_atuacao": "Tecnologia/Dados",
-    "endereco": "Av. Marechal Humberto de Alencar C Branco, 1000 Apt 304, Cristo Rei, Curitiba/PR",
-    "capital": 20000,
-    "lat": -25.4212,
-    "lng": -49.2489
-  },
-  {
-    "id": 39,
-    "nome": "Naila Iot",
-    "area_atuacao": "Internet das Coisas/Ambiental",
-    "endereco": "Rua Ubaldino do Amaral, 927, Alto da Rua XV, Curitiba/PR",
-    "capital": 1000,
-    "lat": -25.4289,
-    "lng": -49.2656
-  },
-  {
-    "id": 40,
-    "nome": "Mapforest",
-    "area_atuacao": "Tecnologia/Gestão",
-    "endereco": "Rua Francisco Torres, 218, Centro, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4267,
-    "lng": -49.2733
-  },
-  {
-    "id": 41,
-    "nome": "Metatimbre Ai",
-    "area_atuacao": "Inteligência Artificial",
-    "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
-    "capital": 2000,
-    "lat": -25.4489,
-    "lng": -49.2512
-  },
-  {
-    "id": 42,
-    "nome": "Microcapsules Technology",
-    "area_atuacao": "Biotecnologia",
-    "endereco": "Rua Pedro Gusso, 2601, Cidade Industrial, Curitiba/PR",
-    "capital": 10000,
-    "lat": -25.4656,
-    "lng": -49.2912
-  },
-  {
-    "id": 43,
-    "nome": "Multiplicare Plantas",
-    "area_atuacao": "Agronegócio",
-    "endereco": "Curitiba/PR",
-    "capital": 0,
-    "lat": -25.4456,
-    "lng": -49.2612
-  }
+    {
+        "id": 1,
+        "nome": "Peepi",
+        "area_atuacao": "Comunicação/Tecnologia",
+        "endereco": "Av. Iguacu, 2820 Conj 61 Andar 06, Agua Verde, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4284,
+        "lng": -49.2733
+    },
+    {
+        "id": 2,
+        "nome": "Bom Gourmet",
+        "area_atuacao": "Alimentação/Tecnologia",
+        "endereco": "Av. Victor Ferreira do Amaral, 306 Conj 11, Tarumã, Curitiba/PR",
+        "capital": 1500,
+        "lat": -25.4402,
+        "lng": -49.2394
+    },
+    {
+        "id": 3,
+        "nome": "Plandor Technologies",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Joao Bonat, 1385 E32, Novo Mundo, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4512,
+        "lng": -49.2815
+    },
+    {
+        "id": 4,
+        "nome": "Planttce Comercial",
+        "area_atuacao": "Comércio/Tecnologia",
+        "endereco": "Alameda Dom Pedro II, 155, Batel, Curitiba/PR",
+        "capital": 147500,
+        "lat": -25.4367,
+        "lng": -49.2856
+    },
+    {
+        "id": 5,
+        "nome": "Recrutadora-Ai",
+        "area_atuacao": "Recrutamento/Tecnologia",
+        "endereco": "Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4198,
+        "lng": -49.2667
+    },
+    {
+        "id": 6,
+        "nome": "Soul Brasil Esportes",
+        "area_atuacao": "Esportes",
+        "endereco": "Rua Flavio Dallegrave, 1827 Apt 212, Hugo Lange, Curitiba/PR",
+        "capital": 647,
+        "lat": -25.4212,
+        "lng": -49.2456
+    },
+    {
+        "id": 7,
+        "nome": "Thrust Clinic",
+        "area_atuacao": "Saúde",
+        "endereco": "Rua Hermes Fontes, 638, Batel, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.4389,
+        "lng": -49.2891
+    },
+    {
+        "id": 8,
+        "nome": "Tudu",
+        "area_atuacao": "Negócios/Tecnologia",
+        "endereco": "Rua Guaratuba, 839, Ahu, Curitiba/PR",
+        "capital": 10204,
+        "lat": -25.4156,
+        "lng": -49.2589
+    },
+    {
+        "id": 9,
+        "nome": "Vitrine de Projetos Ambientais",
+        "area_atuacao": "Meio Ambiente",
+        "endereco": "Rua Bispo Dom Jose, 2095 Sala 205, Batel, Curitiba/PR",
+        "capital": 160000,
+        "lat": -25.4345,
+        "lng": -49.2912
+    },
+    {
+        "id": 10,
+        "nome": "Zeno Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Marechal Floriano Peixoto, 114 Conj 0009, Centro, Curitiba/PR",
+        "capital": 16990,
+        "lat": -25.4256,
+        "lng": -49.2712
+    },
+    {
+        "id": 11,
+        "nome": "Zinz",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Emiliano Perneta, 500 Apt 2509, Centro, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4278,
+        "lng": -49.2756
+    },
+    {
+        "id": 12,
+        "nome": "Perception",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Travessa Conuncio Carrano, 228, Cidade Jardim, São José dos Pinhais/PR",
+        "capital": 3000,
+        "lat": -25.5123,
+        "lng": -49.1987
+    },
+    {
+        "id": 13,
+        "nome": "7 Digital Tech",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Brasil, 8517 Sala 07, Centro, Cascavel/PR",
+        "capital": 5000,
+        "lat": -24.9556,
+        "lng": -53.4567
+    },
+    {
+        "id": 14,
+        "nome": "Aeon Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Doutor Joaquim do Amaral, 275, Jardim das Americas, Curitiba/PR",
+        "capital": 30000,
+        "lat": -25.4456,
+        "lng": -49.2512
+    },
+    {
+        "id": 15,
+        "nome": "Audipex",
+        "area_atuacao": "Auditoria/Contabilidade",
+        "endereco": "Av. Candido de Abreu, 526 Conj 1510, Centro Civico, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4123,
+        "lng": -49.2823
+    },
+    {
+        "id": 16,
+        "nome": "Benato Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Rafael Klier de Assumpcao, 120, Santa Candida, Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4089,
+        "lng": -49.2378
+    },
+    {
+        "id": 17,
+        "nome": "Bim Start",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Visconde de Guarapuava, 2764 Sala 601, Centro, Curitiba/PR",
+        "capital": 1344447,
+        "lat": -25.4298,
+        "lng": -49.2789
+    },
+    {
+        "id": 18,
+        "nome": "Bizu Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Advogado Horacio Raccanello Filho, 5145 Sala 604, Zona 07, Maringá/PR",
+        "capital": 12500,
+        "lat": -23.4123,
+        "lng": -51.9234
+    },
+    {
+        "id": 19,
+        "nome": "Burn Consultoria",
+        "area_atuacao": "Consultoria",
+        "endereco": "Rua Benjamin Constant, 630, Centro, Curitiba/PR",
+        "capital": 210000,
+        "lat": -25.4234,
+        "lng": -49.2723
+    },
+    {
+        "id": 20,
+        "nome": "Cargon Logistica",
+        "area_atuacao": "Logística/Tecnologia",
+        "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
+        "capital": 8969464.04,
+        "lat": -25.4423,
+        "lng": -49.2423
+    },
+    {
+        "id": 21,
+        "nome": "Catajob",
+        "area_atuacao": "Serviços/Internet",
+        "endereco": "Av. Sete de Setembro, 2775, Rebouças, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.4321,
+        "lng": -49.2765
+    },
+    {
+        "id": 22,
+        "nome": "Gtt Consulting",
+        "area_atuacao": "Consultoria",
+        "endereco": "Rua Arthur Mohr, 281 Casa 02, Portão, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4567,
+        "lng": -49.2899
+    },
+    {
+        "id": 23,
+        "nome": "Descomplica Medicina",
+        "area_atuacao": "Educação/Saúde",
+        "endereco": "Rua Bom Jesus, 212 Sala 1904, Juveve, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4189,
+        "lng": -49.2556
+    },
+    {
+        "id": 24,
+        "nome": "E.feito Social",
+        "area_atuacao": "Gestão/Social",
+        "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
+        "capital": 30000,
+        "lat": -25.4423,
+        "lng": -49.2423
+    },
+    {
+        "id": 25,
+        "nome": "Easy360",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Engenheiros Reboucas, 1732, Reboucas, Curitiba/PR",
+        "capital": 900000,
+        "lat": -25.4334,
+        "lng": -49.2812
+    },
+    {
+        "id": 26,
+        "nome": "E-Atleta",
+        "area_atuacao": "Esportes",
+        "endereco": "Rua Santa Fe, 95, Cidade Industrial, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4656,
+        "lng": -49.2912
+    },
+    {
+        "id": 27,
+        "nome": "Ecotora",
+        "area_atuacao": "Sustentabilidade",
+        "endereco": "Rodovia Curitiba Ponta Grossa BR-277, 5120, Orleans, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4789,
+        "lng": -49.2789
+    },
+    {
+        "id": 28,
+        "nome": "Entrai Marketing Digital",
+        "area_atuacao": "Marketing Digital",
+        "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4489,
+        "lng": -49.2512
+    },
+    {
+        "id": 29,
+        "nome": "Eva - Agricultura Urbana",
+        "area_atuacao": "Agricultura/Sustentabilidade",
+        "endereco": "Rua Coronel Joao Meister Sobrinho, 107, Pilarzinho, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.3989,
+        "lng": -49.2456
+    },
+    {
+        "id": 30,
+        "nome": "Fresco Labs",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Parintins, 716 Apt 503, Vila Izabel, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4456,
+        "lng": -49.2912
+    },
+    {
+        "id": 31,
+        "nome": "Ha Tec",
+        "area_atuacao": "Pesquisa/Tecnologia",
+        "endereco": "Rua Padre Anchieta, 2443 Apt 1202-B, Bigorrilho, Curitiba/PR",
+        "capital": 5000,
+        "lat": -25.4389,
+        "lng": -49.2956
+    },
+    {
+        "id": 32,
+        "nome": "Icapi Edu",
+        "area_atuacao": "Educação/Tecnologia",
+        "endereco": "Rua Desembargador Vieira Cavalcanti, 585 Apt 103, Mercês, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4234,
+        "lng": -49.2856
+    },
+    {
+        "id": 33,
+        "nome": "Ide!A Tech",
+        "area_atuacao": "Software/Tecnologia",
+        "endereco": "Rua Desembargador Westphalen, 824 Apt 905, Reboucas, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4323,
+        "lng": -49.2789
+    },
+    {
+        "id": 34,
+        "nome": "Ingee Inovacao Sustentavel",
+        "area_atuacao": "Sustentabilidade/Inovação",
+        "endereco": "Rua Comendador Macedo, 62 Sala 203, Centro, Curitiba/PR",
+        "capital": 155000,
+        "lat": -25.4256,
+        "lng": -49.2723
+    },
+    {
+        "id": 35,
+        "nome": "Inova Cities",
+        "area_atuacao": "Cidades Inteligentes",
+        "endereco": "Rua Almirante Alexandrino, 3345 Sala 4, Afonso Pena, São José dos Pinhais/PR",
+        "capital": 30000,
+        "lat": -25.5123,
+        "lng": -49.1987
+    },
+    {
+        "id": 36,
+        "nome": "Investeendo",
+        "area_atuacao": "Finanças/Investimentos",
+        "endereco": "Rua Armando Sales de Oliveira, 276, Guabirotuba, Curitiba/PR",
+        "capital": 6000,
+        "lat": -25.4489,
+        "lng": -49.2612
+    },
+    {
+        "id": 37,
+        "nome": "Apex Visio",
+        "area_atuacao": "Inovação/Tecnologia",
+        "endereco": "Rua Pedro Manfredine, 4, Abranches, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4089,
+        "lng": -49.2556
+    },
+    {
+        "id": 38,
+        "nome": "Linked Data Tecnologia",
+        "area_atuacao": "Tecnologia/Dados",
+        "endereco": "Av. Marechal Humberto de Alencar C Branco, 1000 Apt 304, Cristo Rei, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4212,
+        "lng": -49.2489
+    },
+    {
+        "id": 39,
+        "nome": "Naila Iot",
+        "area_atuacao": "Internet das Coisas/Ambiental",
+        "endereco": "Rua Ubaldino do Amaral, 927, Alto da Rua XV, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4289,
+        "lng": -49.2656
+    },
+    {
+        "id": 40,
+        "nome": "Mapforest",
+        "area_atuacao": "Tecnologia/Gestão",
+        "endereco": "Rua Francisco Torres, 218, Centro, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4267,
+        "lng": -49.2733
+    },
+    {
+        "id": 41,
+        "nome": "Metatimbre Ai",
+        "area_atuacao": "Inteligência Artificial",
+        "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
+        "capital": 2000,
+        "lat": -25.4489,
+        "lng": -49.2512
+    },
+    {
+        "id": 42,
+        "nome": "Microcapsules Technology",
+        "area_atuacao": "Biotecnologia",
+        "endereco": "Rua Pedro Gusso, 2601, Cidade Industrial, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4656,
+        "lng": -49.2912
+    },
+    {
+        "id": 43,
+        "nome": "Multiplicare Plantas",
+        "area_atuacao": "Agronegócio",
+        "endereco": "Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4456,
+        "lng": -49.2612
+    },
+    {
+        "cnpj": "53.502.991/0001-77",
+        "razao_social": "53.502.991 CAMILA SOCA CANTARELLI",
+        "nome_fantasia": "INGÁ",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": ""
+        },
+        "localizacao": {
+            "logradouro": "",
+            "numero": "",
+            "bairro": "JARDIM FLORESTAL",
+            "cep": "83602340",
+            "municipio": "CAMPO LARGO",
+            "estado": "PR",
+            "latitude": -25.4834681,
+            "longitude": -49.5345844
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "55.119.149/0001-86",
+        "razao_social": "INSTITUTO 3C+",
+        "nome_fantasia": "INSTITUTO 3C+",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(42) 91323505"
+        },
+        "localizacao": {
+            "logradouro": "MARECHAL FLORIANO PEIXOTO",
+            "numero": "1601",
+            "bairro": "CENTRO",
+            "cep": "85010250",
+            "municipio": "GUARAPUAVA",
+            "estado": "PR",
+            "latitude": -25.4296,
+            "longitude": -49.2719
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "51.217.087/0001-94",
+        "razao_social": "AETHER HM LTDA",
+        "nome_fantasia": "AETHER HM",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(41) 32576987"
+        },
+        "localizacao": {
+            "logradouro": "PROFESSOR FÁBIO DE SOUZA",
+            "numero": "2131",
+            "bairro": "PORTÃO",
+            "cep": "80330050",
+            "municipio": "CURITIBA",
+            "estado": "PR",
+            "latitude": -25.4296,
+            "longitude": -49.2719
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "32.806.103/0001-30",
+        "razao_social": "INTALENTI HEADHUNTER E CONSULTORIA LTDA",
+        "nome_fantasia": "INTALENTI",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(44) 97078165"
+        },
+        "localizacao": {
+            "logradouro": "SAO PAULO",
+            "numero": "1061",
+            "bairro": "ZONA 01",
+            "cep": "87013040",
+            "municipio": "MARINGA",
+            "estado": "PR",
+            "latitude": -23.4194933,
+            "longitude": -51.9331225
+        },
+        "situacao_cadastral": "ATIVA"
+    }
 ]
