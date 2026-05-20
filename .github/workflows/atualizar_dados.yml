@@ -1,0 +1,38 @@
+name: Executar Agente de CNPJ
+
+on:
+  push:
+    paths:
+      - 'dados_cnpjs.csv' # O robô só liga se você alterar este arquivo de CNPJs
+  workflow_dispatch: # Permite que você clique em um botão para rodar manualmente se quiser
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar o repositório
+      uses: actions/checkout@v3
+
+    - name: Configurar o Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar dependências
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+
+    - name: Rodar o script de extração
+      run: |
+        python scripts/crawler_cnpj.py
+
+    - name: Salvar alterações no JSON e dar Push de volta para o mapa
+      run: |
+        git config --global user.name "GitHub Action Bot"
+        git config --global user.email "actions@github.com"
+        git add startups_data.json
+        # Só faz o commit se houver novos dados para não gerar erros
+        git diff-index --quiet HEAD || git commit -m "Auto: Dados de startups atualizados via API pública"
+        git push
