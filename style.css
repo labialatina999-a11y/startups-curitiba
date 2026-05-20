@@ -1,33 +1,51 @@
-body {
-  margin: 0;
-  background-color: #0a2a4a;
-  color: #ffffff;
-  font-family: 'Courier New', monospace;
-  display: flex;
-}
+<style>
+    /* Reset básico */
+    * { box-sizing: border-box; }
+    
+    /* Dashboard com layout de grade (Grid) */
+    .dashboard { 
+        max-width: 1400px; 
+        margin: 20px auto; 
+        padding: 0 15px; 
+    }
 
-#controls {
-  width: 250px;
-  padding: 10px;
-  border-right: 2px solid #ffffff;
-  background-color: #0a2a4a;
-  overflow-y: auto;
-}
+    .grid-main { 
+        display: grid; 
+        grid-template-columns: 1fr 350px; /* Mapa ganha o espaço principal, lista tem 350px fixos */
+        gap: 20px; 
+        align-items: start;
+    }
 
-#map {
-  flex: 1;
-  height: 100vh;
-}
+    /* O Mapa - Garantir altura mínima */
+    .map-card { 
+        background: white; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        overflow: hidden; 
+    }
+    #map { 
+        height: 600px; /* Altura fixa para garantir visibilidade */
+        width: 100%; 
+    }
 
-h1, h2, h3 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
+    /* A Lista Lateral - com scroll próprio */
+    .list-card { 
+        background: white; 
+        border-radius: 12px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        height: 600px; /* Mesma altura do mapa */
+        display: flex; 
+        flex-direction: column;
+    }
+    .startup-list { 
+        overflow-y: auto; 
+        flex-grow: 1; 
+        padding: 10px; 
+    }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-ul li:hover {
-  color: #00ffff;
-}
+    /* Responsividade para telemóveis */
+    @media (max-width: 900px) {
+        .grid-main { grid-template-columns: 1fr; }
+        #map, .list-card { height: 400px; }
+    }
+</style>
