@@ -3015,7 +3015,14 @@
         "lat": -25.4536415,
         "lng": -49.2529632
     },
-
+    {
+        "nome": "RECICLO SOCIAL TECNOLOGIA E GESTAO DE RESIDUOS LTDA",
+        "area_atuacao": "[{'code': '74.90-1-99', 'text': 'Outras atividades profissionais, científicas e técnicas não especificadas anteriormente'}]",
+        "endereco": "RUA ANA CLELIA RODRIGUES, 35, OSASCO",
+        "data_fundacao": "30/05/2023",
+        "lat": -23.5359394,
+        "lng": -46.8044581
+    },
     {
         "nome": "MIGGO MARKETING LTDA",
         "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
@@ -3056,7 +3063,14 @@
         "lat": -25.3854474,
         "lng": -49.2372312
     },
-
+    {
+        "nome": "CONNECTBE CONSULTORIA ESTRATEGICA LTDA",
+        "area_atuacao": "[{'code': '70.20-4-00', 'text': 'Atividades de consultoria em gestão empresarial'}]",
+        "endereco": "RUA CELESTE GOBBATO, 120, PORTO ALEGRE",
+        "data_fundacao": "18/02/2022",
+        "lat": -30.0450317,
+        "lng": -51.2307326
+    },
     {
         "nome": "B G PRODUTOS DE NUTRICAO ANIMAL LTDA",
         "area_atuacao": "[{'code': '46.23-1-08', 'text': 'Comércio atacadista de matérias-primas agrícolas com atividade de fracionamento e acondicionamento associada'}]",
