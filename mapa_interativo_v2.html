@@ -4,90 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Mapa de Startups - Paraná | Ecossistema Inovador</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%); color: #1a202c; }
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #1a202c; }
         
-        /* Navegação por Abas */
-        .nav-tabs { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; display: flex; gap: 0.5rem; }
-        .tab-button { background: rgba(255,255,255,0.1); border: none; color: rgba(255,255,255,0.7); padding: 0.75rem 1.5rem; border-radius: 8px 8px 0 0; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 600; transition: all 0.3s; font-size: 0.9rem; }
-        .tab-button.active { background: white; color: #0f172a; }
+        /* Navegação */
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 2rem 2rem 0 2rem; }
+        .hero-content { max-width: 1400px; margin: 0 auto; }
+        .nav-tabs { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
+        .tab-button { background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; opacity: 0.7; }
+        .tab-button.active { background: white; color: #0f172a; opacity: 1; }
 
-        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 2rem 2rem 0 2rem; position: relative; }
-        .hero-content { max-width: 1400px; margin: 0 auto; padding-bottom: 2rem; }
-        .hero h1 { font-size: 2rem; display: flex; align-items: center; gap: 12px; }
-        .hero h1 i { color: #38bdf8; }
-        .hero p { margin-top: 0.5rem; font-size: 0.95rem; color: #cbd5e1; }
-        
-        .dashboard { max-width: 1400px; margin: 1.5rem auto 2rem auto; padding: 0 1.5rem; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-        .metric-card { background: white; padding: 1rem; border-radius: 0.75rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .metric-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; }
-        .metric-card .value { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
-        .controls { background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .search-box { display: flex; align-items: center; background: #f8fafc; border-radius: 8px; padding: 0.5rem 0.75rem; gap: 8px; border: 1px solid #e2e8f0; }
-        .search-box input { border: none; background: transparent; width: 100%; font-size: 0.85rem; outline: none; font-family: 'Inter', sans-serif; }
-        
-        .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; }
-        .map-card { flex: 2; min-width: 280px; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .map-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.85rem; }
-        #map { height: 600px; width: 100%; }
-        
-        .list-card { flex: 1.2; min-width: 300px; background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
-        .list-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; display: flex; justify-content: space-between; }
-        .startup-list { flex: 1; overflow-y: auto; max-height: 600px; padding: 0.5rem; }
-        .startup-item { background: white; border: 1px solid #e2e8f0; margin-bottom: 0.5rem; padding: 0.75rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-        .startup-item:hover { background: #f8fafc; transform: translateX(2px); }
-        .startup-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
-        .area-badge { background: #e0e7ff; color: #4338ca; padding: 0.15rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 600; display: inline-block; margin-bottom: 0.25rem; }
-        .info-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: #475569; margin-top: 0.25rem; }
-        .capital-value { color: #059669; font-weight: 600; }
-        
-        .card-materia { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 800px; margin: 2rem auto; }
-        footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b; }
+        .dashboard { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; }
+        #map { height: 600px; width: 100%; border-radius: 0.75rem; }
+        .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .map-card { flex: 2; min-width: 300px; }
+        .list-card { flex: 1; min-width: 300px; background: white; border-radius: 0.75rem; overflow-y: auto; max-height: 600px; }
+        .startup-item { padding: 1rem; border-bottom: 1px solid #e2e8f0; cursor: pointer; }
+        .startup-item:hover { background: #f8fafc; }
+        .area-badge { font-size: 0.65rem; background: #e0e7ff; color: #4338ca; padding: 0.2rem 0.5rem; border-radius: 12px; }
     </style>
 </head>
 <body>
 
 <div class="hero">
     <div class="hero-content">
-        <h1><i class="fas fa-map-marker-alt"></i> Mapa de Startups · Paraná</h1>
+        <h1>Mapa de Startups · Paraná</h1>
         <div class="nav-tabs">
-            <button class="tab-button active" onclick="openTab('tab-mapa')">Mapa</button>
-            <button class="tab-button" onclick="openTab('tab-conteudo')">Conteúdo</button>
+            <button class="tab-button active" onclick="openTab('tab-mapa')">Mapa Interativo</button>
+            <button class="tab-button" onclick="openTab('tab-conteudo')">Matérias</button>
         </div>
     </div>
 </div>
 
-<div id="tab-mapa" class="tab-content">
-    <div class="dashboard">
-        <div class="metrics-grid">
-            <div class="metric-card"><h3>TOTAL</h3><div class="value" id="totalStartups">0</div></div>
-            <div class="metric-card"><h3>ÁREAS</h3><div class="value" id="totalAreas">0</div></div>
-        </div>
-        <div class="controls"><div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar..."></div></div>
-        <div class="grid-main">
-            <div class="map-card"><div id="map"></div></div>
-            <div class="list-card">
-                <div class="list-header">Lista de Startups<span id="resultCount">0</span></div>
-                <div id="startupListContainer" class="startup-list"></div>
-            </div>
-        </div>
+<div id="tab-mapa" class="tab-content dashboard">
+    <input type="text" id="searchInput" placeholder="Buscar..." style="width:100%; padding: 10px; margin-bottom: 10px;">
+    <div class="grid-main">
+        <div class="map-card"><div id="map"></div></div>
+        <div class="list-card" id="startupListContainer"></div>
     </div>
 </div>
 
-<div id="tab-conteudo" class="tab-content" style="display:none;">
-    <div class="card-materia">
-        <h3>Matérias e Vídeos</h3>
-        <p>Conteúdo editorial virá aqui em breve.</p>
-    </div>
+<div id="tab-conteudo" class="tab-content" style="display:none; padding: 2rem; max-width: 800px; margin: 0 auto;">
+    <h2>Matérias e Conteúdos</h2>
+    <p>Área reservada para seus vídeos.</p>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+    let startupsData = [], map, markers = [];
+
     function openTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
         document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
@@ -96,7 +65,11 @@
         if (tabId === 'tab-mapa' && map) map.invalidateSize();
     }
 
-    let startupsData = [], map, markers = [];
+    function limparArea(texto) {
+        if (typeof texto !== 'string') return 'Tecnologia';
+        const match = texto.match(/'text':\s*'([^']+)'/);
+        return match ? match[1] : texto.replace(/[\[\]'"{}:]/g, '').trim();
+    }
 
     function initMap() {
         map = L.map('map').setView([-25.4284, -49.2733], 12);
@@ -104,25 +77,40 @@
     }
 
     async function loadData() {
-        const response = await fetch('startups_data.json');
-        startupsData = await response.json();
-        renderMapAndList('');
+        try {
+            const response = await fetch('startups_data.json');
+            const data = await response.json();
+            startupsData = data.map(s => ({
+                ...s,
+                area_atuacao: limparArea(s.area_atuacao),
+                lat: s.lat || (s.localizacao ? s.localizacao.latitude : null),
+                lng: s.lng || (s.localizacao ? s.localizacao.longitude : null)
+            })).filter(s => s.lat && s.lng);
+            renderMapAndList('');
+        } catch(e) { console.error("Erro:", e); }
     }
 
     function renderMapAndList(filter) {
         markers.forEach(m => map.removeLayer(m)); markers = [];
         const filtered = startupsData.filter(s => (s.nome || '').toLowerCase().includes(filter.toLowerCase()));
         
-        document.getElementById('totalStartups').innerText = filtered.length;
         const container = document.getElementById('startupListContainer');
-        container.innerHTML = filtered.map(s => `<div class="startup-item"><div class="startup-name">${s.nome}</div></div>`).join('');
-        
+        container.innerHTML = filtered.map((s, idx) => `
+            <div class="startup-item" onclick="zoomTo(${idx})">
+                <div style="font-weight:700">${s.nome}</div>
+                <span class="area-badge">${s.area_atuacao}</span>
+            </div>
+        `).join('');
+
         filtered.forEach(s => {
-            if (s.lat && s.lng) {
-                const marker = L.marker([s.lat, s.lng]).addTo(map).bindPopup(s.nome);
-                markers.push(marker);
-            }
+            const marker = L.marker([s.lat, s.lng]).addTo(map).bindPopup(s.nome);
+            markers.push(marker);
         });
+    }
+
+    function zoomTo(idx) {
+        const s = startupsData[idx];
+        map.setView([s.lat, s.lng], 16);
     }
 
     document.addEventListener('DOMContentLoaded', () => { initMap(); loadData(); document.getElementById('searchInput').addEventListener('input', (e) => renderMapAndList(e.target.value)); });
