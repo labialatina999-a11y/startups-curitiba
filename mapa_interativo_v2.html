@@ -28,10 +28,10 @@
         .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; }
         .map-card { flex: 2; min-width: 280px; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .map-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.85rem; }
-        #map { height: 500px; width: 100%; }
+        #map { height: 600px; width: 100%; }
         .list-card { flex: 1.2; min-width: 300px; background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
         .list-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; display: flex; justify-content: space-between; }
-        .startup-list { flex: 1; overflow-y: auto; max-height: 500px; padding: 0.5rem; }
+        .startup-list { flex: 1; overflow-y: auto; max-height: 600px; padding: 0.5rem; }
         .startup-item { background: white; border: 1px solid #e2e8f0; margin-bottom: 0.5rem; padding: 0.75rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
         .startup-item:hover { background: #f8fafc; transform: translateX(2px); }
         .startup-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
@@ -40,6 +40,9 @@
         .info-row i { width: 14px; color: #667eea; font-size: 0.65rem; }
         .capital-value { color: #059669; font-weight: 600; }
         footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 1.5rem; }
+        .legend { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); line-height: 1.5; font-size: 0.75rem; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
         @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } .hero h1 { font-size: 1.5rem; } }
     </style>
 </head>
@@ -61,14 +64,21 @@
         <div class="metric-card"><h3>ÁREAS DE ATUAÇÃO</h3><div class="value" id="totalAreas">0</div></div>
     </div>
     <div class="controls">
-        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação ou endereço..."></div>
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação, cidade ou endereço..."></div>
     </div>
     <div class="grid-main">
-        <div class="map-card"><div class="map-header"><i class="fas fa-map-marker-alt"></i> Localização das Startups</div><div id="map"></div></div>
-        <div class="list-card"><div class="list-header"><span><i class="fas fa-list"></i> Lista de Startups</span><span id="resultCount">0 resultados</span></div><div id="startupListContainer" class="startup-list"><div class="info-row" style="justify-content:center;">Carregando...</div></div></div>
+        <div class="map-card">
+            <div class="map-header"><i class="fas fa-map-marker-alt"></i> Localização das Startups</div>
+            <div id="map"></div>
+        </div>
+        <div class="list-card">
+            <div class="list-header"><span><i class="fas fa-list"></i> Lista de Startups</span><span id="resultCount">0 resultados</span></div>
+            <div id="startupListContainer" class="startup-list"><div class="info-row" style="justify-content:center;">Carregando...</div></div>
+        </div>
     </div>
 </div>
 <footer><i class="fas fa-database"></i> Dados atualizados | Mapa interativo | Fonte: startups_data.json</footer>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     let startupsData = [];
@@ -78,11 +88,35 @@
     function initMap() {
         map = L.map('map').setView(curitibaCenter, 12);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', subdomains: 'abcd', maxZoom: 18 }).addTo(map);
+        
+        // Adicionar legenda ao mapa
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function (map) {
+            const div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `
+                <div class="legend-item"><span class="dot" style="background-color:#0f172a;"></span> Curitiba</div>
+                <div class="legend-item"><span class="dot" style="background-color:#059669;"></span> Interior do PR</div>
+            `;
+            return div;
+        };
+        legend.addTo(map);
     }
 
     function formatarCapital(valor) { 
         if (!valor || valor === 0) return 'N/I'; 
         return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(valor); 
+    }
+
+    function getMarkerIcon(municipio) {
+        const isCuritiba = municipio && municipio.toUpperCase().includes('CURITIBA');
+        const color = isCuritiba ? '#0f172a' : '#059669';
+        
+        return L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div style='background-color:${color}; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.3);'></div>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        });
     }
 
     function atualizarMetricas(startups) {
@@ -92,30 +126,20 @@
         document.getElementById('totalAreas').innerHTML = areas.size;
     }
 
-	    function renderMapAndList(filterText = '') {
-	        markers.forEach(m => map.removeLayer(m)); markers = [];
-            
-            // Função para definir a cor do marcador baseado na cidade
-            function getMarkerIcon(municipio) {
-                const isCuritiba = municipio && municipio.toUpperCase().includes('CURITIBA');
-                const color = isCuritiba ? '#0f172a' : '#059669'; // Azul escuro para Curitiba, Verde para Interior
-                
-                return L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div style='background-color:${color}; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.3);'></div>`,
-                    iconSize: [12, 12],
-                    iconAnchor: [6, 6]
-                });
-            }
+    function renderMapAndList(filterText = '') {
+        markers.forEach(m => map.removeLayer(m)); markers = [];
         const filtered = startupsData.filter(s => {
             if (!filterText.trim()) return true;
             const term = filterText.toLowerCase();
             return (s.nome && s.nome.toLowerCase().includes(term)) || 
                    (s.area_atuacao && s.area_atuacao.toLowerCase().includes(term)) || 
-                   (s.endereco && s.endereco.toLowerCase().includes(term));
+                   (s.endereco && s.endereco.toLowerCase().includes(term)) ||
+                   (s.localizacao && s.localizacao.municipio && s.localizacao.municipio.toLowerCase().includes(term));
         });
+        
         atualizarMetricas(filtered);
         document.getElementById('resultCount').innerHTML = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
+        
         const container = document.getElementById('startupListContainer');
         if (filtered.length === 0) {
             container.innerHTML = '<div class="info-row" style="justify-content:center;">Nenhuma startup encontrada</div>';
@@ -124,12 +148,13 @@
                 <div class="startup-item" data-idx="${idx}">
                     <div class="startup-name">${s.nome}</div>
                     <span class="area-badge">${s.area_atuacao}</span>
-	                    <div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco}</div>
-	                    <div class="info-row"><i class="fas fa-dollar-sign"></i> <span class="capital-value">${formatarCapital(s.capital)}</span></div>
-                        <div class="info-row"><i class="fas fa-info-circle"></i> Status: <span style="color:${s.situacao === 'ATIVA' ? '#059669' : '#dc2626'}">${s.situacao}</span></div>
-                        ${s.contatos.email ? `<div class="info-row"><i class="fas fa-envelope"></i> ${s.contatos.email}</div>` : ''}
-	                </div>
-	            `).join('');
+                    <div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco}</div>
+                    <div class="info-row"><i class="fas fa-dollar-sign"></i> <span class="capital-value">${formatarCapital(s.capital)}</span></div>
+                    <div class="info-row"><i class="fas fa-info-circle"></i> Status: <span style="color:${s.situacao === 'ATIVA' ? '#059669' : '#dc2626'}">${s.situacao}</span></div>
+                    ${s.contatos.email ? `<div class="info-row"><i class="fas fa-envelope"></i> ${s.contatos.email}</div>` : ''}
+                </div>
+            `).join('');
+            
             document.querySelectorAll('.startup-item').forEach((item, idx) => { 
                 item.addEventListener('click', () => { 
                     const s = filtered[idx]; 
@@ -141,26 +166,28 @@
                 }); 
             });
         }
+        
         filtered.forEach(s => {
             if (s.lat && s.lng) {
-	                const popup = `
-	                    <div style="font-family:Inter; min-width:200px;">
-	                        <strong style="font-size:0.9rem;">${s.nome}</strong><br>
-	                        📁 ${s.area_atuacao}<br>
-	                        📍 ${s.endereco}<br>
-	                        💰 <span style="color:#059669; font-weight:600;">${formatarCapital(s.capital)}</span><br>
-                            📊 Status: <strong>${s.situacao}</strong><br>
-                            ${s.contatos.email ? `✉️ ${s.contatos.email}<br>` : ''}
-                            ${s.contatos.telefone ? `📞 ${s.contatos.telefone}` : ''}
-	                    </div>
-	                `;
-	                const marker = L.marker([s.lat, s.lng], { 
-                        title: s.nome,
-                        icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '')
-                    }).addTo(map).bindPopup(popup);
+                const popup = `
+                    <div style="font-family:Inter; min-width:200px;">
+                        <strong style="font-size:0.9rem;">${s.nome}</strong><br>
+                        📁 ${s.area_atuacao}<br>
+                        📍 ${s.endereco}<br>
+                        💰 <span style="color:#059669; font-weight:600;">${formatarCapital(s.capital)}</span><br>
+                        📊 Status: <strong>${s.situacao}</strong><br>
+                        ${s.contatos.email ? `✉️ ${s.contatos.email}<br>` : ''}
+                        ${s.contatos.telefone ? `📞 ${s.contatos.telefone}` : ''}
+                    </div>
+                `;
+                const marker = L.marker([s.lat, s.lng], { 
+                    title: s.nome,
+                    icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '')
+                }).addTo(map).bindPopup(popup);
                 markers.push(marker);
             }
         });
+        
         if (markers.length > 1) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.1));
         else if (markers.length === 1) map.setView(markers[0].getLatLng(), 15);
     }
@@ -170,32 +197,31 @@
             const response = await fetch('startups_data.json');
             if (!response.ok) throw new Error();
             const data = await response.json();
-	            startupsData = data.map(s => {
-	                // Normaliza os dados que podem vir do crawler (CNPJ Biz) ou do formato antigo
-	                const nome = s.nome_fantasia || s.nome || s.razao_social || 'Sem nome';
-	                const area = s.area_atuacao || 'Tecnologia/Serviços';
-	                const lat = s.localizacao ? s.localizacao.latitude : s.lat;
-	                const lng = s.localizacao ? s.localizacao.longitude : s.lng;
-	                const localizacao = s.localizacao || {};
-                    const endereco = s.localizacao ? 
-	                    `${s.localizacao.logradouro}, ${s.localizacao.numero} - ${s.localizacao.bairro}, ${s.localizacao.municipio}/${s.localizacao.estado}` : 
-	                    s.endereco;
-	                const capital = s.capital || 0;
-	                const situacao = s.situacao_cadastral || 'ATIVA';
-	                const contatos = s.contatos || {};
-	
-	                return {
-	                    nome,
-	                    area_atuacao: area,
-	                    endereco,
-	                    capital,
-	                    lat,
-	                    lng,
-	                    situacao,
-	                    contatos,
-                        localizacao
-	                };
-	            }).filter(s => s.lat && s.lng);
+            startupsData = data.map(s => {
+                const nome = s.nome_fantasia || s.nome || s.razao_social || 'Sem nome';
+                const area = s.area_atuacao || 'Tecnologia/Serviços';
+                const lat = s.localizacao ? s.localizacao.latitude : s.lat;
+                const lng = s.localizacao ? s.localizacao.longitude : s.lng;
+                const localizacao = s.localizacao || {};
+                const endereco = s.localizacao && s.localizacao.logradouro ? 
+                    `${s.localizacao.logradouro}, ${s.localizacao.numero} - ${s.localizacao.bairro}, ${s.localizacao.municipio}/${s.localizacao.estado}` : 
+                    s.endereco;
+                const capital = s.capital || 0;
+                const situacao = s.situacao_cadastral || 'ATIVA';
+                const contatos = s.contatos || {};
+
+                return {
+                    nome,
+                    area_atuacao: area,
+                    endereco,
+                    capital,
+                    lat,
+                    lng,
+                    situacao,
+                    contatos,
+                    localizacao
+                };
+            }).filter(s => s.lat && s.lng);
             renderMapAndList('');
         } catch(err) { 
             document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao carregar dados</div>'; 
