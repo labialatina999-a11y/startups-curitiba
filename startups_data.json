@@ -1,642 +1,473 @@
 [
     {
-        "nome": "7 DIGITAL TECH SOLUCOES DIGITAIS LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "AVENIDA BRASIL, 8517, CASCAVEL",
-        "data_fundacao": "07/11/2019",
-        "lat": -24.9541877,
-        "lng": -53.4815818
-    },
-    {
-        "nome": "ACEHUB SISTEMAS LTDA.",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA RUI BARBOSA, 207, MARINGA",
-        "data_fundacao": "20/05/2024",
-        "lat": -23.4172268,
-        "lng": -51.9553114
-    },
-    {
-        "nome": "ADSMAT - PESQUISA E DESENVOLVIMENTO DE BIOMATERIAIS E MATERIAIS DE CERAMICAS AVANCADOS LTDA",
-        "area_atuacao": "[{'code': '72.10-0-00', 'text': 'Pesquisa e desenvolvimento experimental em ciências físicas e naturais'}]",
-        "endereco": "AVENIDA JOAO MIGUEL CARAM, 731, LONDRINA",
-        "data_fundacao": "16/12/2019",
-        "lat": -23.3073546,
-        "lng": -51.1142591
-    },
-    {
-        "nome": "AHOS LTDA",
-        "area_atuacao": "[{'code': '93.13-1-00', 'text': 'Atividades de condicionamento físico'}]",
-        "endereco": "AVENIDA AMERICO BELAY, 1158, MARINGA",
-        "data_fundacao": "03/04/2020",
-        "lat": -23.3805954,
-        "lng": -51.9213644
-    },
-    {
-        "nome": "AKADIA CENTRO DE LINGUAS ONLINE LTDA",
-        "area_atuacao": "[{'code': '74.90-1-04', 'text': 'Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários'}]",
-        "endereco": "AVENIDA CARNEIRO LEAO, 825, MARINGA",
-        "data_fundacao": "07/01/2021",
-        "lat": -23.4198179,
-        "lng": -51.9503961
-    },
-    {
-        "nome": "ALEATECH BRASIL CONSULTORIA LTDA",
-        "area_atuacao": "[{'code': '74.90-1-99', 'text': 'Outras atividades profissionais, científicas e técnicas não especificadas anteriormente'}]",
-        "endereco": "AVENIDA AYRTON SENNA DA SILVA, 500, LONDRINA",
-        "data_fundacao": "09/07/2021",
-        "lat": -23.3296924,
-        "lng": -51.1779253
-    },
-    {
-        "nome": "ALMOX TECH LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA ANAMBES, 64, CURITIBA",
-        "data_fundacao": "24/06/2022",
-        "lat": -25.4468439,
-        "lng": -49.2151375
-    },
-    {
-        "nome": "PEDRO HENRIQUE BENIN ASCHIDAMINI LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA MINAS GERAIS, 2640, FRANCISCO BELTRAO",
-        "data_fundacao": "31/10/2019",
-        "lat": -26.088108,
-        "lng": -53.0511081
-    },
-    {
-        "nome": "ATECK MOBILE LTDA",
-        "area_atuacao": "[{'code': '47.63-6-03', 'text': 'Comércio varejista de bicicletas e triciclos; peças e acessórios'}]",
-        "endereco": "AVENIDA CARLOS GOMES, 2509, CASCAVEL",
-        "data_fundacao": "08/05/2024",
-        "lat": -24.9814361,
-        "lng": -53.4529004
-    },
-    {
-        "nome": "AZAGROS - AGROTECNOLOGIA LTDA",
-        "area_atuacao": "[{'code': '62.01-5-01', 'text': 'Desenvolvimento de programas de computador sob encomenda'}]",
-        "endereco": "RUA 28 DE NOVEMBRO, 189, DOIS VIZINHOS",
-        "data_fundacao": "23/06/2018",
-        "lat": -25.7470359,
-        "lng": -53.0539431
-    },
-    {
-        "nome": "BENATO TECNOLOGIA INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '63.11-9-00', 'text': 'Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet'}]",
-        "endereco": "RUA RAFAEL KLIER DE ASSUMPCAO, 120, CURITIBA",
-        "data_fundacao": "30/08/2022",
-        "lat": -25.3778273,
-        "lng": -49.2377698
-    },
-    {
-        "nome": "BREVENLAW TRATAMENTO DE DADOS LTDA",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
-        "endereco": "AVENIDA GENERAL CARLOS CAVALCANTI, 4748, PONTA GROSSA",
-        "data_fundacao": "25/02/2022",
-        "lat": -25.0946814,
-        "lng": -50.1033066
-    },
-    {
-        "nome": "BYPONTO SOFTWARES LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "AVENIDA TIRADENTES, 501, LONDRINA",
-        "data_fundacao": "16/10/2020",
-        "lat": -23.2985618,
-        "lng": -51.1930695
-    },
-    {
-        "nome": "C. PORTO ASSESSORIA E CONSULTORIA LTDA",
-        "area_atuacao": "[{'code': '72.10-0-00', 'text': 'Pesquisa e desenvolvimento experimental em ciências físicas e naturais'}]",
-        "endereco": "AVENIDA COLOMBO, 5790, MARINGA",
-        "data_fundacao": "25/01/2021",
-        "lat": -23.4042259,
-        "lng": -51.9435129
-    },
-    {
-        "nome": "CARGO SAFE INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '52.50-8-04', 'text': 'Organização logística do transporte de carga'}]",
-        "endereco": "RUA VISCONDE DO RIO BRANCO, 1833, CURITIBA",
-        "data_fundacao": "17/05/2024",
-        "lat": -25.4238931,
-        "lng": -49.2841048
-    },
-    {
-        "nome": "CCONET LTDA",
-        "area_atuacao": "[{'code': '62.01-5-01', 'text': 'Desenvolvimento de programas de computador sob encomenda'}]",
-        "endereco": "RUA TERRA RICA, 449, PINHAIS",
-        "data_fundacao": "29/04/2022",
-        "lat": -25.430055,
-        "lng": -49.1855127
-    },
-    {
-        "nome": "CODELIGHT SOLUCOES TECNOLOGICAS LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "RUA JOSE DE ALENCAR, 381, DOIS VIZINHOS",
-        "data_fundacao": "24/04/2024",
-        "lat": -25.7545412,
-        "lng": -53.0564325
-    },
-    {
-        "nome": "COISA DE MULHER LTDA.",
-        "area_atuacao": "[{'code': '00.00-0-00', 'text': '********'}]",
-        "endereco": "RUA SARANDI, 0452, TOLEDO",
-        "data_fundacao": "24/05/2024",
-        "lat": -24.7219154,
-        "lng": -53.7396399
-    },
-    {
-        "nome": "COLLECTION LTDA",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
-        "endereco": "AVENIDA ARCHELAU DE ALMEIDA TORRES, 197, ARAUCARIA",
-        "data_fundacao": "15/07/2020",
-        "lat": -25.6104166,
-        "lng": -49.3676654
-    },
-    {
-        "nome": "COMUNIKA CONSULTORIA E INOVACAO LTDA",
-        "area_atuacao": "[{'code': '70.20-4-00', 'text': 'Atividades de consultoria em gestão empresarial'}]",
-        "endereco": "RUA JORDAO, 1166, FOZ DO IGUACU",
-        "data_fundacao": "14/02/2023",
-        "lat": -25.5283866,
-        "lng": -54.5500804
-    },
-    {
-        "nome": "CREDIT-ON INTELIGENCIA EM CREDITO LTDA",
-        "area_atuacao": "[{'code': '82.91-1-00', 'text': 'Atividades de cobranças e informações cadastrais'}]",
-        "endereco": "R PRESIDENTE CARLOS CAVALCANTI, 250, ARAUCARIA",
-        "data_fundacao": "08/07/2021",
-        "lat": -25.593038,
-        "lng": -49.4088716
-    },
-    {
-        "nome": "DAGA TECNOLOGIA E ENGENHARIA LTDA",
-        "area_atuacao": "[{'code': '47.51-2-01', 'text': 'Comércio varejista especializado de equipamentos e suprimentos de informática'}]",
-        "endereco": "AVENIDA MINISTRO CIRNE LIMA, 4611, TOLEDO",
-        "data_fundacao": "04/10/2018",
-        "lat": -24.7014775,
-        "lng": -53.7653345
-    },
-    {
-        "nome": "EDGESEARCH LABS INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '00.00-0-00', 'text': '********'}]",
-        "endereco": "RUA MONTEIRO LOBATO, 6243, UMUARAMA",
-        "data_fundacao": "16/05/2024",
-        "lat": -23.741471,
-        "lng": -53.3048899
-    },
-    {
-        "nome": "EMBRIOT ANALYTICS LIMITADA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA IMACULADA CONCEICAO, 1430, CURITIBA",
-        "data_fundacao": "24/05/2023",
-        "lat": -25.4536415,
-        "lng": -49.2529632
-    },
-    {
-        "nome": "FANTHON SOLUCOES FINANCEIRAS LTDA",
-        "area_atuacao": "[{'code': '82.91-1-00', 'text': 'Atividades de cobrança e informações cadastrais'}]",
-        "endereco": "RUA OSORIO RIBAS DE PAULA, 94, APUCARANA",
-        "data_fundacao": "20/01/2020",
-        "lat": -23.5486431,
-        "lng": -51.4626349
-    },
-    {
-        "nome": "FLUIDSIM SOFTWARE LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "ALAMEDA CABRAL, 475, CURITIBA",
-        "data_fundacao": "12/04/2021",
-        "lat": -25.4289618,
-        "lng": -49.2784839
-    },
-    {
-        "nome": "FREELANS TECNOLOGIA LTDA",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
-        "endereco": "RUA SANTO ANTONIO, 464, MARINGA",
-        "data_fundacao": "09/08/2019",
-        "lat": -23.4111648,
-        "lng": -51.9280973
-    },
-    {
-        "nome": "GESTAO INTELIGENTE EM SAUDE LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "AVENIDA SETE DE SETEMBRO, 2775, CURITIBA",
-        "data_fundacao": "06/05/2021",
-        "lat": -25.4382748,
-        "lng": -49.2668569
-    },
-    {
-        "nome": "GO.TO6 MINERALS AND STRATEGY LTDA",
-        "area_atuacao": "[{'code': '82.11-3-00', 'text': 'Serviços combinados de escritório e apoio administrativo'}]",
-        "endereco": "RUA GENERAL MARIO TOURINHO, 1746, CURITIBA",
-        "data_fundacao": "07/02/2020",
-        "lat": -25.4513269,
-        "lng": -49.3046227
-    },
-    {
-        "nome": "GPP START INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '73.20-3-00', 'text': 'Pesquisas de mercado e de opinião pública'}]",
-        "endereco": "AVENIDA BRASIL, 3080, MARINGA",
-        "data_fundacao": "26/04/2024",
-        "lat": -23.431271,
-        "lng": -51.9058076
-    },
-    {
-        "nome": "GROWEASY TECNOLOGIA LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA NEREU RAMOS, 1414, DOIS VIZINHOS",
-        "data_fundacao": "30/10/2023",
-        "lat": -25.737781,
-        "lng": -53.0609906
-    },
-    {
-        "nome": "GTT CONSULTING LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA ARTHUR MOHR, 281, CURITIBA",
-        "data_fundacao": "26/07/2022",
-        "lat": -25.473993,
-        "lng": -49.2990047
-    },
-    {
-        "nome": "HOLISTIKA BRAZIL LTDA",
-        "area_atuacao": "[{'code': '85.99-6-99', 'text': 'Outras atividades de ensino não especificadas anteriormente'}]",
-        "endereco": "RUA ANDRE DE BARROS, 638, CURITIBA",
-        "data_fundacao": "27/05/2020",
-        "lat": -25.4340696,
-        "lng": -49.2664823
-    },
-    {
-        "nome": "HYGIA BIO INDUSTRIAL LTDA",
-        "area_atuacao": "[{'code': '28.29-1-99', 'text': 'Fabricação de outras máquinas e equipamentos de uso geral não especificados anteriormente, peças e acessórios'}]",
-        "endereco": "RODOVIA PR 182, S/N, TOLEDO",
-        "data_fundacao": "18/04/2022",
-        "lat": -24.7510203,
-        "lng": -53.6953249
-    },
-    {
-        "nome": "ICAPI EDU DESENVOLVIMENTO TECNOLOGICO EDUCACIONAL LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA DESEMBARGADOR VIEIRA CAVALCANTI, 585, CURITIBA",
-        "data_fundacao": "07/11/2022",
-        "lat": -25.4221127,
-        "lng": -49.2792236
-    },
-    {
-        "nome": "IN MOBILE SERVICOS EM NUVEM E DESENVOLVIMENTO DE SISTEMAS LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "RUA PADRE ANCHIETA, 1808, CURITIBA",
-        "data_fundacao": "21/12/2021",
-        "lat": -25.4317831,
-        "lng": -49.2969815
-    },
-    {
-        "nome": "INCONTROL TECNOLOGIA LTDA",
-        "area_atuacao": "[{'code': '71.12-0-00', 'text': 'Serviços de engenharia'}]",
-        "endereco": "RUA ROGERIO PEREIRA DE CAMARGO, 517, CURITIBA",
-        "data_fundacao": "05/09/2022",
-        "lat": -25.4436289,
-        "lng": -49.3559003
-    },
-    {
-        "nome": "INFINITY ENGLISH ACADEMY LTDA.",
-        "area_atuacao": "[{'code': '85.93-7-00', 'text': 'Ensino de idiomas'}]",
-        "endereco": "RUA VISCONDE DE NACAR, 323, PONTA GROSSA",
-        "data_fundacao": "21/08/2023",
-        "lat": -25.1003018,
-        "lng": -50.1630748
-    },
-    {
-        "nome": "SINERGIA ENGENHARIA DE MEIO AMBIENTE LTDA",
-        "area_atuacao": "[{'code': '71.12-0-00', 'text': 'Serviços de engenharia'}]",
-        "endereco": "RUA PARINTINS, 245, CURITIBA",
-        "data_fundacao": "10/02/2014",
-        "lat": -25.4588246,
-        "lng": -49.2948595
-    },
-    {
-        "nome": "INVESTEENDO LTDA",
-        "area_atuacao": "[{'code': '85.99-6-99', 'text': 'Outras atividades de ensino não especificadas anteriormente'}]",
-        "endereco": "RUA ARMANDO SALES DE OLIVEIRA, 276, CURITIBA",
-        "data_fundacao": "11/11/2022",
-        "lat": -25.4572275,
-        "lng": -49.2427212
-    },
-    {
-        "nome": "IONTEC LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "RUA VEREADOR ROMEU LAURO WERLANG, 1788, FRANCISCO BELTRAO",
-        "data_fundacao": "08/04/2022",
-        "lat": -26.0798308,
-        "lng": -53.054595
-    },
-    {
-        "nome": "JOALCO ESCOLA DE CURSOS LTDA",
-        "area_atuacao": "[{'code': '85.99-6-99', 'text': 'Outras atividades de ensino não especificadas anteriormente'}]",
-        "endereco": "R DA LIBERDADE, 678, MANDIRITUBA",
-        "data_fundacao": "15/08/2018",
-        "lat": -25.7737091,
-        "lng": -49.3269569
-    },
-    {
-        "nome": "KAFER DOSADORES E DILUIDORES LTDA",
-        "area_atuacao": "[{'code': '28.69-1-00', 'text': 'Fabricação de máquinas e equipamentos para uso industrial específico não especificados anteriormente, peças e acessórios'}]",
-        "endereco": "R RIO TOCANTINS, 1158, PINHAIS",
-        "data_fundacao": "17/10/2023",
-        "lat": -25.4601054,
-        "lng": -49.1820958
-    },
-    {
-        "nome": "KAMPAI SERVICOS COMBINADOS LTDA",
-        "area_atuacao": "[{'code': '62.04-0-00', 'text': 'Consultoria em tecnologia da informação'}]",
-        "endereco": "RUA GUARDA MOR LUSTOSA, 168, CURITIBA",
-        "data_fundacao": "23/05/2024",
-        "lat": -25.4137132,
-        "lng": -49.2565271
-    },
-    {
-        "nome": "KANNALAB PHARMACEUTICAL INTERMEDIACAO DE NEGOCIOS LTDA",
-        "area_atuacao": "[{'code': '74.90-1-04', 'text': 'Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários'}]",
-        "endereco": "RUA FRANCISCO ROCHA, 198, CURITIBA",
-        "data_fundacao": "16/01/2024",
-        "lat": -25.4437829,
-        "lng": -49.2882116
-    },
-    {
-        "nome": "KIEVICZ TECNOLOGIA EM SEGURANCA DO TRABALHO LTDA",
-        "area_atuacao": "[{'code': '32.92-2-02', 'text': 'Fabricação de equipamentos e acessórios para segurança pessoal e profissional'}]",
-        "endereco": "TRAVESSA IMBUIA, 115, CAMPO MOURAO",
-        "data_fundacao": "03/02/2022",
-        "lat": -24.0272751,
-        "lng": -52.368663
-    },
-    {
-        "nome": "LGPD NO FRONT LTDA",
-        "area_atuacao": "[{'code': '70.20-4-00', 'text': 'Atividades de consultoria em gestão empresarial'}]",
-        "endereco": "AVENIDA BRASIL, 6459, CASCAVEL",
-        "data_fundacao": "18/01/2022",
-        "lat": -24.9541877,
-        "lng": -53.4815818
-    },
-    {
-        "nome": "LOG HUB TECH LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA HUMAITÁ, 860, CIANORTE",
-        "data_fundacao": "22/08/2023",
-        "lat": -23.6534718,
-        "lng": -52.6088322
-    },
-    {
-        "nome": "LUCOR TECNOLOGIA EM GESTAO DE PESSOAS LTDA",
-        "area_atuacao": "[{'code': '18.30-0-03', 'text': 'Reprodução de software em qualquer suporte'}]",
-        "endereco": "RUA FLUMINENSE, 2699, MARINGA",
-        "data_fundacao": "21/05/2024",
-        "lat": -23.4433561,
-        "lng": -51.9258432
-    },
-    {
-        "nome": "LZ ENERGIA LTDA",
-        "area_atuacao": "[{'code': '29.45-0-00', 'text': 'Fabricação de material elétrico e eletrônico para veículos automotores, exceto baterias'}]",
-        "endereco": "AV CENTENARIO, 116, MARINGA",
-        "data_fundacao": "15/03/2018",
-        "lat": -23.4262054,
-        "lng": -51.9108427
-    },
-    {
-        "nome": "MAJOR INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '62.01-5-01', 'text': 'Desenvolvimento de programas de computador sob encomenda'}]",
-        "endereco": "AVENIDA CANDIDO DE ABREU 526, 526, CURITIBA",
-        "data_fundacao": "27/05/2024",
-        "lat": -25.4198606,
-        "lng": -49.2684518
-    },
-    {
-        "nome": "MAOS QUE NUTREM LTDA",
-        "area_atuacao": "[{'code': '56.20-1-04', 'text': 'Fornecimento de alimentos preparados preponderantemente para consumo domiciliar'}]",
-        "endereco": "AVENIDA CENTENARIO, 116, MARINGA",
-        "data_fundacao": "24/05/2024",
-        "lat": -23.4264755,
-        "lng": -51.9104028
-    },
-    {
-        "nome": "MAPFOREST GESTAO E TECNOLOGIA DA INFORMACAO LTDA",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
-        "endereco": "RUA FRANCISCO TORRES, 218, CURITIBA",
-        "data_fundacao": "11/03/2021",
-        "lat": -25.4289496,
-        "lng": -49.2623146
-    },
-    {
-        "nome": "MOSCHEN ENGENHARIA AMBIENTAL LTDA",
-        "area_atuacao": "[{'code': '71.12-0-00', 'text': 'Serviços de engenharia'}]",
-        "endereco": "AVENIDA ENESTOR MIGUEL BENETTI, 149, FRANCISCO BELTRAO",
-        "data_fundacao": "05/05/2022",
-        "lat": -26.0574369,
-        "lng": -53.0426703
-    },
-    {
-        "nome": "MRV SERVICOS EM TI LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA CARLOS GOMES, 3161, CASCAVEL",
-        "data_fundacao": "06/03/2020",
-        "lat": -24.9625482,
-        "lng": -53.4543134
-    },
-    {
-        "nome": "COMUNITIVE S/A",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet (Dispensada *)'}]",
-        "endereco": "AV IGUACU, 2820, CURITIBA",
-        "data_fundacao": "02/12/2016",
-        "lat": -25.4492925,
-        "lng": -49.2885712
-    },
-    {
-        "nome": "PEPLUS DESENVOLVIMENTO DE SOFTWARE INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "AVENIDA GENERAL CARLOS CAVALCANTI 4748, 4748, PONTA GROSSA",
-        "data_fundacao": "06/09/2023",
-        "lat": -25.0946814,
-        "lng": -50.1033066
-    },
-    {
-        "nome": "PLANDOR TECHNOLOGIES INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA JOAO BONAT, 1385, CURITIBA",
-        "data_fundacao": "11/05/2024",
-        "lat": -25.4943159,
-        "lng": -49.3079043
-    },
-    {
-        "nome": "PLANTTCE COMERCIAL LTDA",
-        "area_atuacao": "[{'code': '72.10-0-00', 'text': 'Pesquisa e desenvolvimento experimental em ciências físicas e naturais'}]",
-        "endereco": "ALAMEDA DOM PEDRO II, 155, CURITIBA",
-        "data_fundacao": "18/01/2023",
-        "lat": -25.4373502,
-        "lng": -49.2828738
-    },
-    {
-        "nome": "PRODDAX FABRICACAO DIGITAL LTDA",
-        "area_atuacao": "[{'code': '18.30-0-03', 'text': 'Reprodução de software em qualquer suporte'}]",
-        "endereco": "R DEPUTADO HEITOR ALENCAR FURTADO, 5000, CURITIBA",
-        "data_fundacao": "20/07/2023",
-        "lat": -25.4459494,
-        "lng": -49.3544513
-    },
-    {
-        "nome": "QMS CLOUD 17025 INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA DEPUTADO HEITOR ALENCAR FURTADO, 5000, CURITIBA",
-        "data_fundacao": "28/08/2023",
-        "lat": -25.4459494,
-        "lng": -49.3544513
-    },
-    {
-        "nome": "RARM CONTABILIDADE ESTRATEGICA LTDA",
-        "area_atuacao": "[{'code': '69.20-6-01', 'text': 'Atividades de contabilidade'}]",
-        "endereco": "ESTRADA DAS OLARIAS, 1631, CURITIBA",
-        "data_fundacao": "15/01/2020",
-        "lat": -25.3708646,
-        "lng": -49.2091592
-    },
-    {
-        "nome": "RECRUTADORA-AI INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '78.10-8-00', 'text': 'Seleção e agenciamento de mão-de-obra'}]",
-        "endereco": "RUA IMACULADA CONCEICAO, 1430, CURITIBA",
-        "data_fundacao": "02/02/2024",
-        "lat": -25.4536415,
-        "lng": -49.2529632
-    },
-    {
-        "nome": "REDE CONSCIENCIA NACOES MERCADO LTDA",
-        "area_atuacao": "[{'code': '63.19-4-00', 'text': 'Portais, provedores de conteúdo e outros serviços de informação na internet'}]",
-        "endereco": "RUA JOSÉ LOUREIRO, 133, CURITIBA",
-        "data_fundacao": "20/05/2024",
-        "lat": -25.4329611,
-        "lng": -49.2714131
-    },
-    {
-        "nome": "REDZ TECH LTDA",
-        "area_atuacao": "[{'code': '73.12-2-00', 'text': 'Agenciamento de espaços para publicidade, exceto em veículos de comunicação'}]",
-        "endereco": "AVENIDA TOLEDO, 226, CASCAVEL",
-        "data_fundacao": "01/02/2024",
-        "lat": -24.9445511,
-        "lng": -53.4770339
-    },
-    {
-        "nome": "RPM SOFTWARE LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "RUA JOÃO BENEDITO DA SILVA,PIONEIRO, 2354, MARINGA",
-        "data_fundacao": "31/10/2023",
-        "lat": -23.4481739,
-        "lng": -51.9393043
-    },
-    {
-        "nome": "SHAMMAH - DESENVOLVIMENTO DE SISTEMAS E CONSULTORIA LTDA",
-        "area_atuacao": "[{'code': '62.03-1-00', 'text': 'Desenvolvimento e licenciamento de programas de computador não-customizáveis'}]",
-        "endereco": "RUA GABRIEL ABDALA, 499, FRANCISCO BELTRAO",
-        "data_fundacao": "22/09/2023",
-        "lat": -26.1034074,
-        "lng": -53.055334
-    },
-    {
-        "nome": "KEPHA ENGENHARIA DE SOFTWARE INOVA SIMPLES (I.S.)",
-        "area_atuacao": "[{'code': '62.01-5-01', 'text': 'Desenvolvimento de programas de computador sob encomenda'}]",
-        "endereco": "RUA 28 DE NOVEMBRO, 189, DOIS VIZINHOS",
-        "data_fundacao": "09/05/2024",
-        "lat": -25.7470359,
-        "lng": -53.0539431
-    },
-    {
-        "nome": "SISMC SISTEMA DE MOTO CLUBE LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "AVENIDA PARANA, 845, PEROBAL",
-        "data_fundacao": "23/05/2024",
-        "lat": -23.8946997,
-        "lng": -53.4086492
-    },
-    {
-        "nome": "SMART CODE SOLUCOES TECNOLOGICAS LTDA",
-        "area_atuacao": "[{'code': '62.09-1-00', 'text': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'}]",
-        "endereco": "RUA FULVIO BONATO, 354, DOIS VIZINHOS",
-        "data_fundacao": "24/04/2024",
-        "lat": -25.755244,
-        "lng": -53.055181
-    },
-    {
-        "nome": "SMARTBOT SOLUCOES LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "RUA ARLINDO PLANAS,VEREADOR, 911, MARINGA",
-        "data_fundacao": "17/08/2023",
-        "lat": -23.4027783,
-        "lng": -51.9613705
-    },
-    {
-        "nome": "STARTUP SHOOW ME O HUB DA MUSICA LTDA",
-        "area_atuacao": "[{'code': '62.04-0-00', 'text': 'Consultoria em tecnologia da informação'}]",
-        "endereco": "AVENIDA TOLEDO, 226, CASCAVEL",
-        "data_fundacao": "29/06/2023",
-        "lat": -24.9445511,
-        "lng": -53.4770339
-    },
-    {
-        "nome": "TRACKTUM TECNOLOGIA S/A",
-        "area_atuacao": "[{'code': '47.51-2-01', 'text': 'Comércio varejista especializado de equipamentos e suprimentos de informática'}]",
-        "endereco": "RUA DESEMBARGADOR ERMELINO DE LEAO, 15, CURITIBA",
-        "data_fundacao": "26/11/2020",
-        "lat": -25.4321236,
-        "lng": -49.2748693
-    },
-    {
-        "nome": "TREINOW SOLUCOES TECNOLOGICAS LTDA",
-        "area_atuacao": "[{'code': '62.02-3-00', 'text': 'Desenvolvimento e licenciamento de programas de computador customizáveis'}]",
-        "endereco": "AVENIDA JOSE CUSTODIO DE OLIVEIRA, 2481, CAMPO MOURAO",
-        "data_fundacao": "14/07/2021",
-        "lat": -24.0451215,
-        "lng": -52.3743845
-    },
-    {
-        "nome": "VCX INVESTIMENTOS LTDA",
-        "area_atuacao": "[{'code': '72.10-0-00', 'text': 'Pesquisa e desenvolvimento experimental em ciências físicas e naturais'}]",
-        "endereco": "RUA FLAMINGOS, 816, ARAPONGAS",
-        "data_fundacao": "07/07/2021",
-        "lat": -23.4096663,
-        "lng": -51.4360781
-    },
-    {
-        "nome": "W M RODRIGUES LTDA",
-        "area_atuacao": "[{'code': '74.90-1-04', 'text': 'Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários'}]",
-        "endereco": "AVENIDA GUARAPUAVA, 1011, GUARAPUAVA",
-        "data_fundacao": "08/01/2023",
-        "lat": -25.3492984,
-        "lng": -51.460156
-    },
-    {
-        "nome": "OUTSIDE AGROTECH LTDA",
-        "area_atuacao": "[{'code': '26.51-5-00', 'text': 'Fabricação de aparelhos e equipamentos de medida, teste e controle'}]",
-        "endereco": "RUA GENERAL ALCIDES ETCHEGOYEN, 1013, TOLEDO",
-        "data_fundacao": "01/03/2023",
-        "lat": -24.7265746,
-        "lng": -53.7526973
-    },
-    {
-        "nome": "2316 CONSULTING LTDA",
-        "area_atuacao": "[{'code': '81.30-3-00', 'text': 'Atividades paisagísticas'}]",
-        "endereco": "RUA URBANO LOPES, 214, CURITIBA",
-        "data_fundacao": "11/10/2023",
-        "lat": -25.439316,
-        "lng": -49.2361089
-    },
-    {
-        "nome": "33 ROBOTICS LTDA",
-        "area_atuacao": "[{'code': '47.51-2-01', 'text': 'Comércio varejista especializado de equipamentos e suprimentos de informática'}]",
-        "endereco": "AVENIDA COMENDADOR FRANCO, 1341, CURITIBA",
-        "data_fundacao": "07/03/2022",
-        "lat": -25.4468725,
-        "lng": -49.245105
-    },
-    {
-        "nome": "4THINKS TECNOLOGIA E SOFTWARE LTDA",
-        "area_atuacao": "[{'code': '62.04-0-00', 'text': 'Consultoria em tecnologia da informação'}]",
-        "endereco": "RUA DO COMERCIO, 554, LONDRINA",
-        "data_fundacao": "13/11/2019",
-        "lat": -23.3106192,
-        "lng": -51.1557343
+        "id": 1,
+        "nome": "Peepi",
+        "area_atuacao": "Comunicação/Tecnologia",
+        "endereco": "Av. Iguacu, 2820 Conj 61 Andar 06, Agua Verde, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4284,
+        "lng": -49.2733
+    },
+    {
+        "id": 2,
+        "nome": "Bom Gourmet",
+        "area_atuacao": "Alimentação/Tecnologia",
+        "endereco": "Av. Victor Ferreira do Amaral, 306 Conj 11, Tarumã, Curitiba/PR",
+        "capital": 1500,
+        "lat": -25.4402,
+        "lng": -49.2394
+    },
+    {
+        "id": 3,
+        "nome": "Plandor Technologies",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Joao Bonat, 1385 E32, Novo Mundo, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4512,
+        "lng": -49.2815
+    },
+    {
+        "id": 4,
+        "nome": "Planttce Comercial",
+        "area_atuacao": "Comércio/Tecnologia",
+        "endereco": "Alameda Dom Pedro II, 155, Batel, Curitiba/PR",
+        "capital": 147500,
+        "lat": -25.4367,
+        "lng": -49.2856
+    },
+    {
+        "id": 5,
+        "nome": "Recrutadora-Ai",
+        "area_atuacao": "Recrutamento/Tecnologia",
+        "endereco": "Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4198,
+        "lng": -49.2667
+    },
+    {
+        "id": 6,
+        "nome": "Soul Brasil Esportes",
+        "area_atuacao": "Esportes",
+        "endereco": "Rua Flavio Dallegrave, 1827 Apt 212, Hugo Lange, Curitiba/PR",
+        "capital": 647,
+        "lat": -25.4212,
+        "lng": -49.2456
+    },
+    {
+        "id": 7,
+        "nome": "Thrust Clinic",
+        "area_atuacao": "Saúde",
+        "endereco": "Rua Hermes Fontes, 638, Batel, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.4389,
+        "lng": -49.2891
+    },
+    {
+        "id": 8,
+        "nome": "Tudu",
+        "area_atuacao": "Negócios/Tecnologia",
+        "endereco": "Rua Guaratuba, 839, Ahu, Curitiba/PR",
+        "capital": 10204,
+        "lat": -25.4156,
+        "lng": -49.2589
+    },
+    {
+        "id": 9,
+        "nome": "Vitrine de Projetos Ambientais",
+        "area_atuacao": "Meio Ambiente",
+        "endereco": "Rua Bispo Dom Jose, 2095 Sala 205, Batel, Curitiba/PR",
+        "capital": 160000,
+        "lat": -25.4345,
+        "lng": -49.2912
+    },
+    {
+        "id": 10,
+        "nome": "Zeno Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Marechal Floriano Peixoto, 114 Conj 0009, Centro, Curitiba/PR",
+        "capital": 16990,
+        "lat": -25.4256,
+        "lng": -49.2712
+    },
+    {
+        "id": 11,
+        "nome": "Zinz",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Emiliano Perneta, 500 Apt 2509, Centro, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4278,
+        "lng": -49.2756
+    },
+    {
+        "id": 12,
+        "nome": "Perception",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Travessa Conuncio Carrano, 228, Cidade Jardim, São José dos Pinhais/PR",
+        "capital": 3000,
+        "lat": -25.5123,
+        "lng": -49.1987
+    },
+    {
+        "id": 13,
+        "nome": "7 Digital Tech",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Brasil, 8517 Sala 07, Centro, Cascavel/PR",
+        "capital": 5000,
+        "lat": -24.9556,
+        "lng": -53.4567
+    },
+    {
+        "id": 14,
+        "nome": "Aeon Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Doutor Joaquim do Amaral, 275, Jardim das Americas, Curitiba/PR",
+        "capital": 30000,
+        "lat": -25.4456,
+        "lng": -49.2512
+    },
+    {
+        "id": 15,
+        "nome": "Audipex",
+        "area_atuacao": "Auditoria/Contabilidade",
+        "endereco": "Av. Candido de Abreu, 526 Conj 1510, Centro Civico, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4123,
+        "lng": -49.2823
+    },
+    {
+        "id": 16,
+        "nome": "Benato Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Rafael Klier de Assumpcao, 120, Santa Candida, Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4089,
+        "lng": -49.2378
+    },
+    {
+        "id": 17,
+        "nome": "Bim Start",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Visconde de Guarapuava, 2764 Sala 601, Centro, Curitiba/PR",
+        "capital": 1344447,
+        "lat": -25.4298,
+        "lng": -49.2789
+    },
+    {
+        "id": 18,
+        "nome": "Bizu Tecnologia",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Av. Advogado Horacio Raccanello Filho, 5145 Sala 604, Zona 07, Maringá/PR",
+        "capital": 12500,
+        "lat": -23.4123,
+        "lng": -51.9234
+    },
+    {
+        "id": 19,
+        "nome": "Burn Consultoria",
+        "area_atuacao": "Consultoria",
+        "endereco": "Rua Benjamin Constant, 630, Centro, Curitiba/PR",
+        "capital": 210000,
+        "lat": -25.4234,
+        "lng": -49.2723
+    },
+    {
+        "id": 20,
+        "nome": "Cargon Logistica",
+        "area_atuacao": "Logística/Tecnologia",
+        "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
+        "capital": 8969464.04,
+        "lat": -25.4423,
+        "lng": -49.2423
+    },
+    {
+        "id": 21,
+        "nome": "Catajob",
+        "area_atuacao": "Serviços/Internet",
+        "endereco": "Av. Sete de Setembro, 2775, Rebouças, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.4321,
+        "lng": -49.2765
+    },
+    {
+        "id": 22,
+        "nome": "Gtt Consulting",
+        "area_atuacao": "Consultoria",
+        "endereco": "Rua Arthur Mohr, 281 Casa 02, Portão, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4567,
+        "lng": -49.2899
+    },
+    {
+        "id": 23,
+        "nome": "Descomplica Medicina",
+        "area_atuacao": "Educação/Saúde",
+        "endereco": "Rua Bom Jesus, 212 Sala 1904, Juveve, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4189,
+        "lng": -49.2556
+    },
+    {
+        "id": 24,
+        "nome": "E.feito Social",
+        "area_atuacao": "Gestão/Social",
+        "endereco": "Av. Comendador Franco, 1341, Jardim Botanico, Curitiba/PR",
+        "capital": 30000,
+        "lat": -25.4423,
+        "lng": -49.2423
+    },
+    {
+        "id": 25,
+        "nome": "Easy360",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Engenheiros Reboucas, 1732, Reboucas, Curitiba/PR",
+        "capital": 900000,
+        "lat": -25.4334,
+        "lng": -49.2812
+    },
+    {
+        "id": 26,
+        "nome": "E-Atleta",
+        "area_atuacao": "Esportes",
+        "endereco": "Rua Santa Fe, 95, Cidade Industrial, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4656,
+        "lng": -49.2912
+    },
+    {
+        "id": 27,
+        "nome": "Ecotora",
+        "area_atuacao": "Sustentabilidade",
+        "endereco": "Rodovia Curitiba Ponta Grossa BR-277, 5120, Orleans, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4789,
+        "lng": -49.2789
+    },
+    {
+        "id": 28,
+        "nome": "Entrai Marketing Digital",
+        "area_atuacao": "Marketing Digital",
+        "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4489,
+        "lng": -49.2512
+    },
+    {
+        "id": 29,
+        "nome": "Eva - Agricultura Urbana",
+        "area_atuacao": "Agricultura/Sustentabilidade",
+        "endereco": "Rua Coronel Joao Meister Sobrinho, 107, Pilarzinho, Curitiba/PR",
+        "capital": 15000,
+        "lat": -25.3989,
+        "lng": -49.2456
+    },
+    {
+        "id": 30,
+        "nome": "Fresco Labs",
+        "area_atuacao": "Tecnologia",
+        "endereco": "Rua Parintins, 716 Apt 503, Vila Izabel, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4456,
+        "lng": -49.2912
+    },
+    {
+        "id": 31,
+        "nome": "Ha Tec",
+        "area_atuacao": "Pesquisa/Tecnologia",
+        "endereco": "Rua Padre Anchieta, 2443 Apt 1202-B, Bigorrilho, Curitiba/PR",
+        "capital": 5000,
+        "lat": -25.4389,
+        "lng": -49.2956
+    },
+    {
+        "id": 32,
+        "nome": "Icapi Edu",
+        "area_atuacao": "Educação/Tecnologia",
+        "endereco": "Rua Desembargador Vieira Cavalcanti, 585 Apt 103, Mercês, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4234,
+        "lng": -49.2856
+    },
+    {
+        "id": 33,
+        "nome": "Ide!A Tech",
+        "area_atuacao": "Software/Tecnologia",
+        "endereco": "Rua Desembargador Westphalen, 824 Apt 905, Reboucas, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4323,
+        "lng": -49.2789
+    },
+    {
+        "id": 34,
+        "nome": "Ingee Inovacao Sustentavel",
+        "area_atuacao": "Sustentabilidade/Inovação",
+        "endereco": "Rua Comendador Macedo, 62 Sala 203, Centro, Curitiba/PR",
+        "capital": 155000,
+        "lat": -25.4256,
+        "lng": -49.2723
+    },
+    {
+        "id": 35,
+        "nome": "Inova Cities",
+        "area_atuacao": "Cidades Inteligentes",
+        "endereco": "Rua Almirante Alexandrino, 3345 Sala 4, Afonso Pena, São José dos Pinhais/PR",
+        "capital": 30000,
+        "lat": -25.5123,
+        "lng": -49.1987
+    },
+    {
+        "id": 36,
+        "nome": "Investeendo",
+        "area_atuacao": "Finanças/Investimentos",
+        "endereco": "Rua Armando Sales de Oliveira, 276, Guabirotuba, Curitiba/PR",
+        "capital": 6000,
+        "lat": -25.4489,
+        "lng": -49.2612
+    },
+    {
+        "id": 37,
+        "nome": "Apex Visio",
+        "area_atuacao": "Inovação/Tecnologia",
+        "endereco": "Rua Pedro Manfredine, 4, Abranches, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4089,
+        "lng": -49.2556
+    },
+    {
+        "id": 38,
+        "nome": "Linked Data Tecnologia",
+        "area_atuacao": "Tecnologia/Dados",
+        "endereco": "Av. Marechal Humberto de Alencar C Branco, 1000 Apt 304, Cristo Rei, Curitiba/PR",
+        "capital": 20000,
+        "lat": -25.4212,
+        "lng": -49.2489
+    },
+    {
+        "id": 39,
+        "nome": "Naila Iot",
+        "area_atuacao": "Internet das Coisas/Ambiental",
+        "endereco": "Rua Ubaldino do Amaral, 927, Alto da Rua XV, Curitiba/PR",
+        "capital": 1000,
+        "lat": -25.4289,
+        "lng": -49.2656
+    },
+    {
+        "id": 40,
+        "nome": "Mapforest",
+        "area_atuacao": "Tecnologia/Gestão",
+        "endereco": "Rua Francisco Torres, 218, Centro, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4267,
+        "lng": -49.2733
+    },
+    {
+        "id": 41,
+        "nome": "Metatimbre Ai",
+        "area_atuacao": "Inteligência Artificial",
+        "endereco": "Rua Imaculada Conceicao, 1430, Prado Velho, Curitiba/PR",
+        "capital": 2000,
+        "lat": -25.4489,
+        "lng": -49.2512
+    },
+    {
+        "id": 42,
+        "nome": "Microcapsules Technology",
+        "area_atuacao": "Biotecnologia",
+        "endereco": "Rua Pedro Gusso, 2601, Cidade Industrial, Curitiba/PR",
+        "capital": 10000,
+        "lat": -25.4656,
+        "lng": -49.2912
+    },
+    {
+        "id": 43,
+        "nome": "Multiplicare Plantas",
+        "area_atuacao": "Agronegócio",
+        "endereco": "Curitiba/PR",
+        "capital": 0,
+        "lat": -25.4456,
+        "lng": -49.2612
+    },
+    {
+        "cnpj": "53.502.991/0001-77",
+        "razao_social": "53.502.991 CAMILA SOCA CANTARELLI",
+        "nome_fantasia": "INGÁ",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": ""
+        },
+        "localizacao": {
+            "logradouro": "",
+            "numero": "",
+            "bairro": "JARDIM FLORESTAL",
+            "cep": "83602340",
+            "municipio": "CAMPO LARGO",
+            "estado": "PR",
+            "latitude": -25.4834681,
+            "longitude": -49.5345844
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "55.119.149/0001-86",
+        "razao_social": "INSTITUTO 3C+",
+        "nome_fantasia": "INSTITUTO 3C+",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(42) 91323505"
+        },
+        "localizacao": {
+            "logradouro": "MARECHAL FLORIANO PEIXOTO",
+            "numero": "1601",
+            "bairro": "CENTRO",
+            "cep": "85010250",
+            "municipio": "GUARAPUAVA",
+            "estado": "PR",
+            "latitude": -25.4296,
+            "longitude": -49.2719
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "51.217.087/0001-94",
+        "razao_social": "AETHER HM LTDA",
+        "nome_fantasia": "AETHER HM",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(41) 32576987"
+        },
+        "localizacao": {
+            "logradouro": "PROFESSOR FÁBIO DE SOUZA",
+            "numero": "2131",
+            "bairro": "PORTÃO",
+            "cep": "80330050",
+            "municipio": "CURITIBA",
+            "estado": "PR",
+            "latitude": -25.4296,
+            "longitude": -49.2719
+        },
+        "situacao_cadastral": "ATIVA"
+    },
+    {
+        "cnpj": "32.806.103/0001-30",
+        "razao_social": "INTALENTI HEADHUNTER E CONSULTORIA LTDA",
+        "nome_fantasia": "INTALENTI",
+        "status_mapeamento": "Não Aprovada",
+        "contatos": {
+            "email": null,
+            "telefone": "(44) 97078165"
+        },
+        "localizacao": {
+            "logradouro": "SAO PAULO",
+            "numero": "1061",
+            "bairro": "ZONA 01",
+            "cep": "87013040",
+            "municipio": "MARINGA",
+            "estado": "PR",
+            "latitude": -23.4194933,
+            "longitude": -51.9331225
+        },
+        "situacao_cadastral": "ATIVA"
     }
 ]
