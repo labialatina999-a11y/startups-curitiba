@@ -120,8 +120,15 @@
         return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(valor); 
     }
 
-    function getMarkerIcon(municipio) {
-        const isCuritiba = municipio && municipio.toUpperCase().includes('CURITIBA');
+    function getMarkerIcon(municipio, endereco) {
+        // Normaliza o texto para remover acentos e facilitar a comparação
+        const normalizar = (txt) => txt ? txt.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase() : "";
+        
+        const muniNorm = normalizar(municipio);
+        const endNorm = normalizar(endereco);
+        
+        // Verifica se Curitiba aparece no campo município ou no endereço completo
+        const isCuritiba = muniNorm.includes('CURITIBA') || endNorm.includes('CURITIBA');
         const color = isCuritiba ? '#0f172a' : '#059669';
         
         return L.divIcon({
@@ -195,7 +202,7 @@
                 `;
                 const marker = L.marker([s.lat, s.lng], { 
                     title: s.nome,
-                    icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '')
+                    icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '', s.endereco)
                 }).addTo(map).bindPopup(popup);
                 markers.push(marker);
             }
