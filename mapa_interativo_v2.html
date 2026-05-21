@@ -2,25 +2,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mapa de Startups - Paraná | Ecossistema Inovador</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Startups - Paraná</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #f0f2f5; color: #1a202c; }
-        
-        /* Navegação */
         .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 2rem 2rem 0 2rem; }
         .hero-content { max-width: 1400px; margin: 0 auto; }
         .nav-tabs { display: flex; gap: 0.5rem; margin-top: 1.5rem; }
-        .tab-button { background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; opacity: 0.7; }
-        .tab-button.active { background: white; color: #0f172a; opacity: 1; }
-
-        .dashboard { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; }
+        .tab-button { background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; }
+        .tab-button.active { background: white; color: #0f172a; }
+        .tab-content { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.5rem; }
         #map { height: 600px; width: 100%; border-radius: 0.75rem; }
-        .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; }
         .map-card { flex: 2; min-width: 300px; }
         .list-card { flex: 1; min-width: 300px; background: white; border-radius: 0.75rem; overflow-y: auto; max-height: 600px; }
         .startup-item { padding: 1rem; border-bottom: 1px solid #e2e8f0; cursor: pointer; }
@@ -35,22 +32,24 @@
         <h1>Mapa de Startups · Paraná</h1>
         <div class="nav-tabs">
             <button class="tab-button active" onclick="openTab('tab-mapa')">Mapa Interativo</button>
-            <button class="tab-button" onclick="openTab('tab-conteudo')">Matérias</button>
+            <button class="tab-button" onclick="openTab('tab-conteudo')">Conteúdos</button>
         </div>
     </div>
 </div>
 
-<div id="tab-mapa" class="tab-content dashboard">
-    <input type="text" id="searchInput" placeholder="Buscar..." style="width:100%; padding: 10px; margin-bottom: 10px;">
+<div id="tab-mapa" class="tab-content">
+    <input type="text" id="searchInput" placeholder="Buscar startup..." style="width:100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc;">
     <div class="grid-main">
         <div class="map-card"><div id="map"></div></div>
         <div class="list-card" id="startupListContainer"></div>
     </div>
 </div>
 
-<div id="tab-conteudo" class="tab-content" style="display:none; padding: 2rem; max-width: 800px; margin: 0 auto;">
-    <h2>Matérias e Conteúdos</h2>
-    <p>Área reservada para seus vídeos.</p>
+<div id="tab-conteudo" class="tab-content" style="display:none;">
+    <div style="background: white; padding: 2rem; border-radius: 12px;">
+        <h2>Matérias e Vídeos</h2>
+        <p>Espaço reservado para o seu player de vídeo aqui.</p>
+    </div>
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -87,7 +86,7 @@
                 lng: s.lng || (s.localizacao ? s.localizacao.longitude : null)
             })).filter(s => s.lat && s.lng);
             renderMapAndList('');
-        } catch(e) { console.error("Erro:", e); }
+        } catch(e) { console.error("Erro ao carregar:", e); }
     }
 
     function renderMapAndList(filter) {
@@ -103,8 +102,8 @@
         `).join('');
 
         filtered.forEach(s => {
-            const marker = L.marker([s.lat, s.lng]).addTo(map).bindPopup(s.nome);
-            markers.push(marker);
+            const m = L.marker([s.lat, s.lng]).addTo(map).bindPopup(s.nome);
+            markers.push(m);
         });
     }
 
