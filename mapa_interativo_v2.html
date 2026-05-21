@@ -85,11 +85,24 @@
     let map, markers = [], currentFilter = '';
     const curitibaCenter = [-25.4284, -49.2733];
 
+    // FUNÇÃO DE LIMPEZA INTELIGENTE
+    function limparArea(texto) {
+        if (typeof texto !== 'string') return 'Tecnologia/Serviços';
+        
+        // Tenta encontrar o texto dentro da estrutura ['text': '...']
+        const match = texto.match(/'text':\s*'([^']+)'/);
+        if (match && match[1]) {
+            return match[1];
+        }
+        
+        // Fallback: remove caracteres JSON residuais caso não encontre o padrão
+        return texto.replace(/[\[\]'"{}:]/g, '').replace(/code|text/gi, '').trim();
+    }
+
     function initMap() {
         map = L.map('map').setView(curitibaCenter, 12);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', subdomains: 'abcd', maxZoom: 18 }).addTo(map);
         
-        // Adicionar legenda ao mapa
         const legend = L.control({position: 'bottomright'});
         legend.onAdd = function (map) {
             const div = L.DomUtil.create('div', 'legend');
@@ -199,7 +212,10 @@
             const data = await response.json();
             startupsData = data.map(s => {
                 const nome = s.nome_fantasia || s.nome || s.razao_social || 'Sem nome';
-                const area = s.area_atuacao || 'Tecnologia/Serviços';
+                
+                // Aplicando a função de limpeza na área de atuação
+                const area = limparArea(s.area_atuacao);
+                
                 const lat = s.localizacao ? s.localizacao.latitude : s.lat;
                 const lng = s.localizacao ? s.localizacao.longitude : s.lng;
                 const localizacao = s.localizacao || {};
