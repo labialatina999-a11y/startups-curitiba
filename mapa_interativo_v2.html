@@ -260,7 +260,10 @@
         const legend = L.control({position: 'bottomright'});
         legend.onAdd = function (map) {
             const div = L.DomUtil.create('div', 'legend');
-            div.innerHTML = `<div class="legend-item"><span class="dot" style="background-color:#0f172a;"></span> Curitiba</div><div class="legend-item"><span class="dot" style="background-color:#059669;"></span> Interior do PR</div>`;
+            div.innerHTML = `
+                <div class="legend-item"><span class="dot" style="background-color:#000000;"></span> Curitiba (Preto)</div>
+                <div class="legend-item"><span class="dot" style="background-color:#059669;"></span> Resto do Paraná (Verde)</div>
+            `;
             return div;
         };
         legend.addTo(map);
@@ -271,9 +274,14 @@
         return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(valor); 
     }
 
-    function getMarkerIcon(municipio) {
-        const isCuritiba = municipio && municipio.toUpperCase().includes('CURITIBA');
-        const color = isCuritiba ? '#0f172a' : '#059669';
+    function getMarkerIcon(municipio, endereco) {
+        // Lógica mais robusta para identificar Curitiba
+        const textoParaBusca = (municipio + " " + (endereco || "")).toUpperCase();
+        const isCuritiba = textoParaBusca.includes('CURITIBA');
+        
+        // Preto (#000000) para Curitiba, Verde (#059669) para o resto do Paraná
+        const color = isCuritiba ? '#000000' : '#059669';
+        
         return L.divIcon({
             className: 'custom-div-icon',
             html: `<div style='background-color:${color}; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.3);'></div>`,
@@ -324,7 +332,10 @@
         filtered.forEach(s => {
             if (s.lat && s.lng) {
                 const popup = `<div style="font-family:Inter; min-width:200px;"><strong style="font-size:0.9rem;">${s.nome}</strong><br>📁 ${s.area_atuacao}<br>📍 ${s.endereco}<br>💰 <span style="color:#059669; font-weight:600;">${formatarCapital(s.capital)}</span><br>📊 Status: <strong>${s.situacao}</strong><br>${s.contatos.email ? `✉️ ${s.contatos.email}<br>` : ''}${s.contatos.telefone ? `📞 ${s.contatos.telefone}` : ''}</div>`;
-                const marker = L.marker([s.lat, s.lng], { title: s.nome, icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '') }).addTo(map).bindPopup(popup);
+                const marker = L.marker([s.lat, s.lng], { 
+                    title: s.nome, 
+                    icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '', s.endereco) 
+                }).addTo(map).bindPopup(popup);
                 markers.push(marker);
             }
         });
