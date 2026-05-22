@@ -317,7 +317,26 @@
         try {
             const response = await fetch('startups_data.json');
             if (!response.ok) throw new Error('Erro ao carregar arquivo');
-            const data = await response.json();
+            let text = await response.text();
+            
+            // Tenta corrigir JSON cortado se necessário
+            if (text.trim().endsWith(',')) text = text.trim().slice(0, -1) + ']';
+            if (!text.trim().endsWith(']')) text = text.trim() + ']';
+            
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                // Se falhar, tenta uma limpeza mais agressiva para recuperar o que der
+                console.warn("JSON malformado, tentando recuperar dados parciais...");
+                const lastValidIndex = text.lastIndexOf('},');
+                if (lastValidIndex !== -1) {
+                    data = JSON.parse(text.substring(0, lastValidIndex + 1) + ']');
+                } else {
+                    throw e;
+                }
+            }
+
             startupsData = data.map(s => {
                 const nome = s.nome_fantasia || s.nome || s.razao_social || 'Sem nome';
                 const area = limparArea(s.area_atuacao);
@@ -326,11 +345,12 @@
                 const endereco = s.localizacao && s.localizacao.logradouro ? `${s.localizacao.logradouro}, ${s.localizacao.numero} - ${s.localizacao.bairro}, ${s.localizacao.municipio}/${s.localizacao.estado}` : s.endereco;
                 return { ...s, nome, area_atuacao: area, endereco, lat, lng };
             }).filter(s => s.lat && s.lng);
+            
             console.log("Total de startups carregadas:", startupsData.length);
             renderMapAndList('');
         } catch(err) { 
-            console.error(err);
-            document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao carregar dados</div>'; 
+            console.error("Erro fatal no carregamento:", err);
+            document.getElementById('startupListContainer').innerHTML = '<div class="info-row" style="justify-content:center;">Erro ao processar dados. Verifique o arquivo JSON.</div>'; 
         }
     }
 
