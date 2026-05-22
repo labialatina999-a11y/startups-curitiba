@@ -11,7 +11,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #f0f2f5 100%); color: #1a202c; }
 
-/* Navegação por Abas */
 .nav-tabs {
   max-width: 1400px;
   margin: 0 auto;
@@ -31,10 +30,7 @@ body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5
   transition: all 0.3s;
   font-size: 0.9rem;
 }
-.tab-button.active {
-  background: white;
-  color: #0f172a;
-}
+.tab-button.active { background: white; color: #0f172a; }
 
 .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 2rem 2rem 0 2rem; position: relative; }
 .hero-content { max-width: 1400px; margin: 0 auto; padding-bottom: 2rem; }
@@ -43,83 +39,89 @@ body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5
 .hero p { margin-top: 0.5rem; font-size: 0.95rem; color: #cbd5e1; }
 .stats-badge { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
 .stat { background: rgba(255,255,255,0.1); padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; }
+
 .dashboard { max-width: 1400px; margin: 1.5rem auto 2rem auto; padding: 0 1.5rem; position: relative; z-index: 10; }
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
 .metric-card { background: white; padding: 1rem; border-radius: 0.75rem; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .metric-card h3 { font-size: 0.7rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.5rem; }
 .metric-card .value { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+
+/* Card especial para mulheres */
+.metric-card.mulheres { border-top: 3px solid #e91e8c; }
+.metric-card.mulheres .value { color: #e91e8c; }
+
 .controls { background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.search-box { display: flex; align-items: center; background: #f8fafc; border-radius: 8px; padding: 0.5rem 0.75rem; gap: 8px; border: 1px solid #e2e8f0; }
+.search-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+.search-box { flex: 1; min-width: 200px; display: flex; align-items: center; background: #f8fafc; border-radius: 8px; padding: 0.5rem 0.75rem; gap: 8px; border: 1px solid #e2e8f0; }
 .search-box input { border: none; background: transparent; width: 100%; font-size: 0.85rem; outline: none; font-family: 'Inter', sans-serif; }
+
+/* Filtro mulheres */
+.filter-mulheres {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fdf2f8;
+  border: 1px solid #f9a8d4;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #be185d;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.filter-mulheres:hover { background: #fce7f3; }
+.filter-mulheres.ativo { background: #e91e8c; color: white; border-color: #e91e8c; }
+
 .grid-main { display: flex; flex-wrap: wrap; gap: 1rem; }
 .map-card { flex: 2; min-width: 280px; background: white; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 .map-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.85rem; }
 #map { height: 600px; width: 100%; }
+
 .list-card { flex: 1.2; min-width: 300px; background: white; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; }
 .list-header { padding: 0.75rem 1rem; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; display: flex; justify-content: space-between; }
 .startup-list { flex: 1; overflow-y: auto; max-height: 600px; padding: 0.5rem; }
+
 .startup-item { background: white; border: 1px solid #e2e8f0; margin-bottom: 0.5rem; padding: 0.75rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
 .startup-item:hover { background: #f8fafc; transform: translateX(2px); }
+
+/* Destaque para empresas de mulheres */
+.startup-item.mulher { border-left: 3px solid #e91e8c; }
+.startup-item.mulher:hover { background: #fdf2f8; }
+
 .startup-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
 .area-badge { background: #e0e7ff; color: #4338ca; padding: 0.15rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 600; display: inline-block; margin-bottom: 0.25rem; }
+
+/* Badge especial mulheres */
+.badge-mulher { background: #fce7f3; color: #be185d; padding: 0.15rem 0.4rem; border-radius: 12px; font-size: 0.65rem; font-weight: 700; display: inline-block; margin-bottom: 0.25rem; margin-left: 0.25rem; }
+
 .info-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: #475569; margin-top: 0.25rem; }
 .info-row i { width: 14px; color: #667eea; font-size: 0.65rem; }
 .capital-value { color: #059669; font-weight: 600; }
 
-/* Estilos da Aba de Conteúdo */
-.card-materia {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeIn 0.5s ease-in-out;
-}
+/* Matérias */
+.card-materia { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; animation: fadeIn 0.5s ease-in-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .card-materia h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #0f172a; }
 .card-materia .data-materia { font-size: 0.8rem; color: #94a3b8; margin-bottom: 1rem; display: block; }
 .card-materia p { margin-top: 1.5rem; line-height: 1.6; color: #475569; font-size: 1rem; }
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  margin-top: 15px;
-  border-radius: 8px;
-  background: #f1f5f9;
-}
-.video-wrapper iframe, .video-wrapper video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 15px; border-radius: 8px; background: #f1f5f9; }
+.video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
 footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 1.5rem; }
+
 .legend { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); line-height: 1.5; font-size: 0.75rem; }
 .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; }
 
-/* Mensagem de erro amigável */
-.erro-json {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  padding: 1rem;
-  color: #991b1b;
-  font-size: 0.8rem;
-  margin: 1rem;
-}
+.erro-json { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 1rem; color: #991b1b; font-size: 0.8rem; margin: 1rem; }
 
 @media (max-width: 768px) {
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .hero h1 { font-size: 1.5rem; }
   .card-materia { padding: 1.5rem; }
+  .search-row { flex-direction: column; }
 }
 </style>
 </head>
@@ -132,26 +134,31 @@ footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b;
     <div class="stats-badge">
       <span class="stat"><i class="fas fa-chart-line"></i> Ecossistema em crescimento</span>
       <span class="stat"><i class="fas fa-users"></i> Polo de Inovação</span>
-      <span class="stat"><i class="fas fa-trophy"></i> Startups de Impacto</span>
+      <span class="stat"><i class="fas fa-venus"></i> Liderança Feminina</span>
     </div>
   </div>
-
-  <!-- CORREÇÃO 1: openTab agora recebe o evento como parâmetro explícito -->
   <div class="nav-tabs">
     <button class="tab-button active" onclick="openTab(event, 'tab-mapa')">Mapa Interativo</button>
     <button class="tab-button" onclick="openTab(event, 'tab-conteudo')">Matérias e Conteúdos</button>
   </div>
 </div>
 
-<!-- ABA 1: MAPA E DASHBOARD -->
+<!-- ABA 1: MAPA -->
 <div id="tab-mapa" class="tab-content">
   <div class="dashboard">
     <div class="metrics-grid">
       <div class="metric-card"><h3>TOTAL DE STARTUPS</h3><div class="value" id="totalStartups">0</div></div>
       <div class="metric-card"><h3>ÁREAS DE ATUAÇÃO</h3><div class="value" id="totalAreas">0</div></div>
+      <div class="metric-card mulheres"><h3>LIDERADAS POR MULHERES</h3><div class="value" id="totalMulheres">0</div></div>
+      <div class="metric-card"><h3>MUNICÍPIOS</h3><div class="value" id="totalMunicipios">0</div></div>
     </div>
     <div class="controls">
-      <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação, cidade ou endereço..."></div>
+      <div class="search-row">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Buscar por nome, área de atuação, cidade..."></div>
+        <button class="filter-mulheres" id="btnMulheres" onclick="toggleFiltroMulheres()">
+          <i class="fas fa-venus"></i> Empresas de Mulheres
+        </button>
+      </div>
     </div>
     <div class="grid-main">
       <div class="map-card">
@@ -166,13 +173,11 @@ footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b;
   </div>
 </div>
 
-<!-- ABA 2: MATÉRIAS E CONTEÚDOS -->
+<!-- ABA 2: MATÉRIAS -->
 <div id="tab-conteudo" class="tab-content" style="display:none;">
   <div class="hero-content" style="padding: 2rem; max-width: 1400px; margin: 0 auto;">
     <h2 style="margin-bottom: 20px; color: #0f172a;">Matérias e Conteúdos</h2>
-    <div id="materiasContainer" class="content-grid">
-      <!-- As matérias serão inseridas aqui via JavaScript -->
-    </div>
+    <div id="materiasContainer" class="content-grid"></div>
   </div>
 </div>
 
@@ -181,7 +186,33 @@ footer { text-align: center; padding: 1.5rem; font-size: 0.7rem; color: #64748b;
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // ==========================================
-// CONFIGURAÇÃO DAS MATÉRIAS (ADICIONE AQUI)
+// EMPRESAS LIDERADAS POR MULHERES
+// ==========================================
+const EMPRESAS_MULHERES = new Set([
+  '7 DIGITAL TECH SOLUCOES DIGITAIS LTDA',
+  'ADSMAT - PESQUISA E DESENVOLVIMENTO DE BIOMATERIAIS E MATERIAIS DE CERAMICAS AVANCADOS LTDA',
+  'AKADIA CENTRO DE LINGUAS ONLINE LTDA',
+  'AZAGROS - AGROTECNOLOGIA LTDA',
+  'BREVENLAW TRATAMENTO DE DADOS LTDA',
+  'C. PORTO ASSESSORIA E CONSULTORIA LTDA',
+  'COISA DE MULHER LTDA.',
+  'COISA DE MULHER LTDA',
+  'LGPD NO FRONT LTDA',
+  'PIGMA DESENVOLVIMENTOS LTDA',
+  'TRACKTUM TECNOLOGIA S/A',
+]);
+
+function ehEmpresaMulher(nome) {
+  if (!nome) return false;
+  const n = nome.trim().toUpperCase();
+  for (const empresa of EMPRESAS_MULHERES) {
+    if (n === empresa.toUpperCase() || n.startsWith(empresa.replace(/\.$/, '').toUpperCase())) return true;
+  }
+  return false;
+}
+
+// ==========================================
+// MATÉRIAS
 // ==========================================
 const listaDeMaterias = [
   {
@@ -193,108 +224,70 @@ const listaDeMaterias = [
     url: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1&modestbranding=1&rel=0",
     poster: ""
   }
-  // Adicione mais matérias aqui seguindo o mesmo formato
 ];
 
 function renderizarMaterias() {
   const container = document.getElementById('materiasContainer');
-  const materiasOrdenadas = [...listaDeMaterias].sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  container.innerHTML = materiasOrdenadas.map(m => {
+  const ordenadas = [...listaDeMaterias].sort((a, b) => new Date(b.data) - new Date(a.data));
+  container.innerHTML = ordenadas.map(m => {
     let playerHTML = '';
     if (m.tipo === 'youtube' || m.tipo === 'vimeo') {
       playerHTML = `<iframe src="${m.url}" frameborder="0" allowfullscreen></iframe>`;
     } else if (m.tipo === 'nativo') {
-      playerHTML = `<video width="100%" controls poster="${m.poster}"><source src="${m.url}" type="video/mp4">Seu navegador não suporta vídeos.</video>`;
+      playerHTML = `<video width="100%" controls poster="${m.poster}"><source src="${m.url}" type="video/mp4"></video>`;
     }
-
     const dataFormatada = new Date(m.data + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-
     return `<div class="card-materia">
       <span class="data-materia">${dataFormatada}</span>
       <h3>${m.titulo}</h3>
-      <div class="video-wrapper" ${m.tipo === 'nativo' ? 'style="padding-bottom:0; height:auto;"' : ''}>${playerHTML}</div>
+      <div class="video-wrapper" ${m.tipo === 'nativo' ? 'style="padding-bottom:0;height:auto;"' : ''}>${playerHTML}</div>
       <p>${m.descricao}</p>
     </div>`;
   }).join('');
 }
 
 // ==========================================
-// CORREÇÃO 2: openTab recebe evento explicitamente
+// ABAS
 // ==========================================
 function openTab(evt, tabId) {
-  // Esconde todas as abas
-  document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
-  // Remove classe active de todos os botões
-  document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-  // Mostra a aba selecionada
+  document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
   document.getElementById(tabId).style.display = 'block';
-  // Marca o botão clicado como ativo
   evt.currentTarget.classList.add('active');
-
-  if (tabId === 'tab-mapa' && map) {
-    setTimeout(() => map.invalidateSize(), 100);
-  }
-  if (tabId === 'tab-conteudo') {
-    renderizarMaterias();
-  }
+  if (tabId === 'tab-mapa' && map) setTimeout(() => map.invalidateSize(), 100);
+  if (tabId === 'tab-conteudo') renderizarMaterias();
 }
 
 // ==========================================
 // MAPA E DADOS
 // ==========================================
 let startupsData = [];
-let map, markers = [], currentFilter = '';
+let map, markers = [], currentFilter = '', filtroMulheres = false;
 const curitibaCenter = [-25.4284, -49.2733];
 
-// CORREÇÃO 3: limparArea muito mais robusta
-// Cobre: strings Python-like {'code': 'X', 'text': 'Y'}, JSON parcial, lixo variado
 function limparArea(texto) {
   if (!texto) return 'Tecnologia/Serviços';
-
-  // Se já é um objeto (campo veio parseado), pega .text ou .description
-  if (typeof texto === 'object') {
-    return texto.text || texto.description || texto.name || 'Tecnologia/Serviços';
-  }
-
+  if (typeof texto === 'object') return texto.text || texto.description || texto.name || 'Tecnologia/Serviços';
   if (typeof texto !== 'string') return 'Tecnologia/Serviços';
-
-  // Tenta extrair 'text': 'Valor' ou "text": "Valor" (dict Python serializado como string)
   let match = texto.match(/['"]text['"]\s*:\s*['"]([^'"]+)['"]/);
-  if (match && match[1]) return match[1].trim();
-
-  // Tenta extrair 'description': 'Valor'
+  if (match) return match[1].trim();
   match = texto.match(/['"]description['"]\s*:\s*['"]([^'"]+)['"]/);
-  if (match && match[1]) return match[1].trim();
-
-  // Remove todos os caracteres de dict/array e palavras-chave técnicas
-  const limpo = texto
-    .replace(/[\[\]{}]/g, '')
-    .replace(/'code'\s*:\s*'[^']*'/gi, '')
-    .replace(/"code"\s*:\s*"[^"]*"/gi, '')
-    .replace(/'text'\s*:\s*/gi, '')
-    .replace(/"text"\s*:\s*/gi, '')
-    .replace(/['"]/g, '')
-    .replace(/,/g, ' ')
-    .trim();
-
+  if (match) return match[1].trim();
+  const limpo = texto.replace(/[\[\]{}]/g, '').replace(/'code'\s*:\s*'[^']*'/gi, '').replace(/"code"\s*:\s*"[^"]*"/gi, '').replace(/'text'\s*:\s*/gi, '').replace(/"text"\s*:\s*/gi, '').replace(/['"]/g, '').replace(/,/g, ' ').trim();
   return limpo || 'Tecnologia/Serviços';
 }
 
 function initMap() {
   map = L.map('map').setView(curitibaCenter, 12);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM',
-    subdomains: 'abcd',
-    maxZoom: 18
-  }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; OSM', subdomains: 'abcd', maxZoom: 18 }).addTo(map);
 
   const legend = L.control({ position: 'bottomright' });
   legend.onAdd = function () {
     const div = L.DomUtil.create('div', 'legend');
     div.innerHTML = `
-      <div class="legend-item"><span class="dot" style="background-color:#000000;"></span> Curitiba (Preto)</div>
-      <div class="legend-item"><span class="dot" style="background-color:#059669;"></span> Resto do Paraná (Verde)</div>`;
+      <div class="legend-item"><span class="dot" style="background:#e91e8c;"></span> Liderada por mulher</div>
+      <div class="legend-item"><span class="dot" style="background:#000000;"></span> Curitiba</div>
+      <div class="legend-item"><span class="dot" style="background:#059669;"></span> Resto do Paraná</div>`;
     return div;
   };
   legend.addTo(map);
@@ -305,11 +298,18 @@ function formatarCapital(valor) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(valor);
 }
 
-function getMarkerIcon(municipio, endereco) {
+function getMarkerIcon(nome, municipio, endereco) {
+  if (ehEmpresaMulher(nome)) {
+    return L.divIcon({
+      className: 'custom-div-icon',
+      html: `<div style='background-color:#e91e8c; width:14px; height:14px; border-radius:50%; border:2px solid white; box-shadow: 0 0 6px rgba(233,30,140,0.6);'></div>`,
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
   const textoParaBusca = ((municipio || '') + ' ' + (endereco || '')).toUpperCase();
   const isCuritiba = textoParaBusca.includes('CURITIBA');
   const color = isCuritiba ? '#000000' : '#059669';
-
   return L.divIcon({
     className: 'custom-div-icon',
     html: `<div style='background-color:${color}; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.3);'></div>`,
@@ -321,6 +321,15 @@ function getMarkerIcon(municipio, endereco) {
 function atualizarMetricas(startups) {
   document.getElementById('totalStartups').textContent = startups.length;
   document.getElementById('totalAreas').textContent = new Set(startups.map(s => s.area_atuacao).filter(Boolean)).size;
+  document.getElementById('totalMulheres').textContent = startups.filter(s => ehEmpresaMulher(s.nome)).length;
+  document.getElementById('totalMunicipios').textContent = new Set(startups.map(s => s.municipio).filter(Boolean)).size;
+}
+
+function toggleFiltroMulheres() {
+  filtroMulheres = !filtroMulheres;
+  const btn = document.getElementById('btnMulheres');
+  btn.classList.toggle('ativo', filtroMulheres);
+  renderMapAndList(currentFilter);
 }
 
 function renderMapAndList(filterText = '') {
@@ -328,15 +337,19 @@ function renderMapAndList(filterText = '') {
   markers = [];
 
   const term = filterText.toLowerCase().trim();
-  const filtered = startupsData.filter(s => {
+  let filtered = startupsData.filter(s => {
     if (!term) return true;
     return (
       (s.nome && s.nome.toLowerCase().includes(term)) ||
       (s.area_atuacao && s.area_atuacao.toLowerCase().includes(term)) ||
       (s.endereco && s.endereco.toLowerCase().includes(term)) ||
-      (s.localizacao && s.localizacao.municipio && s.localizacao.municipio.toLowerCase().includes(term))
+      (s.municipio && s.municipio.toLowerCase().includes(term))
     );
   });
+
+  if (filtroMulheres) {
+    filtered = filtered.filter(s => ehEmpresaMulher(s.nome));
+  }
 
   atualizarMetricas(filtered);
   document.getElementById('resultCount').textContent = `${filtered.length} resultado${filtered.length !== 1 ? 's' : ''}`;
@@ -346,19 +359,20 @@ function renderMapAndList(filterText = '') {
   if (filtered.length === 0) {
     container.innerHTML = '<div class="info-row" style="justify-content:center;">Nenhuma startup encontrada</div>';
   } else {
-    container.innerHTML = filtered.map((s, idx) => `
-      <div class="startup-item" data-idx="${idx}">
+    container.innerHTML = filtered.map((s, idx) => {
+      const isMulher = ehEmpresaMulher(s.nome);
+      return `<div class="startup-item${isMulher ? ' mulher' : ''}" data-idx="${idx}">
         <div class="startup-name">${s.nome}</div>
         <span class="area-badge">${s.area_atuacao}</span>
+        ${isMulher ? '<span class="badge-mulher">♀ Liderança Feminina</span>' : ''}
         <div class="info-row"><i class="fas fa-map-pin"></i> ${s.endereco || 'Endereço não informado'}</div>
         <div class="info-row"><i class="fas fa-dollar-sign"></i> <span class="capital-value">${formatarCapital(s.capital)}</span></div>
         <div class="info-row"><i class="fas fa-info-circle"></i> Status: <span style="color:${s.situacao === 'ATIVA' ? '#059669' : '#dc2626'}">${s.situacao || 'N/I'}</span></div>
-        ${s.contatos && s.contatos.email ? `<div class="info-row"><i class="fas fa-envelope"></i> ${s.contatos.email}</div>` : ''}
-      </div>
-    `).join('');
+        ${s.contatos && s.contatos.email && s.contatos.email !== 'nan' ? `<div class="info-row"><i class="fas fa-envelope"></i> ${s.contatos.email}</div>` : ''}
+      </div>`;
+    }).join('');
 
-    // CORREÇÃO 4: usa idx diretamente no closure em vez de query posterior
-    container.querySelectorAll('.startup-item').forEach((item) => {
+    container.querySelectorAll('.startup-item').forEach(item => {
       const idx = parseInt(item.dataset.idx, 10);
       item.addEventListener('click', () => {
         const s = filtered[idx];
@@ -373,89 +387,56 @@ function renderMapAndList(filterText = '') {
 
   filtered.forEach(s => {
     if (s.lat && s.lng) {
-      const popup = `
-        <div style="font-family:Inter; min-width:200px;">
-          <strong style="font-size:0.9rem;">${s.nome}</strong><br>
-          📁 ${s.area_atuacao}<br>
-          📍 ${s.endereco || 'N/I'}<br>
-          💰 <span style="color:#059669; font-weight:600;">${formatarCapital(s.capital)}</span><br>
-          📊 Status: <strong>${s.situacao || 'N/I'}</strong><br>
-          ${s.contatos && s.contatos.email ? `✉️ ${s.contatos.email}<br>` : ''}
-          ${s.contatos && s.contatos.telefone ? `📞 ${s.contatos.telefone}` : ''}
-        </div>`;
+      const isMulher = ehEmpresaMulher(s.nome);
+      const popup = `<div style="font-family:Inter; min-width:200px;">
+        ${isMulher ? '<div style="background:#fce7f3;color:#be185d;padding:3px 8px;border-radius:12px;font-size:0.7rem;font-weight:700;margin-bottom:6px;display:inline-block;">♀ Liderança Feminina</div>' : ''}
+        <strong style="font-size:0.9rem;">${s.nome}</strong><br>
+        📁 ${s.area_atuacao}<br>
+        📍 ${s.endereco || 'N/I'}<br>
+        💰 <span style="color:#059669;font-weight:600;">${formatarCapital(s.capital)}</span><br>
+        📊 Status: <strong>${s.situacao || 'N/I'}</strong><br>
+        ${s.contatos && s.contatos.email && s.contatos.email !== 'nan' ? `✉️ ${s.contatos.email}<br>` : ''}
+        ${s.contatos && s.contatos.telefone ? `📞 ${s.contatos.telefone}` : ''}
+      </div>`;
 
       const marker = L.marker([s.lat, s.lng], {
         title: s.nome,
-        icon: getMarkerIcon(s.localizacao ? s.localizacao.municipio : '', s.endereco)
+        icon: getMarkerIcon(s.nome, s.municipio, s.endereco)
       }).addTo(map).bindPopup(popup);
 
       markers.push(marker);
     }
   });
 
-  if (markers.length > 1) {
-    map.fitBounds(L.featureGroup(markers).getBounds().pad(0.1));
-  } else if (markers.length === 1) {
-    map.setView(markers[0].getLatLng(), 15);
-  }
+  if (markers.length > 1) map.fitBounds(L.featureGroup(markers).getBounds().pad(0.1));
+  else if (markers.length === 1) map.setView(markers[0].getLatLng(), 15);
 }
 
-// ==========================================
-// CORREÇÃO 5: loadData com parsing defensivo melhorado
-// ==========================================
 async function loadData() {
   const container = document.getElementById('startupListContainer');
-
   try {
     const response = await fetch('startups_data.json');
-    if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     let text = await response.text();
     text = text.trim();
-
     let data;
-
-    // Tentativa 1: parse direto
     try {
       data = JSON.parse(text);
     } catch (e1) {
-      console.warn('Parse direto falhou, tentando correções automáticas...', e1.message);
-
-      // Tentativa 2: corrige JSON cortado com vírgula no final
       let corrigido = text;
       if (corrigido.endsWith(',')) corrigido = corrigido.slice(0, -1);
-      // Fecha array se não estiver fechado
       if (!corrigido.endsWith(']')) corrigido += ']';
-      // Abre array se não estiver aberto
       if (!corrigido.startsWith('[')) corrigido = '[' + corrigido;
-
       try {
         data = JSON.parse(corrigido);
-        console.info('JSON corrigido automaticamente (fechamento de array).');
       } catch (e2) {
-        console.warn('Correção simples falhou, tentando recuperação parcial...', e2.message);
-
-        // Tentativa 3: recupera tudo até o último objeto válido
-        const ultimoObjeto = corrigido.lastIndexOf('},');
-        if (ultimoObjeto !== -1) {
-          try {
-            data = JSON.parse(corrigido.substring(0, ultimoObjeto + 1) + ']');
-            console.warn(`Recuperação parcial: ${data.length} registros salvos.`);
-          } catch (e3) {
-            throw new Error(`Impossível parsear o JSON mesmo com recuperação parcial: ${e3.message}`);
-          }
-        } else {
-          throw new Error('Estrutura JSON inválida — nenhum objeto completo encontrado.');
-        }
+        const ultimo = corrigido.lastIndexOf('},');
+        if (ultimo !== -1) data = JSON.parse(corrigido.substring(0, ultimo + 1) + ']');
+        else throw new Error('JSON inválido');
       }
     }
+    if (!Array.isArray(data)) throw new Error('JSON não é um array');
 
-    // Garante que data é um array
-    if (!Array.isArray(data)) {
-      throw new Error('O arquivo JSON não contém um array de startups.');
-    }
-
-    // Normaliza cada registro
     startupsData = data.map(s => {
       const nome = s.nome_fantasia || s.nome || s.razao_social || 'Sem nome';
       const area = limparArea(s.area_atuacao);
@@ -464,37 +445,22 @@ async function loadData() {
       const endereco = (s.localizacao && s.localizacao.logradouro)
         ? `${s.localizacao.logradouro}, ${s.localizacao.numero || 'S/N'} - ${s.localizacao.bairro || ''}, ${s.localizacao.municipio || ''}/${s.localizacao.estado || ''}`
         : (s.endereco || '');
-
-      // Garante que contatos existe
       const contatos = s.contatos || { email: null, telefone: null };
-
       return { ...s, nome, area_atuacao: area, endereco, lat, lng, contatos };
-    }).filter(s => s.lat && s.lng); // Só plota quem tem coordenadas
+    }).filter(s => s.lat && s.lng);
 
-    console.info(`Total de startups carregadas com coordenadas: ${startupsData.length}`);
     renderMapAndList('');
-
   } catch (err) {
-    console.error('Erro fatal no carregamento:', err);
-    container.innerHTML = `
-      <div class="erro-json">
-        <strong>⚠️ Erro ao carregar os dados</strong><br>
-        ${err.message}<br><br>
-        Verifique se o arquivo <code>startups_data.json</code> está na mesma pasta e é um JSON válido.
-      </div>`;
-    // Ainda mostra mapa vazio centrado em Curitiba
+    console.error('Erro ao carregar dados:', err);
+    container.innerHTML = `<div class="erro-json"><strong>⚠️ Erro ao carregar os dados</strong><br>${err.message}</div>`;
     atualizarMetricas([]);
   }
 }
 
-// ==========================================
-// INIT
-// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
   loadData();
-
-  document.getElementById('searchInput').addEventListener('input', (e) => {
+  document.getElementById('searchInput').addEventListener('input', e => {
     currentFilter = e.target.value;
     renderMapAndList(currentFilter);
   });
