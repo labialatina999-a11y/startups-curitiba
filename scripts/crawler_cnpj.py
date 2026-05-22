@@ -4,119 +4,109 @@ import os
 import time
 import requests
 
-# Caminhos dos arquivos (considerando que o script roda na raiz ou via automação)
-ARQUIVO_ENTRADA_CSV = 'dados_cnpjs.csv'   # Sua lista de entrada exportada em CSV
-ARQUIVO_SAIDA_JSON = 'startups_data.json' # O arquivo que alimenta seu mapa diretamente
+# Configurações
+ARQUIVO_ENTRADA_CSV = 'dados_cnpjs.csv'
+ARQUIVO_SAIDA_JSON = 'startups_data.json'
 
 def consultar_cnpj(cnpj):
     """Consulta dados públicos do CNPJ via BrasilAPI"""
-    cnpj_limpo = cnpj.replace('.', '').replace('/', '').replace('-', '')
+    cnpj_limpo = ''.join(filter(str.isdigit, cnpj))
     url = f"https://brasilapi.com.br/api/cnpj/v1/{cnpj_limpo}"
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=15 )
         if response.status_code == 200:
             return response.json()
-        print(f"[-] Erro {response.status_code} no CNPJ: {cnpj}")
         return None
     except Exception as e:
-        print(f"[-] Falha de conexão no CNPJ {cnpj}: {e}")
+        print(f"[-] Erro na API de CNPJ ({cnpj}): {e}")
         return None
 
 def obter_coordenadas(logradouro, numero, bairro, municipio, estado):
-    """
-    Busca a geolocalização gratuita (via Nominatim/OpenStreetMap).
-    Mapeia o endereço para Latitude e Longitude exatas.
-    """
-    endereco_completo = f"{logradouro}, {numero} - {bairro}, {municipio} - {estado}, Brasil"
+    """Busca geolocalização via Nominatim (OpenStreetMap)"""
+    endereco = f"{logradouro}, {numero}, {bairro}, {municipio}, {estado}, Brasil"
     url = "https://nominatim.openstreetmap.org/search"
-    headers = {'User-Agent': 'MapeadorStartupsPR/1.0'}
-    params = {'q': endereco_completo, 'format': 'json', 'limit': 1}
+    headers = {'User-Agent': 'MapaStartupsPR_Bot/2.0 (contato@seusite.com )'}
+    params = {'q': endereco, 'format': 'json', 'limit': 1}
     
     try:
-        response = requests.get(url, headers=headers, params=params, timeout=10)
-        if response.status_code == 200 and len(response.json()) > 0:
-            resultado = response.json()[0]
-            return float(resultado['lat']), float(resultado['lon'])
+        # Delay obrigatório para respeitar os termos do Nominatim (1 req/seg)
+        time.sleep(1.1) 
+        response = requests.get(url, headers=headers, params=params, timeout=15)
+        if response.status_code == 200 and response.json():
+            res = response.json()[0]
+            return float(res['lat']), float(res['lon'])
     except Exception as e:
-        print(f"[-] Erro ao geolocalizar endereço: {e}")
-    return -25.4296, -49.2719 # Coordenadas centrais de Curitiba caso falhe
+        print(f"[-] Erro na geolocalização: {e}")
+    
+    return None, None
 
-def processar_carga():
-    print("[*] Iniciando o processamento dos CNPJs...")
-    startups_mapeadas = []
-
-    # Se já existir o arquivo JSON do mapa, carrega os dados atuais para não perder nada
+def processar():
+    print("[*] Iniciando processamento...")
+    
+    # 1. Carregar dados existentes para fazer cache
+    startups_existentes = []
     if os.path.exists(ARQUIVO_SAIDA_JSON):
         try:
             with open(ARQUIVO_SAIDA_JSON, 'r', encoding='utf-8') as f:
-                startups_mapeadas = json.load(f)
+                startups_existentes = json.load(f)
         except:
-            startups_mapeadas = []
+            print("[!] Arquivo JSON atual corrompido, iniciando do zero.")
 
-    # Cria uma lista de CNPJs que já foram processados antes para evitar consultas repetidas
-    cnpjs_existentes = {item.get('cnpj') for item in startups_mapeadas if 'cnpj' in item}
-
+    # Criar índice de CNPJs já processados
+    cnpjs_processados = {str(s.get('cnpj', '')) for s in startups_existentes}
+    
+    novas_startups = list(startups_existentes)
+    
+    # 2. Ler CSV de entrada
     if not os.path.exists(ARQUIVO_ENTRADA_CSV):
-        print(f"[-] Erro: O arquivo {ARQUIVO_ENTRADA_CSV} não foi encontrado na raiz.")
+        print(f"[-] Erro: {ARQUIVO_ENTRADA_CSV} não encontrado.")
         return
 
-    with open(ARQUIVO_ENTRADA_CSV, mode='r', encoding='utf-8') as f_in:
-        # Lê o CSV usando ponto e vírgula como separador padrão das planilhas
-        leitor = csv.DictReader(f_in, delimiter=';') 
+    with open(ARQUIVO_ENTRADA_CSV, mode='r', encoding='utf-8') as f:
+        # Tenta detectar o separador (vírgula ou ponto e vírgula)
+        content = f.read(1024)
+        f.seek(0)
+        dialect = csv.Sniffer().sniff(content)
+        leitor = csv.DictReader(f, dialect=dialect)
         
-        for row in leitor:
-            cnpj = row.get('CNPJ')
-            if not cnpj:
-                continue
-                
-            cnpj = cnpj.strip()
-            if cnpj in cnpjs_existentes:
+        for linha in leitor:
+            cnpj = linha.get('cnpj') or linha.get('CNPJ')
+            if not cnpj or str(cnpj) in cnpjs_processados:
                 continue
             
-            print(f"[+] Buscando dados para o CNPJ: {cnpj}")
-            dados_api = consultar_cnpj(cnpj)
+            print(f"[+] Processando novo CNPJ: {cnpj}")
+            dados = consultar_cnpj(cnpj)
             
-            if dados_api:
-                logradouro = dados_api.get('logradouro', '')
-                numero = dados_api.get('numero', '')
-                bairro = dados_api.get('bairro', '')
-                municipio = dados_api.get('municipio', '')
-                estado = dados_api.get('uf', '')
+            if dados:
+                # Extrair endereço para geolocalização
+                lat, lng = obter_coordenadas(
+                    dados.get('logradouro', ''),
+                    dados.get('numero', ''),
+                    dados.get('bairro', ''),
+                    dados.get('municipio', ''),
+                    dados.get('uf', '')
+                )
                 
-                # Descobre as coordenadas exatas para plotar o alfinete no mapa
-                lat, lon = obter_coordenadas(logradouro, numero, bairro, municipio, estado)
+                # Se falhar a geolocalização, usa Curitiba como padrão ou pula
+                if not lat:
+                    lat, lng = -25.4296, -49.2719 
                 
-                nova_startup = {
-                    "cnpj": cnpj,
-                    "razao_social": dados_api.get('razao_social'),
-                    "nome_fantasia": dados_api.get('nome_fantasia') or row.get('Razão Social') or dados_api.get('razao_social'),
-                    "status_mapeamento": row.get('Status', 'Aprovada'), 
-                    "contatos": {
-                        "email": dados_api.get('email', ''),
-                        "telefone": f"({dados_api.get('ddd_telefone_1', '')[:2]}) {dados_api.get('ddd_telefone_1', '')[2:]}" if dados_api.get('ddd_telefone_1') else ''
-                    },
-                    "localizacao": {
-                        "logradouro": logradouro,
-                        "numero": numero,
-                        "bairro": bairro,
-                        "cep": dados_api.get('cep', ''),
-                        "municipio": municipio,
-                        "estado": estado,
-                        "latitude": lat,
-                        "longitude": lon
-                    },
-                    "situacao_cadastral": dados_api.get('descricao_situacao_cadastral', 'ATIVA')
-                }
+                dados['lat'] = lat
+                dados['lng'] = lng
+                dados['cnpj'] = cnpj # Garante o campo para o cache
                 
-                startups_mapeadas.append(nova_startup)
-                # Pausa estratégica para não estourar o limite das APIs públicas gratuitas
-                time.sleep(2.0) 
+                novas_startups.append(dados)
                 
-    # Salva ou atualiza o arquivo JSON oficial do mapa interativo
-    with open(ARQUIVO_SAIDA_JSON, 'w', encoding='utf-8') as f_out:
-        json.dump(startups_mapeadas, f_out, indent=4, ensure_ascii=False)
-    
-    print(f"[+] Processo finalizado! O arquivo {ARQUIVO_SAIDA_JSON} foi devidamente atualizado.")
+                # Salva a cada 5 novas para não perder progresso se o GitHub parar
+                if len(novas_startups) % 5 == 0:
+                    with open(ARQUIVO_SAIDA_JSON, 'w', encoding='utf-8') as f_out:
+                        json.dump(novas_startups, f_out, indent=4, ensure_ascii=False)
 
-if __name__ == '__main__':
-    processar_carga()
+    # 3. Salvar resultado final
+    with open(ARQUIVO_SAIDA_JSON, 'w', encoding='utf-8') as f_out:
+        json.dump(novas_startups, f_out, indent=4, ensure_ascii=False)
+    
+    print(f"[*] Sucesso! Total de startups no mapa: {len(novas_startups)}")
+
+if __name__ == "__main__":
+    processar()
